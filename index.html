@@ -1,0 +1,2194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-learning LS4YOU - Formation Professionnels Mission Locale</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #E63946 0%, #FFD166 50%, #06D6A0 100%);
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+        .fade-in {
+            animation: fadeIn 0.6s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .slide-in {
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from { transform: translateX(-100%); }
+            to { transform: translateX(0); }
+        }
+        .table-row {
+            transition: background-color 0.2s ease;
+        }
+        .table-row:hover {
+            background-color: #f0f9ff;
+        }
+        .methodology-card {
+            transition: all 0.3s ease;
+        }
+        .methodology-card:hover {
+            transform: translateY(-2px);
+        }
+        .domain-tab {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .domain-tab:hover {
+            transform: translateY(-2px);
+        }
+        .domain-tab.active {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+        }
+        .tool-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .tool-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px -5px rgba(0, 0, 0, 0.15);
+        }
+        .modal {
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen">
+    <!-- Navigation Header -->
+    <nav class="bg-white shadow-sm border-b-2 border-red-500 sticky top-0 z-50" style="border-color: #E63946;">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: linear-gradient(135deg, #E63946, #06D6A0);">
+                        <span class="text-white font-bold text-lg">LS</span>
+                    </div>
+                    <h1 class="ml-3 text-xl font-semibold" style="color: #E63946;">LS4YOU E-Learning</h1>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <div class="rounded-full h-2 w-32" style="background-color: #F6F6F6;">
+                        <div id="progressBar" class="h-2 rounded-full progress-bar" style="width: 0%; background-color: #06D6A0;"></div>
+                    </div>
+                    <span id="progressText" class="text-sm" style="color: #000000;">0/8</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        
+        <!-- Écran d'accueil -->
+        <div id="screen-home" class="screen fade-in">
+            <div class="text-center mb-12">
+                <div class="gradient-bg rounded-3xl p-12 text-white mb-8">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Préparer la formation Life Skills</h1>
+                    <h2 class="text-xl md:text-2xl font-light opacity-90">Module e-learning introductif pour les professionnels de l'accompagnement</h2>
+                    <div class="mt-8 flex flex-wrap justify-center gap-4">
+                        <button class="border-2 border-white text-white px-8 py-3 rounded-full font-semibold transition-colors flex items-center" style="background-color: #FFD166; color: #000000;" onmouseover="this.style.backgroundColor='white'; this.style.color='#E63946'" onmouseout="this.style.backgroundColor='#FFD166'; this.style.color='#000000'">
+                            🌍 Français
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation par blocs -->
+            <div class="max-w-5xl mx-auto">
+                <h3 class="text-2xl font-bold text-center mb-8" style="color: #E63946;">📚 Parcours de formation</h3>
+                
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <!-- Bloc 1 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 card-hover cursor-pointer transition-all duration-300 border-l-4" style="border-color: #E63946;" onclick="goToBloc(1)">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #E63946;">1</div>
+                            <div class="text-2xl">🎯</div>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2" style="color: #E63946;">Introduction au projet LS4YOU</h4>
+                        <p class="text-gray-600 text-sm mb-4">Découvrez les enjeux et objectifs du projet Life Skills for Youth</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500">⏱ 10 min</span>
+                            <div class="w-6 h-6 rounded-full flex items-center justify-center" style="background-color: #F6F6F6;">
+                                <span class="text-xs">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bloc 2 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 card-hover cursor-pointer transition-all duration-300 border-l-4" style="border-color: #06D6A0;" onclick="goToBloc(2)">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #06D6A0;">2</div>
+                            <div class="text-2xl">🔄</div>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2" style="color: #06D6A0;">La méthodologie LS4YOU</h4>
+                        <p class="text-gray-600 text-sm mb-4">Explorez les 8 étapes de construction du projet avec une infographie interactive</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500">⏱ 15 min</span>
+                            <div class="w-6 h-6 rounded-full flex items-center justify-center" style="background-color: #F6F6F6;">
+                                <span class="text-xs">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bloc 3 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 card-hover cursor-pointer transition-all duration-300 border-l-4" style="border-color: #FFD166;" onclick="goToBloc(3)">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #FFD166; color: #000000;">3</div>
+                            <div class="text-2xl">🎯</div>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2" style="color: #FFD166;">Objectifs de la formation</h4>
+                        <p class="text-gray-600 text-sm mb-4">Comprenez les objectifs généraux et spécifiques de cette formation</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500">⏱ 8 min</span>
+                            <div class="w-6 h-6 rounded-full flex items-center justify-center" style="background-color: #F6F6F6;">
+                                <span class="text-xs">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bloc 4 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 card-hover cursor-pointer transition-all duration-300 border-l-4" style="border-color: #E63946;" onclick="goToBloc(4)">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #E63946;">4</div>
+                            <div class="text-2xl">🧩</div>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2" style="color: #E63946;">Principes pédagogiques</h4>
+                        <p class="text-gray-600 text-sm mb-4">Découvrez les 4 grands principes qui guident cette formation</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500">⏱ 12 min</span>
+                            <div class="w-6 h-6 rounded-full flex items-center justify-center" style="background-color: #F6F6F6;">
+                                <span class="text-xs">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bloc 5 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 card-hover cursor-pointer transition-all duration-300 border-l-4" style="border-color: #06D6A0;" onclick="goToBloc(5)">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #06D6A0;">5</div>
+                            <div class="text-2xl">🌱</div>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2" style="color: #06D6A0;">Qu'est-ce qu'une Life Skill ?</h4>
+                        <p class="text-gray-600 text-sm mb-4">Définition et référentiel OMS des compétences de vie essentielles</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500">⏱ 10 min</span>
+                            <div class="w-6 h-6 rounded-full flex items-center justify-center" style="background-color: #F6F6F6;">
+                                <span class="text-xs">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bloc 6 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 card-hover cursor-pointer transition-all duration-300 border-l-4" style="border-color: #FFD166;" onclick="goToBloc(6)">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #FFD166; color: #000000;">6</div>
+                            <div class="text-2xl">🧠</div>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2" style="color: #FFD166;">Comparatif des compétences</h4>
+                        <p class="text-gray-600 text-sm mb-4">Life Skills VS Soft Skills VS Compétences psycho-sociales</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500">⏱ 15 min</span>
+                            <div class="w-6 h-6 rounded-full flex items-center justify-center" style="background-color: #F6F6F6;">
+                                <span class="text-xs">→</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bloc 7 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 card-hover cursor-pointer transition-all duration-300 border-l-4" style="border-color: #E63946;" onclick="goToBloc(7)">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #E63946;">7</div>
+                            <div class="text-2xl">🛑</div>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2" style="color: #E63946;">Les "faux amis"</h4>
+                        <p class="text-gray-600 text-sm mb-4">Activité interactive : distinguer les vraies compétences des normes sociales</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500">⏱ 20 min</span>
+                            <div class="w-6 h-6 rounded-full flex items-center justify-center" style="background-color: #F6F6F6;">
+                                <span class="text-xs">🎮</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bloc 8 -->
+                    <div class="bg-white rounded-2xl shadow-lg p-6 card-hover cursor-pointer transition-all duration-300 border-l-4" style="border-color: #06D6A0;" onclick="goToBloc(8)">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #06D6A0;">8</div>
+                            <div class="text-2xl">🧰</div>
+                        </div>
+                        <h4 class="text-lg font-bold mb-2" style="color: #06D6A0;">Outils du Guidebook</h4>
+                        <p class="text-gray-600 text-sm mb-4">Explorer les outils LS4YOU par domaine de compétences</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs text-gray-500">⏱ 25 min</span>
+                            <div class="w-6 h-6 rounded-full flex items-center justify-center" style="background-color: #F6F6F6;">
+                                <span class="text-xs">🔧</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progression globale -->
+                <div class="mt-12 bg-white rounded-2xl shadow-lg p-8">
+                    <div class="flex items-center justify-between mb-4">
+                        <h4 class="text-lg font-bold" style="color: #E63946;">📊 Votre progression</h4>
+                        <span class="text-sm text-gray-600" id="home-progress-text">0/8 modules complétés</span>
+                    </div>
+                    <div class="w-full rounded-full h-3" style="background-color: #F6F6F6;">
+                        <div id="home-progress-bar" class="h-3 rounded-full transition-all duration-500" style="width: 0%; background: linear-gradient(90deg, #E63946, #06D6A0);"></div>
+                    </div>
+                    <div class="mt-4 flex justify-between text-xs text-gray-500">
+                        <span>Débutant</span>
+                        <span>Durée totale : ~115 min</span>
+                        <span>Expert</span>
+                    </div>
+                </div>
+
+                <!-- Actions rapides -->
+                <div class="mt-8 text-center">
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <button onclick="startLearning()" class="bg-white px-8 py-3 rounded-full font-semibold transition-colors flex items-center shadow-lg" style="color: #E63946; border: 2px solid #06D6A0;" onmouseover="this.style.backgroundColor='#F6F6F6'" onmouseout="this.style.backgroundColor='white'">
+                            ▶ Commencer par le début
+                        </button>
+                        <button onclick="showLastVisited()" class="border-2 text-white px-8 py-3 rounded-full font-semibold transition-colors flex items-center shadow-lg" style="background-color: #06D6A0; border-color: #06D6A0;" onmouseover="this.style.backgroundColor='#E63946'; this.style.borderColor='#E63946'" onmouseout="this.style.backgroundColor='#06D6A0'; this.style.borderColor='#06D6A0'">
+                            📖 Reprendre où j'en étais
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bloc 1: Introduction au projet LS4YOU -->
+        <div id="screen-bloc1" class="screen hidden fade-in">
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #E63946;">1</div>
+                    <h2 class="text-3xl font-bold" style="color: #E63946;">Introduction au projet LS4YOU</h2>
+                </div>
+                
+                <div class="prose max-w-none">
+                    <p class="text-lg text-gray-700 mb-6">Le projet <strong>LS4YOU – Life Skills for Youth</strong> a été conçu pour répondre à un enjeu majeur :</p>
+                    
+                    <div class="border-l-4 p-6 mb-6" style="background-color: #F6F6F6; border-color: #06D6A0;">
+                        <p class="text-lg font-medium" style="color: #000000;">👉 Accompagner l'insertion sociale et professionnelle des jeunes, en leur donnant les moyens de développer des ressources personnelles, sociales et pratiques au-delà des compétences scolaires ou professionnelles.</p>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">De nombreux jeunes rencontrent des difficultés concrètes :</h3>
+                    <div class="grid md:grid-cols-2 gap-4 mb-6">
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <ul class="space-y-2 text-gray-700">
+                                <li>• Se présenter en entretien</li>
+                                <li>• Gérer leur stress</li>
+                                <li>• Travailler en équipe</li>
+                            </ul>
+                        </div>
+                        <div class="bg-red-50 p-4 rounded-lg">
+                            <ul class="space-y-2 text-gray-700">
+                                <li>• S'organiser au quotidien</li>
+                                <li>• Se projeter dans l'avenir</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+                        <p class="text-gray-700">Les <strong>Life Skills</strong> sont ces compétences de vie essentielles : elles permettent aux jeunes de mieux se connaître, de gérer leurs émotions, de communiquer efficacement et de renforcer leur autonomie.</p>
+                    </div>
+
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6">
+                        <p class="text-gray-700"><strong>🧭 À la suite du Guidebook et de la plateforme numérique</strong>, cette formation vise à transmettre des méthodes concrètes aux professionnels pour intégrer les Life Skills dans leur pratique.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-between">
+                <button onclick="goToHome()" class="text-white px-6 py-3 rounded-lg transition-colors" style="background-color: #F6F6F6; color: #000000;" onmouseover="this.style.backgroundColor='#E63946'; this.style.color='white'" onmouseout="this.style.backgroundColor='#F6F6F6'; this.style.color='#000000'">← Retour au menu</button>
+                <button onclick="goToBloc(2)" class="text-white px-6 py-3 rounded-lg transition-colors" style="background-color: #06D6A0;" onmouseover="this.style.backgroundColor='#E63946'" onmouseout="this.style.backgroundColor='#06D6A0'">Suivant →</button>
+            </div>
+        </div>
+
+        <!-- Bloc 2: La méthodologie LS4YOU -->
+        <div id="screen-bloc2" class="screen hidden fade-in">
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #E63946;">2</div>
+                    <h2 class="text-3xl font-bold" style="color: #E63946;">La méthodologie LS4YOU</h2>
+                </div>
+                
+                <div class="mb-8">
+                    <div class="text-white p-6 rounded-xl mb-8" style="background: linear-gradient(135deg, #E63946, #06D6A0);">
+                        <h3 class="text-2xl font-bold mb-2">🎯 Processus de construction du projet</h3>
+                        <p class="text-lg">8 étapes clés pour développer et déployer la méthode LS4YOU</p>
+                    </div>
+
+                    <!-- Infographie interactive des 8 étapes -->
+                    <div class="relative max-w-4xl mx-auto">
+                        <!-- Ligne de connexion verticale -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-1 h-full" style="background: linear-gradient(to bottom, #06D6A0, #E63946, #FFD166, #06D6A0); opacity: 0.3;"></div>
+                        
+                        <div class="space-y-8">
+                            <!-- Étape 1 -->
+                            <div class="relative flex items-center">
+                                <div class="flex-1 pr-8 text-right">
+                                    <div class="methodology-card p-6 rounded-2xl shadow-lg cursor-pointer transition-all duration-300 hover:shadow-xl" style="background: linear-gradient(135deg, #F6F6F6, #ffffff); border-left: 4px solid #06D6A0;" onclick="toggleMethodologyStep(1)">
+                                        <h4 class="text-xl font-bold mb-3" style="color: #000000;">Identification et mapping des Life Skills</h4>
+                                        <p class="text-gray-700 leading-relaxed">Analyse et recensement des compétences de vie pertinentes</p>
+                                        <div class="mt-3 text-sm" style="color: #06D6A0;">Cliquez pour plus de détails ▼</div>
+                                    </div>
+                                    <div id="methodology-detail-1" class="hidden mt-4 p-4 rounded-lg" style="background-color: #F6F6F6;">
+                                        <ul class="text-sm text-gray-700 space-y-2">
+                                            <li>• Identification des besoins des jeunes et des professionnels</li>
+                                            <li>• Création d'un référentiel commun</li>
+                                            <li>• Analyse comparative des approches existantes</li>
+                                            <li>• Validation par les partenaires européens</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="relative z-10 flex-shrink-0">
+                                    <div class="w-20 h-20 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-xl" style="background: linear-gradient(135deg, #06D6A0, #E63946);">
+                                        01
+                                    </div>
+                                    <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-lg" style="background-color: #FFD166;">
+                                        🔍
+                                    </div>
+                                </div>
+                                <div class="flex-1 pl-8"></div>
+                            </div>
+
+                            <!-- Étape 2 -->
+                            <div class="relative flex items-center">
+                                <div class="flex-1 pr-8"></div>
+                                <div class="relative z-10 flex-shrink-0">
+                                    <div class="w-20 h-20 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-xl" style="background: linear-gradient(135deg, #E63946, #06D6A0);">
+                                        02
+                                    </div>
+                                    <div class="absolute -top-2 -left-2 w-6 h-6 rounded-full flex items-center justify-center text-lg" style="background-color: #FFD166;">
+                                        🤝
+                                    </div>
+                                </div>
+                                <div class="flex-1 pl-8">
+                                    <div class="methodology-card p-6 rounded-2xl shadow-lg cursor-pointer transition-all duration-300 hover:shadow-xl" style="background: linear-gradient(135deg, #F6F6F6, #ffffff); border-right: 4px solid #E63946;" onclick="toggleMethodologyStep(2)">
+                                        <h4 class="text-xl font-bold mb-3" style="color: #000000;">Co-développement de la méthode LS4YOU</h4>
+                                        <p class="text-gray-700 leading-relaxed">Partage de connaissances au sein du consortium</p>
+                                        <div class="mt-3 text-sm" style="color: #E63946;">Cliquez pour plus de détails ▼</div>
+                                    </div>
+                                    <div id="methodology-detail-2" class="hidden mt-4 p-4 rounded-lg" style="background-color: #F6F6F6;">
+                                        <ul class="text-sm text-gray-700 space-y-2">
+                                            <li>• Travail collaboratif entre partenaires</li>
+                                            <li>• Adaptation aux contextes nationaux</li>
+                                            <li>• Tests et ajustements itératifs</li>
+                                            <li>• Validation scientifique de l'approche</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Étape 3 -->
+                            <div class="relative flex items-center">
+                                <div class="flex-1 pr-8 text-right">
+                                    <div class="methodology-card p-6 rounded-2xl shadow-lg cursor-pointer transition-all duration-300 hover:shadow-xl" style="background: linear-gradient(135deg, #F6F6F6, #ffffff); border-left: 4px solid #FFD166;" onclick="toggleMethodologyStep(3)">
+                                        <h4 class="text-xl font-bold mb-3" style="color: #000000;">Création et adaptation du livret de formation</h4>
+                                        <p class="text-gray-700 leading-relaxed">Rédaction d'un manuel pédagogique à destination des professionnels</p>
+                                        <div class="mt-3 text-sm" style="color: #FFD166;">Cliquez pour plus de détails ▼</div>
+                                    </div>
+                                    <div id="methodology-detail-3" class="hidden mt-4 p-4 rounded-lg" style="background-color: #F6F6F6;">
+                                        <ul class="text-sm text-gray-700 space-y-2">
+                                            <li>• Déclinaison linguistique et culturelle</li>
+                                            <li>• Adaptation aux publics locaux</li>
+                                            <li>• Création d'outils pédagogiques</li>
+                                            <li>• Guide d'animation détaillé</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="relative z-10 flex-shrink-0">
+                                    <div class="w-20 h-20 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-xl" style="background: linear-gradient(135deg, #FFD166, #E63946);">
+                                        03
+                                    </div>
+                                    <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-lg" style="background-color: #06D6A0; color: white;">
+                                        📚
+                                    </div>
+                                </div>
+                                <div class="flex-1 pl-8"></div>
+                            </div>
+
+                            <!-- Étape 4 -->
+                            <div class="relative flex items-center">
+                                <div class="flex-1 pr-8"></div>
+                                <div class="relative z-10 flex-shrink-0">
+                                    <div class="w-20 h-20 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-xl" style="background: linear-gradient(135deg, #06D6A0, #FFD166);">
+                                        04
+                                    </div>
+                                    <div class="absolute -top-2 -left-2 w-6 h-6 rounded-full flex items-center justify-center text-lg" style="background-color: #E63946;">
+                                        💻
+                                    </div>
+                                </div>
+                                <div class="flex-1 pl-8">
+                                    <div class="methodology-card p-6 rounded-2xl shadow-lg cursor-pointer transition-all duration-300 hover:shadow-xl" style="background: linear-gradient(135deg, #F6F6F6, #ffffff); border-right: 4px solid #06D6A0;" onclick="toggleMethodologyStep(4)">
+                                        <h4 class="text-xl font-bold mb-3" style="color: #000000;">Développement d'un outil numérique interactif</h4>
+                                        <p class="text-gray-700 leading-relaxed">Conception d'un outil en ligne ludique et intuitif</p>
+                                        <div class="mt-3 text-sm" style="color: #06D6A0;">Cliquez pour plus de détails ▼</div>
+                                    </div>
+                                    <div id="methodology-detail-4" class="hidden mt-4 p-4 rounded-lg" style="background-color: #F6F6F6;">
+                                        <ul class="text-sm text-gray-700 space-y-2">
+                                            <li>• Plateforme accessible et responsive</li>
+                                            <li>• Gamification des apprentissages</li>
+                                            <li>• Suivi personnalisé des progrès</li>
+                                            <li>• Interface multilingue</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Étape 5 -->
+                            <div class="relative flex items-center">
+                                <div class="flex-1 pr-8 text-right">
+                                    <div class="methodology-card p-6 rounded-2xl shadow-lg cursor-pointer transition-all duration-300 hover:shadow-xl" style="background: linear-gradient(135deg, #F6F6F6, #ffffff); border-left: 4px solid #E63946;" onclick="toggleMethodologyStep(5)">
+                                        <h4 class="text-xl font-bold mb-3" style="color: #000000;">Formation des formateurs</h4>
+                                        <p class="text-gray-700 leading-relaxed">Mise en place d'un dispositif de formation hybride</p>
+                                        <div class="mt-3 text-sm" style="color: #E63946;">Cliquez pour plus de détails ▼</div>
+                                    </div>
+                                    <div id="methodology-detail-5" class="hidden mt-4 p-4 rounded-lg" style="background-color: #F6F6F6;">
+                                        <ul class="text-sm text-gray-700 space-y-2">
+                                            <li>• Formation e-learning + présentiel</li>
+                                            <li>• Certification des formateurs</li>
+                                            <li>• Kit pédagogique complet</li>
+                                            <li>• Réseau d'échange entre formateurs</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="relative z-10 flex-shrink-0">
+                                    <div class="w-20 h-20 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-xl" style="background: linear-gradient(135deg, #E63946, #FFD166);">
+                                        05
+                                    </div>
+                                    <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-lg" style="background-color: #06D6A0; color: white;">
+                                        🎓
+                                    </div>
+                                </div>
+                                <div class="flex-1 pl-8"></div>
+                            </div>
+
+                            <!-- Étape 6 -->
+                            <div class="relative flex items-center">
+                                <div class="flex-1 pr-8"></div>
+                                <div class="relative z-10 flex-shrink-0">
+                                    <div class="w-20 h-20 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-xl" style="background: linear-gradient(135deg, #FFD166, #06D6A0);">
+                                        06
+                                    </div>
+                                    <div class="absolute -top-2 -left-2 w-6 h-6 rounded-full flex items-center justify-center text-lg" style="background-color: #E63946;">
+                                        👥
+                                    </div>
+                                </div>
+                                <div class="flex-1 pl-8">
+                                    <div class="methodology-card p-6 rounded-2xl shadow-lg cursor-pointer transition-all duration-300 hover:shadow-xl" style="background: linear-gradient(135deg, #F6F6F6, #ffffff); border-right: 4px solid #FFD166;" onclick="toggleMethodologyStep(6)">
+                                        <h4 class="text-xl font-bold mb-3" style="color: #000000;">Formation des conseillers / animateurs</h4>
+                                        <p class="text-gray-700 leading-relaxed">Les formateurs formés outillent les professionnels de terrain</p>
+                                        <div class="mt-3 text-sm" style="color: #FFD166;">Cliquez pour plus de détails ▼</div>
+                                    </div>
+                                    <div id="methodology-detail-6" class="hidden mt-4 p-4 rounded-lg" style="background-color: #F6F6F6;">
+                                        <ul class="text-sm text-gray-700 space-y-2">
+                                            <li>• Introduction progressive dans les pratiques</li>
+                                            <li>• Accompagnement personnalisé</li>
+                                            <li>• Communauté de pratique</li>
+                                            <li>• Évaluation des impacts</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Étape 7 -->
+                            <div class="relative flex items-center">
+                                <div class="flex-1 pr-8 text-right">
+                                    <div class="methodology-card p-6 rounded-2xl shadow-lg cursor-pointer transition-all duration-300 hover:shadow-xl" style="background: linear-gradient(135deg, #F6F6F6, #ffffff); border-left: 4px solid #06D6A0;" onclick="toggleMethodologyStep(7)">
+                                        <h4 class="text-xl font-bold mb-3" style="color: #000000;">Phase de test avec les jeunes (Piloting)</h4>
+                                        <p class="text-gray-700 leading-relaxed">Expérimentation de l'outil et de la méthode avec des jeunes</p>
+                                        <div class="mt-3 text-sm" style="color: #06D6A0;">Cliquez pour plus de détails ▼</div>
+                                    </div>
+                                    <div id="methodology-detail-7" class="hidden mt-4 p-4 rounded-lg" style="background-color: #F6F6F6;">
+                                        <ul class="text-sm text-gray-700 space-y-2">
+                                            <li>• Tests avec groupes pilotes</li>
+                                            <li>• Recueil de retours qualitatifs</li>
+                                            <li>• Ajustements méthodologiques</li>
+                                            <li>• Mesure d'impact sur les jeunes</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="relative z-10 flex-shrink-0">
+                                    <div class="w-20 h-20 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-xl" style="background: linear-gradient(135deg, #06D6A0, #E63946);">
+                                        07
+                                    </div>
+                                    <div class="absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-lg" style="background-color: #FFD166;">
+                                        🧪
+                                    </div>
+                                </div>
+                                <div class="flex-1 pl-8"></div>
+                            </div>
+
+                            <!-- Étape 8 -->
+                            <div class="relative flex items-center">
+                                <div class="flex-1 pr-8"></div>
+                                <div class="relative z-10 flex-shrink-0">
+                                    <div class="w-20 h-20 rounded-full flex items-center justify-center text-white font-bold text-2xl shadow-xl" style="background: linear-gradient(135deg, #E63946, #06D6A0);">
+                                        08
+                                    </div>
+                                    <div class="absolute -top-2 -left-2 w-6 h-6 rounded-full flex items-center justify-center text-lg" style="background-color: #FFD166;">
+                                        🚀
+                                    </div>
+                                </div>
+                                <div class="flex-1 pl-8">
+                                    <div class="methodology-card p-6 rounded-2xl shadow-lg cursor-pointer transition-all duration-300 hover:shadow-xl" style="background: linear-gradient(135deg, #F6F6F6, #ffffff); border-right: 4px solid #E63946;" onclick="toggleMethodologyStep(8)">
+                                        <h4 class="text-xl font-bold mb-3" style="color: #000000;">Finalisation et dissémination</h4>
+                                        <p class="text-gray-700 leading-relaxed">Mise en cohérence de la méthode et diffusion</p>
+                                        <div class="mt-3 text-sm" style="color: #E63946;">Cliquez pour plus de détails ▼</div>
+                                    </div>
+                                    <div id="methodology-detail-8" class="hidden mt-4 p-4 rounded-lg" style="background-color: #F6F6F6;">
+                                        <ul class="text-sm text-gray-700 space-y-2">
+                                            <li>• Finalisation des outils</li>
+                                            <li>• Événements de valorisation</li>
+                                            <li>• Plan de diffusion européen</li>
+                                            <li>• Pérennisation de la méthode</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Résumé -->
+                    <div class="mt-12 p-6 rounded-xl border" style="background: linear-gradient(135deg, #F6F6F6, #ffffff); border-color: #06D6A0;">
+                        <h4 class="text-lg font-bold mb-3" style="color: #E63946;">🎯 Objectif de cette méthodologie :</h4>
+                        <p style="color: #000000;">Présenter de manière synthétique, pédagogique et attractive le processus de construction du projet LS4YOU, pour un usage dans des supports de communication, présentations ou modules de formation.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-between">
+                <button onclick="goToBloc(1)" class="text-white px-6 py-3 rounded-lg transition-colors" style="background-color: #F6F6F6; color: #000000;" onmouseover="this.style.backgroundColor='#E63946'; this.style.color='white'" onmouseout="this.style.backgroundColor='#F6F6F6'; this.style.color='#000000'">← Précédent</button>
+                <button onclick="goToBloc(3)" class="text-white px-6 py-3 rounded-lg transition-colors" style="background-color: #06D6A0;" onmouseover="this.style.backgroundColor='#E63946'" onmouseout="this.style.backgroundColor='#06D6A0'">Suivant →</button>
+            </div>
+        </div>
+
+        <!-- Bloc 3: Objectifs de la formation -->
+        <div id="screen-bloc3" class="screen hidden fade-in">
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #E63946;">3</div>
+                    <h2 class="text-3xl font-bold" style="color: #E63946;">Objectifs de la formation</h2>
+                </div>
+                
+                <div class="mb-8">
+                    <div class="text-white p-6 rounded-xl mb-6" style="background: linear-gradient(135deg, #E63946, #06D6A0);">
+                        <h3 class="text-2xl font-bold mb-2">🎯 Objectif général :</h3>
+                        <p class="text-lg">Renforcer les capacités des professionnels à travailler les Life Skills avec les jeunes.</p>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">🔹 Objectifs spécifiques :</h3>
+                    <div class="grid gap-4">
+                        <div class="border-l-4 p-4 card-hover" style="background-color: #F6F6F6; border-color: #06D6A0;">
+                            <p class="font-medium" style="color: #000000;">S'approprier les outils LS4YOU</p>
+                        </div>
+                        <div class="border-l-4 p-4 card-hover" style="background-color: #F6F6F6; border-color: #E63946;">
+                            <p class="font-medium" style="color: #000000;">Créer un réseau de professionnels autour d'un langage commun</p>
+                        </div>
+                        <div class="border-l-4 p-4 card-hover" style="background-color: #F6F6F6; border-color: #06D6A0;">
+                            <p class="font-medium" style="color: #000000;">Favoriser les échanges de pratiques, y compris à l'échelle transfrontalière</p>
+                        </div>
+                        <div class="border-l-4 p-4 card-hover" style="background-color: #F6F6F6; border-color: #FFD166;">
+                            <p class="font-medium" style="color: #000000;">Assurer une mise en œuvre cohérente à l'échelle européenne</p>
+                        </div>
+                        <div class="border-l-4 p-4 card-hover" style="background-color: #F6F6F6; border-color: #E63946;">
+                            <p class="font-medium" style="color: #000000;">Ancrer les Life Skills durablement dans l'accompagnement quotidien</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-between">
+                <button onclick="goToBloc(2)" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">← Précédent</button>
+                <button onclick="goToBloc(4)" class="bg-cyan-500 text-white px-6 py-3 rounded-lg hover:bg-cyan-600 transition-colors">Suivant →</button>
+            </div>
+        </div>
+
+        <!-- Bloc 4: Principes pédagogiques -->
+        <div id="screen-bloc4" class="screen hidden fade-in">
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #E63946;">4</div>
+                    <h2 class="text-3xl font-bold" style="color: #E63946;">Les principes pédagogiques de la formation</h2>
+                </div>
+                
+                <h3 class="text-xl font-semibold text-gray-900 mb-6">🧩 4 grands principes :</h3>
+                
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div class="text-white p-6 rounded-xl card-hover" style="background: linear-gradient(135deg, #E63946, #06D6A0);">
+                        <h4 class="text-xl font-bold mb-3">Pédagogie expérientielle</h4>
+                        <p>→ Les professionnels vivent les activités comme les jeunes (mise en situation)</p>
+                    </div>
+                    
+                    <div class="text-white p-6 rounded-xl card-hover" style="background: linear-gradient(135deg, #06D6A0, #FFD166);">
+                        <h4 class="text-xl font-bold mb-3">Co-construction</h4>
+                        <p>→ Le collectif et les échanges entre pairs sont au cœur du processus</p>
+                    </div>
+                    
+                    <div class="text-white p-6 rounded-xl card-hover" style="background: linear-gradient(135deg, #FFD166, #E63946);">
+                        <h4 class="text-xl font-bold mb-3">Formation hybride</h4>
+                        <p>→ e-learning + formation en présentiel + expérimentation terrain</p>
+                    </div>
+                    
+                    <div class="text-white p-6 rounded-xl card-hover" style="background: linear-gradient(135deg, #E63946, #FFD166);">
+                        <h4 class="text-xl font-bold mb-3">Durabilité</h4>
+                        <p>→ Chaque professionnel repart avec un plan d'action adapté à son contexte</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-between">
+                <button onclick="goToBloc(3)" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">← Précédent</button>
+                <button onclick="goToBloc(5)" class="bg-cyan-500 text-white px-6 py-3 rounded-lg hover:bg-cyan-600 transition-colors">Suivant →</button>
+            </div>
+        </div>
+
+        <!-- Bloc 5: Qu'est-ce qu'une Life Skill -->
+        <div id="screen-bloc5" class="screen hidden fade-in">
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #E63946;">5</div>
+                    <h2 class="text-3xl font-bold" style="color: #E63946;">Qu'est-ce qu'une Life Skill ?</h2>
+                </div>
+                
+                <div class="mb-8">
+                    <div class="text-white p-6 rounded-xl mb-6" style="background: linear-gradient(135deg, #E63946, #06D6A0);">
+                        <h3 class="text-2xl font-bold mb-3">🌱 Définition :</h3>
+                        <p class="text-lg">Les Life Skills sont des compétences de vie essentielles pour faire face aux défis du quotidien, dans les domaines :</p>
+                        <div class="grid md:grid-cols-3 gap-4 mt-4">
+                            <div class="p-3 rounded-lg text-center" style="background-color: #FFD166; color: #000000;">
+                                <p class="font-semibold">Personnel</p>
+                            </div>
+                            <div class="p-3 rounded-lg text-center" style="background-color: #FFD166; color: #000000;">
+                                <p class="font-semibold">Social</p>
+                            </div>
+                            <div class="p-3 rounded-lg text-center" style="background-color: #FFD166; color: #000000;">
+                                <p class="font-semibold">Professionnel</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">📚 Référentiel OMS :</h3>
+                    <div class="grid md:grid-cols-3 gap-4 mb-6">
+                        <div class="space-y-2">
+                            <div class="p-3 rounded-lg" style="background-color: #F6F6F6; color: #000000;">Pensée critique</div>
+                            <div class="p-3 rounded-lg" style="background-color: #F6F6F6; color: #000000;">Pensée créative</div>
+                            <div class="p-3 rounded-lg" style="background-color: #F6F6F6; color: #000000;">Prise de décision</div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="p-3 rounded-lg" style="background-color: #F6F6F6; color: #000000;">Résolution de problèmes</div>
+                            <div class="p-3 rounded-lg" style="background-color: #F6F6F6; color: #000000;">Communication</div>
+                            <div class="p-3 rounded-lg" style="background-color: #F6F6F6; color: #000000;">Relations interpersonnelles</div>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="p-3 rounded-lg" style="background-color: #F6F6F6; color: #000000;">Gestion du stress et des émotions</div>
+                            <div class="p-3 rounded-lg" style="background-color: #F6F6F6; color: #000000;">Connaissance de soi</div>
+                            <div class="p-3 rounded-lg" style="background-color: #F6F6F6; color: #000000;">Empathie</div>
+                        </div>
+                    </div>
+
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6">
+                        <p class="text-gray-700 font-medium">🎓 On les développe par la pratique, l'expérience, la réflexion.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-between">
+                <button onclick="goToBloc(4)" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">← Précédent</button>
+                <button onclick="goToBloc(6)" class="bg-cyan-500 text-white px-6 py-3 rounded-lg hover:bg-cyan-600 transition-colors">Suivant →</button>
+            </div>
+        </div>
+
+        <!-- Bloc 6: Comparatif Life Skills -->
+        <div id="screen-bloc6" class="screen hidden fade-in">
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #E63946;">6</div>
+                    <h2 class="text-3xl font-bold" style="color: #E63946;">Life Skills VS Soft Skills VS Compétences psycho-sociales (CPS)</h2>
+                </div>
+                
+                <div class="mb-6">
+                    <h3 class="text-xl font-semibold text-gray-900 mb-4">🧠 Tableau comparatif :</h3>
+                    <div class="overflow-x-auto">
+                        <table class="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+                            <thead>
+                                <tr class="text-white" style="background: linear-gradient(135deg, #E63946, #06D6A0);">
+                                    <th class="p-4 text-left font-semibold">Critère</th>
+                                    <th class="p-4 text-left font-semibold">Life Skills</th>
+                                    <th class="p-4 text-left font-semibold">Soft Skills</th>
+                                    <th class="p-4 text-left font-semibold">Compétences Psycho-Sociales (CPS)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="table-row border-b border-gray-200">
+                                    <td class="p-4 font-medium text-gray-900 bg-gray-50">Définition</td>
+                                    <td class="p-4 text-gray-700">Compétences de vie fondamentales</td>
+                                    <td class="p-4 text-gray-700">Compétences comportementales attendues en entreprise</td>
+                                    <td class="p-4 text-gray-700">Capacités émotionnelles, cognitives et sociales</td>
+                                </tr>
+                                <tr class="table-row border-b border-gray-200">
+                                    <td class="p-4 font-medium text-gray-900 bg-gray-50">Objectif</td>
+                                    <td class="p-4 text-gray-700">Autonomie, santé mentale, insertion</td>
+                                    <td class="p-4 text-gray-700">Employabilité, performance</td>
+                                    <td class="p-4 text-gray-700">Bien-être psychique, prévention</td>
+                                </tr>
+                                <tr class="table-row border-b border-gray-200">
+                                    <td class="p-4 font-medium text-gray-900 bg-gray-50">Exemples</td>
+                                    <td class="p-4 text-gray-700">Prise de décision, empathie, coopération</td>
+                                    <td class="p-4 text-gray-700">Leadership, organisation, adaptabilité</td>
+                                    <td class="p-4 text-gray-700">Confiance en soi, pensée critique</td>
+                                </tr>
+                                <tr class="table-row">
+                                    <td class="p-4 font-medium text-gray-900 bg-gray-50">Terrains d'usage</td>
+                                    <td class="p-4 text-gray-700">Vie quotidienne, orientation, santé</td>
+                                    <td class="p-4 text-gray-700">RH, insertion pro</td>
+                                    <td class="p-4 text-gray-700">Prévention, santé publique</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-r from-yellow-400 to-orange-500 text-white p-6 rounded-xl">
+                    <h4 class="text-xl font-bold mb-2">💡 À retenir :</h4>
+                    <p class="text-lg">Les Life Skills sont le socle éducatif des autres types de compétences.</p>
+                </div>
+            </div>
+            
+            <div class="flex justify-between">
+                <button onclick="goToBloc(5)" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">← Précédent</button>
+                <button onclick="goToBloc(7)" class="bg-cyan-500 text-white px-6 py-3 rounded-lg hover:bg-cyan-600 transition-colors">Suivant →</button>
+            </div>
+        </div>
+
+        <!-- Bloc 7: Les "faux amis" -->
+        <div id="screen-bloc7" class="screen hidden fade-in">
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 bg-yellow-500 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4">7</div>
+                    <h2 class="text-3xl font-bold text-gray-900">Les "faux amis" – Ce que les Life Skills ne sont pas</h2>
+                </div>
+                
+                <div class="mb-8">
+                    <div class="bg-gradient-to-r from-red-500 to-orange-500 text-white p-6 rounded-xl mb-6">
+                        <h3 class="text-2xl font-bold mb-2">🛑 Objectif :</h3>
+                        <p class="text-lg">Éviter les confusions entre attentes sociales et compétences développables</p>
+                    </div>
+
+                    <h3 class="text-xl font-semibold text-gray-900 mb-6">🎯 Activité interactive : Glisser-déposer</h3>
+                    <p class="text-gray-700 mb-6">Associez chaque item à la bonne catégorie en faisant glisser les éléments :</p>
+
+                    <!-- Zone des items à déplacer -->
+                    <div class="bg-gray-50 p-6 rounded-lg mb-6">
+                        <h4 class="font-semibold text-gray-900 mb-4">Items à classer :</h4>
+                        <div id="items-container" class="grid grid-cols-2 md:grid-cols-3 gap-3">
+                            <div class="draggable-item bg-white border-2 border-gray-300 px-4 py-2 rounded-lg cursor-move hover:shadow-md transition-shadow" draggable="true" data-item="communication">Communication</div>
+                            <div class="draggable-item bg-white border-2 border-gray-300 px-4 py-2 rounded-lg cursor-move hover:shadow-md transition-shadow" draggable="true" data-item="pensée-critique">Pensée critique</div>
+                            <div class="draggable-item bg-white border-2 border-gray-300 px-4 py-2 rounded-lg cursor-move hover:shadow-md transition-shadow" draggable="true" data-item="politesse">Politesse</div>
+                            <div class="draggable-item bg-white border-2 border-gray-300 px-4 py-2 rounded-lg cursor-move hover:shadow-md transition-shadow" draggable="true" data-item="résolution-problèmes">Résolution de problèmes</div>
+                            <div class="draggable-item bg-white border-2 border-gray-300 px-4 py-2 rounded-lg cursor-move hover:shadow-md transition-shadow" draggable="true" data-item="obéissance">Obéissance</div>
+                            <div class="draggable-item bg-white border-2 border-gray-300 px-4 py-2 rounded-lg cursor-move hover:shadow-md transition-shadow" draggable="true" data-item="empathie">Empathie</div>
+                            <div class="draggable-item bg-white border-2 border-gray-300 px-4 py-2 rounded-lg cursor-move hover:shadow-md transition-shadow" draggable="true" data-item="sérieux">Sérieux</div>
+                            <div class="draggable-item bg-white border-2 border-gray-300 px-4 py-2 rounded-lg cursor-move hover:shadow-md transition-shadow" draggable="true" data-item="motivation">Motivation</div>
+                            <div class="draggable-item bg-white border-2 border-gray-300 px-4 py-2 rounded-lg cursor-move hover:shadow-md transition-shadow" draggable="true" data-item="ponctualité">Ponctualité</div>
+                            <div class="draggable-item bg-white border-2 border-gray-300 px-4 py-2 rounded-lg cursor-move hover:shadow-md transition-shadow" draggable="true" data-item="respect-moral">Respect (moral)</div>
+                        </div>
+                    </div>
+
+                    <!-- Zones de dépôt -->
+                    <div class="grid md:grid-cols-2 gap-6 mb-6">
+                        <!-- Zone compétences réelles -->
+                        <div class="drop-zone border-4 border-dashed border-green-300 bg-green-50 p-6 rounded-lg min-h-48" data-category="real">
+                            <div class="text-center mb-4">
+                                <h4 class="text-lg font-bold text-green-700">✅ Compétence réelle</h4>
+                                <p class="text-sm text-green-600">(développable, mobilisable, observable)</p>
+                            </div>
+                            <div class="dropped-items space-y-2"></div>
+                        </div>
+
+                        <!-- Zone faux amis -->
+                        <div class="drop-zone border-4 border-dashed border-red-300 bg-red-50 p-6 rounded-lg min-h-48" data-category="fake">
+                            <div class="text-center mb-4">
+                                <h4 class="text-lg font-bold text-red-700">❌ Faux ami</h4>
+                                <p class="text-sm text-red-600">(jugement, norme sociale, comportement)</p>
+                            </div>
+                            <div class="dropped-items space-y-2"></div>
+                        </div>
+                    </div>
+
+                    <!-- Bouton de vérification -->
+                    <div class="text-center mb-6">
+                        <button id="check-answers" onclick="checkAnswers()" disabled class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Vérifier mes réponses
+                        </button>
+                    </div>
+
+                    <!-- Zone de feedback -->
+                    <div id="feedback-zone" class="hidden"></div>
+
+                    <!-- Tableau explicatif -->
+                    <div class="bg-yellow-50 border-l-4 border-yellow-400 p-6 mt-6">
+                        <h4 class="text-lg font-semibold text-gray-900 mb-4">📋 Pourquoi ces éléments sont des "faux amis" :</h4>
+                        <div class="overflow-x-auto">
+                            <table class="w-full text-sm">
+                                <thead>
+                                    <tr class="bg-yellow-100">
+                                        <th class="p-3 text-left font-semibold">❌ Faux ami</th>
+                                        <th class="p-3 text-left font-semibold">Pourquoi ce n'est pas une Life Skill ?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b border-yellow-200">
+                                        <td class="p-3 font-medium">Politesse</td>
+                                        <td class="p-3">C'est une norme sociale, pas une compétence</td>
+                                    </tr>
+                                    <tr class="border-b border-yellow-200">
+                                        <td class="p-3 font-medium">Obéissance</td>
+                                        <td class="p-3">Ne développe pas l'autonomie</td>
+                                    </tr>
+                                    <tr class="border-b border-yellow-200">
+                                        <td class="p-3 font-medium">Sérieux</td>
+                                        <td class="p-3">Jugement subjectif</td>
+                                    </tr>
+                                    <tr class="border-b border-yellow-200">
+                                        <td class="p-3 font-medium">Motivation</td>
+                                        <td class="p-3">Disposition, non transférable</td>
+                                    </tr>
+                                    <tr class="border-b border-yellow-200">
+                                        <td class="p-3 font-medium">Ponctualité</td>
+                                        <td class="p-3">Comportement, pas une compétence</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="p-3 font-medium">Respect (moral)</td>
+                                        <td class="p-3">Valeur → préférer "écoute active", "gestion de conflit"</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-between">
+                <button onclick="goToBloc(6)" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">← Précédent</button>
+                <button onclick="goToBloc(8)" class="bg-cyan-500 text-white px-6 py-3 rounded-lg hover:bg-cyan-600 transition-colors">Suivant →</button>
+            </div>
+        </div>
+
+        <!-- Bloc 8: Outils du Guidebook -->
+        <div id="screen-bloc8" class="screen hidden fade-in">
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #06D6A0;">8</div>
+                    <h2 class="text-3xl font-bold" style="color: #06D6A0;">Explorer les outils LS4YOU par domaine de compétences</h2>
+                </div>
+                
+                <div class="mb-8">
+                    <!-- Navigation par onglets -->
+                    <div class="flex flex-wrap gap-2 mb-8 overflow-x-auto">
+                        <button class="domain-tab active px-6 py-3 rounded-full font-semibold text-white transition-all duration-300" style="background: linear-gradient(135deg, #3B82F6, #1E40AF);" onclick="showDomain(1, this)">
+                            🟦 Personnalité & Forces
+                        </button>
+                        <button class="domain-tab px-6 py-3 rounded-full font-semibold text-white transition-all duration-300" style="background: linear-gradient(135deg, #F59E0B, #D97706);" onclick="showDomain(2, this)">
+                            🟨 Auto-promotion
+                        </button>
+                        <button class="domain-tab px-6 py-3 rounded-full font-semibold text-white transition-all duration-300" style="background: linear-gradient(135deg, #10B981, #059669);" onclick="showDomain(3, this)">
+                            🟩 Bien-être & Émotions
+                        </button>
+                        <button class="domain-tab px-6 py-3 rounded-full font-semibold text-white transition-all duration-300" style="background: linear-gradient(135deg, #EF4444, #DC2626);" onclick="showDomain(4, this)">
+                            🟥 Finances & Ressources
+                        </button>
+                        <button class="domain-tab px-6 py-3 rounded-full font-semibold text-white transition-all duration-300" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED);" onclick="showDomain(5, this)">
+                            🟪 Approfondissement
+                        </button>
+                    </div>
+
+                    <!-- Contenu des domaines -->
+                    <div id="domain-content">
+                        <!-- Domaine 1: Personnalité et forces personnelles -->
+                        <div id="domain-1" class="domain-section">
+                            <div class="p-6 rounded-xl mb-6" style="background: linear-gradient(135deg, #3B82F6, #1E40AF); color: white;">
+                                <h3 class="text-2xl font-bold mb-2">🟦 DOMAINE 1 : Personnalité et forces personnelles</h3>
+                                <p class="text-lg opacity-90">Objectif-clé : Ouvrir le dialogue sur soi, ses préférences, ses ressources, ses atouts</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div class="tool-card bg-white border border-blue-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Test des 16 personnalités', 'Mieux se connaître et comprendre ses préférences', '🧠')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🧠</div>
+                                        <h4 class="font-semibold text-blue-800">Test des 16 personnalités</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Mieux se connaître et comprendre ses préférences</p>
+                                    <button class="text-blue-600 text-sm font-medium hover:text-blue-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-blue-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Faire valoir un point', 'Explorer ses ressources de vie via une cartographie', '🗺️')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🗺️</div>
+                                        <h4 class="font-semibold text-blue-800">Faire valoir un point</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Explorer ses ressources de vie via une cartographie</p>
+                                    <button class="text-blue-600 text-sm font-medium hover:text-blue-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-blue-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Image de soi vs image publique', 'Renforcer la confiance par la comparaison des perceptions', '🪞')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🪞</div>
+                                        <h4 class="font-semibold text-blue-800">Image de soi vs image publique</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Renforcer la confiance par la comparaison des perceptions</p>
+                                    <button class="text-blue-600 text-sm font-medium hover:text-blue-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-blue-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Matching', 'Hiérarchiser aspirations perso et pro', '⚖️')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">⚖️</div>
+                                        <h4 class="font-semibold text-blue-800">Matching</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Hiérarchiser aspirations perso et pro</p>
+                                    <button class="text-blue-600 text-sm font-medium hover:text-blue-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-blue-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Recevoir du feedback', 'Apprendre à donner et recevoir des retours constructifs', '💬')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">💬</div>
+                                        <h4 class="font-semibold text-blue-800">Recevoir du feedback</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Apprendre à donner et recevoir des retours constructifs</p>
+                                    <button class="text-blue-600 text-sm font-medium hover:text-blue-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-blue-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Définition d\'objectifs personnels', 'Utiliser la méthode ABC pour fixer des objectifs concrets', '🎯')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🎯</div>
+                                        <h4 class="font-semibold text-blue-800">Définition d'objectifs personnels</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Utiliser la méthode ABC pour fixer des objectifs concrets</p>
+                                    <button class="text-blue-600 text-sm font-medium hover:text-blue-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-blue-200 rounded-lg p-4 shadow-sm md:col-span-2 lg:col-span-1" onclick="showToolModal('Liste des valeurs', 'Identifier ses valeurs fondamentales', '💎')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">💎</div>
+                                        <h4 class="font-semibold text-blue-800">Liste des valeurs</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Identifier ses valeurs fondamentales</p>
+                                    <button class="text-blue-600 text-sm font-medium hover:text-blue-800">Voir la fiche outil →</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Domaine 2: Auto-promotion et image de soi -->
+                        <div id="domain-2" class="domain-section hidden">
+                            <div class="p-6 rounded-xl mb-6" style="background: linear-gradient(135deg, #F59E0B, #D97706); color: white;">
+                                <h3 class="text-2xl font-bold mb-2">🟨 DOMAINE 2 : Auto-promotion et image de soi</h3>
+                                <p class="text-lg opacity-90">Objectif-clé : Valoriser ses compétences, savoir se présenter, affirmer ses atouts</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div class="tool-card bg-white border border-yellow-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Moi au sommet de mon art', 'Identifier ses forces via une réussite personnelle', '⭐')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">⭐</div>
+                                        <h4 class="font-semibold text-yellow-800">Moi au sommet de mon art</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Identifier ses forces via une réussite personnelle</p>
+                                    <button class="text-yellow-600 text-sm font-medium hover:text-yellow-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-yellow-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Montrez-vous sous votre meilleur jour', 'S\'entraîner à un pitch vidéo clair et confiant', '🎬')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🎬</div>
+                                        <h4 class="font-semibold text-yellow-800">Montrez-vous sous votre meilleur jour</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">S'entraîner à un pitch vidéo clair et confiant</p>
+                                    <button class="text-yellow-600 text-sm font-medium hover:text-yellow-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-yellow-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Parcours ressources & compétences', 'Évaluer ses potentiels et ressources avec un outil symbolique', '🛤️')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🛤️</div>
+                                        <h4 class="font-semibold text-yellow-800">Parcours ressources & compétences</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Évaluer ses potentiels et ressources avec un outil symbolique</p>
+                                    <button class="text-yellow-600 text-sm font-medium hover:text-yellow-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-yellow-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Image de marque personnelle', 'Réfléchir à ses points forts et leur valorisation', '🏷️')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🏷️</div>
+                                        <h4 class="font-semibold text-yellow-800">Image de marque personnelle</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Réfléchir à ses points forts et leur valorisation</p>
+                                    <button class="text-yellow-600 text-sm font-medium hover:text-yellow-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-yellow-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Concevez votre zine', 'Créer un magazine personnel pour visualiser ses priorités', '📖')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">📖</div>
+                                        <h4 class="font-semibold text-yellow-800">Concevez votre zine</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Créer un magazine personnel pour visualiser ses priorités</p>
+                                    <button class="text-yellow-600 text-sm font-medium hover:text-yellow-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-yellow-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Jeu de simulation (négociation)', 'Pratiquer l\'auto-marketing en situation simulée', '🎭')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🎭</div>
+                                        <h4 class="font-semibold text-yellow-800">Jeu de simulation (négociation)</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Pratiquer l'auto-marketing en situation simulée</p>
+                                    <button class="text-yellow-600 text-sm font-medium hover:text-yellow-800">Voir la fiche outil →</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Domaine 3: Bien-être et régulation émotionnelle -->
+                        <div id="domain-3" class="domain-section hidden">
+                            <div class="p-6 rounded-xl mb-6" style="background: linear-gradient(135deg, #10B981, #059669); color: white;">
+                                <h3 class="text-2xl font-bold mb-2">🟩 DOMAINE 3 : Bien-être et régulation émotionnelle</h3>
+                                <p class="text-lg opacity-90">Objectif-clé : Renforcer sa santé mentale et sa résilience au quotidien</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                                <div class="tool-card bg-white border border-green-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('La roue des émotions', 'Clarifier et réguler ses émotions', '🎡')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🎡</div>
+                                        <h4 class="font-semibold text-green-800">La roue des émotions</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Clarifier et réguler ses émotions</p>
+                                    <button class="text-green-600 text-sm font-medium hover:text-green-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-green-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('3 bonnes choses', 'Développer un état d\'esprit optimiste', '✨')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">✨</div>
+                                        <h4 class="font-semibold text-green-800">3 bonnes choses</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Développer un état d'esprit optimiste</p>
+                                    <button class="text-green-600 text-sm font-medium hover:text-green-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-green-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Réseau de soutien social', 'Identifier et renforcer son entourage de confiance', '🤝')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🤝</div>
+                                        <h4 class="font-semibold text-green-800">Réseau de soutien social</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Identifier et renforcer son entourage de confiance</p>
+                                    <button class="text-green-600 text-sm font-medium hover:text-green-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-green-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Évaluation des besoins', 'Explorer ses axes de développement via l\'introspection', '🔍')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🔍</div>
+                                        <h4 class="font-semibold text-green-800">Évaluation des besoins</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Explorer ses axes de développement via l'introspection</p>
+                                    <button class="text-green-600 text-sm font-medium hover:text-green-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-green-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Stressomètre', 'Évaluer son stress et en identifier les sources', '📊')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">📊</div>
+                                        <h4 class="font-semibold text-green-800">Stressomètre</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Évaluer son stress et en identifier les sources</p>
+                                    <button class="text-green-600 text-sm font-medium hover:text-green-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-green-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Prioriser ses routines', 'Améliorer ses habitudes de vie', '📅')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">📅</div>
+                                        <h4 class="font-semibold text-green-800">Prioriser ses routines</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Améliorer ses habitudes de vie</p>
+                                    <button class="text-green-600 text-sm font-medium hover:text-green-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-green-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Arbre de la résilience', 'Identifier ses forces et leviers de résilience', '🌳')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🌳</div>
+                                        <h4 class="font-semibold text-green-800">Arbre de la résilience</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Identifier ses forces et leviers de résilience</p>
+                                    <button class="text-green-600 text-sm font-medium hover:text-green-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-green-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Portfolio de démarcation', 'Poser des limites pour préserver son équilibre', '🛡️')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🛡️</div>
+                                        <h4 class="font-semibold text-green-800">Portfolio de démarcation</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Poser des limites pour préserver son équilibre</p>
+                                    <button class="text-green-600 text-sm font-medium hover:text-green-800">Voir la fiche outil →</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Domaine 4: Finances & Ressources -->
+                        <div id="domain-4" class="domain-section hidden">
+                            <div class="p-6 rounded-xl mb-6" style="background: linear-gradient(135deg, #EF4444, #DC2626); color: white;">
+                                <h3 class="text-2xl font-bold mb-2">🟥 DOMAINE 4 : Finances & Ressources</h3>
+                                <p class="text-lg opacity-90">Objectif-clé : Renforcer l'autonomie financière par des outils ludiques et pratiques</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="tool-card bg-white border border-red-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Défis de la vie réelle', 'Jeu de rôle autour de la gestion budgétaire', '🎮')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🎮</div>
+                                        <h4 class="font-semibold text-red-800">Défis de la vie réelle</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Jeu de rôle autour de la gestion budgétaire</p>
+                                    <button class="text-red-600 text-sm font-medium hover:text-red-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-red-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Du salaire à la poche', 'Comprendre le brut/net avec un simulateur', '💰')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">💰</div>
+                                        <h4 class="font-semibold text-red-800">Du salaire à la poche</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Comprendre le brut/net avec un simulateur</p>
+                                    <button class="text-red-600 text-sm font-medium hover:text-red-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-red-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Arrêtez de souhaiter, commencez à réaliser', 'Transformer un souhait en objectif SMART', '🎯')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🎯</div>
+                                        <h4 class="font-semibold text-red-800">Arrêtez de souhaiter, commencez à réaliser</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Transformer un souhait en objectif SMART</p>
+                                    <button class="text-red-600 text-sm font-medium hover:text-red-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-red-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Études de cas (littératie financière)', 'Analyser des situations concrètes pour mieux gérer son budget', '📋')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">📋</div>
+                                        <h4 class="font-semibold text-red-800">Études de cas (littératie financière)</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Analyser des situations concrètes pour mieux gérer son budget</p>
+                                    <button class="text-red-600 text-sm font-medium hover:text-red-800">Voir la fiche outil →</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Domaine 5: Supplémentaire – Approfondissement de soi -->
+                        <div id="domain-5" class="domain-section hidden">
+                            <div class="p-6 rounded-xl mb-6" style="background: linear-gradient(135deg, #8B5CF6, #7C3AED); color: white;">
+                                <h3 class="text-2xl font-bold mb-2">🟪 DOMAINE 5 : Supplémentaire – Approfondissement de soi</h3>
+                                <p class="text-lg opacity-90">Objectif-clé : Donner du sens à son parcours et à ses engagements</p>
+                            </div>
+
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div class="tool-card bg-white border border-purple-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Ikigai - Concevez-vous', 'Trouver un équilibre entre compétences, passions et utilité', '🌸')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">🌸</div>
+                                        <h4 class="font-semibold text-purple-800">Ikigai - Concevez-vous</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Trouver un équilibre entre compétences, passions et utilité</p>
+                                    <button class="text-purple-600 text-sm font-medium hover:text-purple-800">Voir la fiche outil →</button>
+                                </div>
+
+                                <div class="tool-card bg-white border border-purple-200 rounded-lg p-4 shadow-sm" onclick="showToolModal('Fiches outils détaillées', 'Approfondir chaque outil du guide avec méthodologie', '📚')">
+                                    <div class="flex items-center mb-3">
+                                        <div class="text-2xl mr-3">📚</div>
+                                        <h4 class="font-semibold text-purple-800">Fiches outils détaillées</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-600 mb-3">Approfondir chaque outil du guide avec méthodologie</p>
+                                    <button class="text-purple-600 text-sm font-medium hover:text-purple-800">Voir la fiche outil →</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Résumé -->
+                    <div class="mt-8 p-6 rounded-xl border" style="background: linear-gradient(135deg, #F6F6F6, #ffffff); border-color: #06D6A0;">
+                        <h4 class="text-lg font-bold mb-3" style="color: #E63946;">🎯 À retenir :</h4>
+                        <p style="color: #000000;">Ces outils constituent la boîte à outils pratique du Guidebook LS4YOU. Chaque outil est conçu pour être utilisé de manière autonome ou en complément d'autres activités, selon les besoins spécifiques des jeunes accompagnés.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-between">
+                <button onclick="goToBloc(7)" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors">← Précédent</button>
+                <button onclick="startQuiz()" class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors">Passer le quiz de validation ✓</button>
+            </div>
+        </div>
+
+        <!-- Quiz de validation -->
+        <div id="screen-quiz" class="screen hidden fade-in">
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="flex items-center mb-6">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center text-white font-bold text-xl mr-4" style="background-color: #E63946;">📝</div>
+                    <h2 class="text-3xl font-bold" style="color: #E63946;">Quiz de validation des connaissances</h2>
+                </div>
+                
+                <div class="mb-6">
+                    <div class="text-white p-6 rounded-xl mb-6" style="background: linear-gradient(135deg, #E63946, #06D6A0);">
+                        <h3 class="text-2xl font-bold mb-2">🎯 Validez vos acquis</h3>
+                        <p class="text-lg">10 questions pour vérifier votre compréhension du module e-learning</p>
+                        <div class="mt-4 flex items-center">
+                            <span class="bg-white bg-opacity-20 px-3 py-1 rounded-full text-sm">Seuil de réussite : 7/10</span>
+                        </div>
+                    </div>
+
+                    <!-- Progression du quiz -->
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-sm font-medium text-gray-700">Question <span id="current-question">1</span> sur 10</span>
+                            <span class="text-sm text-gray-500" id="quiz-score">Score : 0/10</span>
+                        </div>
+                        <div class="w-full rounded-full h-2" style="background-color: #F6F6F6;">
+                            <div id="quiz-progress" class="h-2 rounded-full transition-all duration-300" style="width: 10%; background-color: #06D6A0;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Questions du quiz -->
+                    <div id="quiz-container">
+                        <!-- Question 1 -->
+                        <div class="quiz-question active" data-question="1">
+                            <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                                <h4 class="text-lg font-semibold mb-4">1. Quel est l'objectif principal du projet LS4YOU ?</h4>
+                                <div class="space-y-3">
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q1" value="a" class="mr-3">
+                                        <span>Améliorer les compétences techniques des jeunes</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q1" value="b" class="mr-3">
+                                        <span>Accompagner l'insertion sociale et professionnelle des jeunes en développant leurs Life Skills</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q1" value="c" class="mr-3">
+                                        <span>Former uniquement les professionnels de l'accompagnement</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="quiz-question hidden" data-question="2">
+                            <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                                <h4 class="text-lg font-semibold mb-4">2. Combien d'étapes compte la méthodologie de construction du projet LS4YOU ?</h4>
+                                <div class="space-y-3">
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q2" value="a" class="mr-3">
+                                        <span>6 étapes</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q2" value="b" class="mr-3">
+                                        <span>8 étapes</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q2" value="c" class="mr-3">
+                                        <span>10 étapes</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 3 -->
+                        <div class="quiz-question hidden" data-question="3">
+                            <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                                <h4 class="text-lg font-semibold mb-4">3. Quel principe pédagogique n'est PAS mentionné dans la formation ?</h4>
+                                <div class="space-y-3">
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q3" value="a" class="mr-3">
+                                        <span>Pédagogie expérientielle</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q3" value="b" class="mr-3">
+                                        <span>Formation magistrale</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q3" value="c" class="mr-3">
+                                        <span>Co-construction</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 4 -->
+                        <div class="quiz-question hidden" data-question="4">
+                            <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                                <h4 class="text-lg font-semibold mb-4">4. Selon le référentiel OMS, combien de Life Skills sont identifiées ?</h4>
+                                <div class="space-y-3">
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q4" value="a" class="mr-3">
+                                        <span>8 Life Skills</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q4" value="b" class="mr-3">
+                                        <span>10 Life Skills</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q4" value="c" class="mr-3">
+                                        <span>12 Life Skills</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 5 -->
+                        <div class="quiz-question hidden" data-question="5">
+                            <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                                <h4 class="text-lg font-semibold mb-4">5. Quelle est la principale différence entre Life Skills et Soft Skills ?</h4>
+                                <div class="space-y-3">
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q5" value="a" class="mr-3">
+                                        <span>Les Life Skills sont orientées employabilité, les Soft Skills vers l'autonomie</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q5" value="b" class="mr-3">
+                                        <span>Les Life Skills visent l'autonomie et le bien-être, les Soft Skills l'employabilité</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q5" value="c" class="mr-3">
+                                        <span>Il n'y a pas de différence significative</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 6 -->
+                        <div class="quiz-question hidden" data-question="6">
+                            <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                                <h4 class="text-lg font-semibold mb-4">6. Parmi ces éléments, lequel est un "faux ami" des Life Skills ?</h4>
+                                <div class="space-y-3">
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q6" value="a" class="mr-3">
+                                        <span>Communication</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q6" value="b" class="mr-3">
+                                        <span>Obéissance</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q6" value="c" class="mr-3">
+                                        <span>Pensée critique</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 7 -->
+                        <div class="quiz-question hidden" data-question="7">
+                            <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                                <h4 class="text-lg font-semibold mb-4">7. Combien de domaines de compétences sont explorés dans les outils du Guidebook ?</h4>
+                                <div class="space-y-3">
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q7" value="a" class="mr-3">
+                                        <span>4 domaines</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q7" value="b" class="mr-3">
+                                        <span>5 domaines</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q7" value="c" class="mr-3">
+                                        <span>6 domaines</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 8 -->
+                        <div class="quiz-question hidden" data-question="8">
+                            <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                                <h4 class="text-lg font-semibold mb-4">8. Quel outil appartient au domaine "Bien-être et régulation émotionnelle" ?</h4>
+                                <div class="space-y-3">
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q8" value="a" class="mr-3">
+                                        <span>Test des 16 personnalités</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q8" value="b" class="mr-3">
+                                        <span>La roue des émotions</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q8" value="c" class="mr-3">
+                                        <span>Défis de la vie réelle</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 9 -->
+                        <div class="quiz-question hidden" data-question="9">
+                            <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                                <h4 class="text-lg font-semibold mb-4">9. La formation LS4YOU suit un format :</h4>
+                                <div class="space-y-3">
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q9" value="a" class="mr-3">
+                                        <span>100% en ligne</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q9" value="b" class="mr-3">
+                                        <span>Hybride (e-learning + présentiel + expérimentation)</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q9" value="c" class="mr-3">
+                                        <span>100% en présentiel</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Question 10 -->
+                        <div class="quiz-question hidden" data-question="10">
+                            <div class="bg-gray-50 p-6 rounded-lg mb-4">
+                                <h4 class="text-lg font-semibold mb-4">10. L'objectif général de la formation est de :</h4>
+                                <div class="space-y-3">
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q10" value="a" class="mr-3">
+                                        <span>Former les jeunes directement aux Life Skills</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q10" value="b" class="mr-3">
+                                        <span>Renforcer les capacités des professionnels à travailler les Life Skills avec les jeunes</span>
+                                    </label>
+                                    <label class="flex items-center cursor-pointer p-3 rounded-lg hover:bg-white transition-colors">
+                                        <input type="radio" name="q10" value="c" class="mr-3">
+                                        <span>Créer de nouveaux outils pédagogiques</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Boutons de navigation du quiz -->
+                    <div class="flex justify-between mt-6">
+                        <button id="prev-question" onclick="previousQuestion()" class="bg-gray-500 text-white px-6 py-3 rounded-lg hover:bg-gray-600 transition-colors" disabled>← Précédent</button>
+                        <button id="next-question" onclick="nextQuestion()" class="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors">Suivant →</button>
+                        <button id="submit-quiz" onclick="submitQuiz()" class="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors hidden">Terminer le quiz</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Résultats du quiz -->
+        <div id="screen-quiz-results" class="screen hidden fade-in">
+            <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                <div class="text-center">
+                    <div id="quiz-success" class="hidden">
+                        <div class="text-6xl mb-4">🎉</div>
+                        <h2 class="text-3xl font-bold text-green-600 mb-4">Félicitations !</h2>
+                        <div class="bg-green-50 border border-green-200 p-6 rounded-xl mb-6">
+                            <p class="text-lg text-green-800 mb-2">Vous avez réussi le quiz avec un score de <span id="final-score-success" class="font-bold"></span></p>
+                            <p class="text-green-700">Vous maîtrisez les concepts fondamentaux des Life Skills !</p>
+                        </div>
+                    </div>
+
+                    <div id="quiz-failure" class="hidden">
+                        <div class="text-6xl mb-4">📚</div>
+                        <h2 class="text-3xl font-bold text-orange-600 mb-4">Presque !</h2>
+                        <div class="bg-orange-50 border border-orange-200 p-6 rounded-xl mb-6">
+                            <p class="text-lg text-orange-800 mb-2">Votre score : <span id="final-score-failure" class="font-bold"></span></p>
+                            <p class="text-orange-700">Nous vous recommandons de revoir le contenu avant de continuer.</p>
+                        </div>
+                    </div>
+
+                    <!-- Présentation de la formation expérientielle -->
+                    <div class="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-8 rounded-2xl mb-8">
+                        <h3 class="text-2xl font-bold mb-4">🚀 Prochaine étape : Formation expérientielle</h3>
+                        <div class="text-left space-y-4">
+                            <div class="bg-white bg-opacity-20 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">🎭 Mise en situation</h4>
+                                <p class="text-sm">Vous vivrez les activités comme les jeunes pour mieux comprendre leur impact</p>
+                            </div>
+                            <div class="bg-white bg-opacity-20 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">🤝 Travail collaboratif</h4>
+                                <p class="text-sm">Échanges entre pairs et co-construction de pratiques</p>
+                            </div>
+                            <div class="bg-white bg-opacity-20 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">🛠️ Appropriation des outils</h4>
+                                <p class="text-sm">Manipulation concrète des outils du Guidebook LS4YOU</p>
+                            </div>
+                            <div class="bg-white bg-opacity-20 p-4 rounded-lg">
+                                <h4 class="font-semibold mb-2">📋 Plan d'action personnalisé</h4>
+                                <p class="text-sm">Adaptation des Life Skills à votre contexte professionnel</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-center space-x-4">
+                        <button id="retry-quiz" onclick="retryQuiz()" class="bg-orange-500 text-white px-8 py-3 rounded-lg hover:bg-orange-600 transition-colors hidden">🔄 Refaire le quiz</button>
+                        <button id="continue-to-completion" onclick="showCompletion()" class="bg-green-500 text-white px-8 py-3 rounded-lg hover:bg-green-600 transition-colors hidden">Continuer →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Écran de fin avec badge -->
+        <div id="screen-completion" class="screen hidden fade-in">
+            <div class="text-center">
+                <!-- Badge de certification -->
+                <div class="max-w-md mx-auto mb-8">
+                    <div id="certification-badge" class="bg-gradient-to-br from-yellow-400 via-yellow-500 to-orange-500 p-8 rounded-3xl shadow-2xl border-4 border-yellow-300 relative overflow-hidden">
+                        <!-- Motif décoratif -->
+                        <div class="absolute inset-0 opacity-10">
+                            <div class="absolute top-4 left-4 w-8 h-8 border-2 border-white rounded-full"></div>
+                            <div class="absolute top-4 right-4 w-6 h-6 border-2 border-white rounded-full"></div>
+                            <div class="absolute bottom-4 left-6 w-4 h-4 border-2 border-white rounded-full"></div>
+                            <div class="absolute bottom-4 right-6 w-10 h-10 border-2 border-white rounded-full"></div>
+                        </div>
+                        
+                        <div class="relative z-10">
+                            <!-- Logo/Icône -->
+                            <div class="w-20 h-20 mx-auto mb-4 bg-white rounded-full flex items-center justify-center shadow-lg">
+                                <div class="text-3xl">🌟</div>
+                            </div>
+                            
+                            <!-- Titre du badge -->
+                            <h3 class="text-white font-bold text-xl mb-2">CERTIFICATION</h3>
+                            <h2 class="text-white font-bold text-2xl mb-4">INTRODUCTION AUX<br>LIFE SKILLS</h2>
+                            
+                            <!-- Nom de la personne -->
+                            <div class="bg-white bg-opacity-90 p-4 rounded-xl mb-4">
+                                <p class="text-gray-600 text-sm mb-1">Décerné à :</p>
+                                <input type="text" id="participant-name" placeholder="Votre nom complet" class="w-full text-center text-lg font-bold text-gray-800 bg-transparent border-b-2 border-gray-300 focus:border-blue-500 outline-none" maxlength="30">
+                            </div>
+                            
+                            <!-- Détails -->
+                            <div class="text-white text-sm space-y-1">
+                                <p>Projet LS4YOU</p>
+                                <p id="completion-date"></p>
+                                <p class="font-semibold">Score : <span id="badge-score"></span></p>
+                            </div>
+                            
+                            <!-- Signature/Validation -->
+                            <div class="mt-4 pt-4 border-t border-white border-opacity-30">
+                                <p class="text-white text-xs">Formation validée - E-learning préparatoire</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Actions -->
+                <div class="bg-white rounded-2xl shadow-lg p-8 mb-6">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-6">🎯 Prochaines étapes</h3>
+                    
+                    <div class="grid md:grid-cols-2 gap-6 mb-8">
+                        <div class="bg-blue-50 border border-blue-200 p-6 rounded-xl">
+                            <div class="text-3xl mb-3">📧</div>
+                            <h4 class="font-semibold text-blue-800 mb-2">Envoyez votre badge</h4>
+                            <p class="text-blue-700 text-sm mb-4">Téléchargez et transmettez votre certification à votre référent pour justifier la réalisation du e-learning</p>
+                            <button onclick="downloadBadge()" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-colors text-sm">
+                                📥 Télécharger le badge
+                            </button>
+                        </div>
+                        
+                        <div class="bg-green-50 border border-green-200 p-6 rounded-xl">
+                            <div class="text-3xl mb-3">🎓</div>
+                            <h4 class="font-semibold text-green-800 mb-2">Formation présentielle</h4>
+                            <p class="text-green-700 text-sm mb-4">Vous êtes maintenant prêt(e) pour la formation expérientielle en présentiel</p>
+                            <button onclick="showTrainingInfo()" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition-colors text-sm">
+                                📅 Infos formation
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Récapitulatif -->
+                    <div class="bg-gray-50 p-6 rounded-xl">
+                        <h4 class="font-semibold text-gray-800 mb-4">📊 Votre parcours</h4>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                            <div>
+                                <div class="text-2xl text-green-500 font-bold">8/8</div>
+                                <div class="text-xs text-gray-600">Modules complétés</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl text-blue-500 font-bold" id="final-quiz-score">-/10</div>
+                                <div class="text-xs text-gray-600">Score quiz</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl text-purple-500 font-bold">~115</div>
+                                <div class="text-xs text-gray-600">Minutes d'étude</div>
+                            </div>
+                            <div>
+                                <div class="text-2xl text-orange-500 font-bold">✓</div>
+                                <div class="text-xs text-gray-600">Certifié</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center space-x-4">
+                    <button onclick="goToHome()" class="bg-cyan-500 text-white px-8 py-3 rounded-lg hover:bg-cyan-600 transition-colors">🏠 Retour à l'accueil</button>
+                    <button onclick="reviewContent()" class="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 transition-colors">📚 Revoir le contenu</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Modal pour les outils -->
+    <div id="tool-modal" class="fixed inset-0 bg-black bg-opacity-50 modal hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl">
+            <div class="flex items-center mb-4">
+                <div id="modal-icon" class="text-3xl mr-4">🧠</div>
+                <h3 id="modal-title" class="text-xl font-bold text-gray-900">Titre de l'outil</h3>
+            </div>
+            <p id="modal-description" class="text-gray-700 mb-6">Description de l'objectif pédagogique</p>
+            <div class="flex justify-between">
+                <button onclick="closeToolModal()" class="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors">Fermer</button>
+                <button class="px-6 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors" onclick="openToolbox()">🔗 Consulter la boîte à outils</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentScreen = 'home';
+        let completedBlocs = 0;
+
+        function showScreen(screenId) {
+            // Masquer tous les écrans
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.add('hidden');
+            });
+            
+            // Afficher l'écran demandé
+            const targetScreen = document.getElementById(`screen-${screenId}`);
+            if (targetScreen) {
+                targetScreen.classList.remove('hidden');
+                targetScreen.classList.add('fade-in');
+                currentScreen = screenId;
+                
+                // Scroll vers le haut
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+        }
+
+        function updateProgress() {
+            const progress = (completedBlocs / 8) * 100;
+            document.getElementById('progressBar').style.width = `${progress}%`;
+            document.getElementById('progressText').textContent = `${completedBlocs}/8`;
+            
+            // Mettre à jour aussi la progression sur la page d'accueil
+            const homeProgressBar = document.getElementById('home-progress-bar');
+            const homeProgressText = document.getElementById('home-progress-text');
+            if (homeProgressBar) {
+                homeProgressBar.style.width = `${progress}%`;
+            }
+            if (homeProgressText) {
+                homeProgressText.textContent = `${completedBlocs}/8 modules complétés`;
+            }
+        }
+
+        function showLastVisited() {
+            if (completedBlocs > 0) {
+                goToBloc(completedBlocs);
+            } else {
+                startLearning();
+            }
+        }
+
+        function startLearning() {
+            showScreen('bloc1');
+            if (completedBlocs < 1) completedBlocs = 1;
+            updateProgress();
+        }
+
+        function showObjectives() {
+            showScreen('bloc3');
+        }
+
+        function goToHome() {
+            showScreen('home');
+        }
+
+        function goToBloc(blocNumber) {
+            showScreen(`bloc${blocNumber}`);
+            if (completedBlocs < blocNumber) {
+                completedBlocs = blocNumber;
+                updateProgress();
+            }
+        }
+
+        function completeLearning() {
+            completedBlocs = 8;
+            updateProgress();
+            showScreen('completion');
+        }
+
+        function reviewContent() {
+            showScreen('bloc1');
+        }
+
+        // Fonction pour la méthodologie interactive
+        function toggleMethodologyStep(stepNumber) {
+            const detail = document.getElementById(`methodology-detail-${stepNumber}`);
+            const allDetails = document.querySelectorAll('[id^="methodology-detail-"]');
+            
+            // Fermer tous les autres détails
+            allDetails.forEach(d => {
+                if (d.id !== `methodology-detail-${stepNumber}`) {
+                    d.classList.add('hidden');
+                }
+            });
+            
+            // Toggle le détail cliqué
+            detail.classList.toggle('hidden');
+        }
+
+        // Fonctions pour les domaines d'outils
+        function showDomain(domainNumber, tabElement) {
+            // Masquer toutes les sections de domaine
+            document.querySelectorAll('.domain-section').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Afficher la section demandée
+            document.getElementById(`domain-${domainNumber}`).classList.remove('hidden');
+            
+            // Mettre à jour les onglets
+            document.querySelectorAll('.domain-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            tabElement.classList.add('active');
+        }
+
+        // Fonctions pour la modal des outils
+        function showToolModal(title, description, icon) {
+            document.getElementById('modal-title').textContent = title;
+            document.getElementById('modal-description').textContent = description;
+            document.getElementById('modal-icon').textContent = icon;
+            document.getElementById('tool-modal').classList.remove('hidden');
+        }
+
+        function closeToolModal() {
+            document.getElementById('tool-modal').classList.add('hidden');
+        }
+
+        function openToolbox() {
+            window.open('https://www.lifeskills4youth.eu/results/toolbox/', '_blank', 'noopener,noreferrer');
+        }
+
+        // Navigation au clavier
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' && currentScreen.startsWith('bloc')) {
+                const currentBloc = parseInt(currentScreen.replace('bloc', ''));
+                if (currentBloc < 8) {
+                    goToBloc(currentBloc + 1);
+                } else if (currentBloc === 8) {
+                    completeLearning();
+                }
+            } else if (e.key === 'ArrowLeft' && currentScreen.startsWith('bloc')) {
+                const currentBloc = parseInt(currentScreen.replace('bloc', ''));
+                if (currentBloc > 1) {
+                    goToBloc(currentBloc - 1);
+                }
+            } else if (e.key === 'Escape') {
+                if (!document.getElementById('tool-modal').classList.contains('hidden')) {
+                    closeToolModal();
+                } else {
+                    goToHome();
+                }
+            }
+        });
+
+        // Fermer la modal en cliquant à l'extérieur
+        document.getElementById('tool-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeToolModal();
+            }
+        });
+
+        // Fonctions pour le glisser-déposer du Bloc 7
+        let draggedElement = null;
+        let dragDropAnswers = {
+            'communication': 'real',
+            'pensée-critique': 'real',
+            'résolution-problèmes': 'real',
+            'empathie': 'real',
+            'politesse': 'fake',
+            'obéissance': 'fake',
+            'sérieux': 'fake',
+            'motivation': 'fake',
+            'ponctualité': 'fake',
+            'respect-moral': 'fake'
+        };
+
+        // Gestion du drag and drop
+        document.addEventListener('dragstart', function(e) {
+            if (e.target.classList.contains('draggable-item')) {
+                draggedElement = e.target;
+                e.target.style.opacity = '0.5';
+            }
+        });
+
+        document.addEventListener('dragend', function(e) {
+            if (e.target.classList.contains('draggable-item')) {
+                e.target.style.opacity = '1';
+            }
+        });
+
+        document.addEventListener('dragover', function(e) {
+            e.preventDefault();
+        });
+
+        document.addEventListener('drop', function(e) {
+            e.preventDefault();
+            if (draggedElement && e.target.closest('.drop-zone')) {
+                const dropZone = e.target.closest('.drop-zone');
+                const droppedItems = dropZone.querySelector('.dropped-items');
+                
+                // Créer une copie de l'élément
+                const newItem = draggedElement.cloneNode(true);
+                newItem.classList.add('bg-blue-100', 'border-blue-300');
+                newItem.draggable = false;
+                
+                // Ajouter un bouton de suppression
+                const removeBtn = document.createElement('button');
+                removeBtn.innerHTML = '×';
+                removeBtn.className = 'ml-2 text-red-500 hover:text-red-700 font-bold';
+                removeBtn.onclick = function() {
+                    newItem.remove();
+                    checkIfAllPlaced();
+                };
+                newItem.appendChild(removeBtn);
+                
+                droppedItems.appendChild(newItem);
+                
+                // Supprimer l'élément original
+                draggedElement.remove();
+                draggedElement = null;
+                
+                checkIfAllPlaced();
+            }
+        });
+
+        function checkIfAllPlaced() {
+            const remainingItems = document.querySelectorAll('#items-container .draggable-item');
+            const checkButton = document.getElementById('check-answers');
+            
+            if (remainingItems.length === 0) {
+                checkButton.disabled = false;
+            } else {
+                checkButton.disabled = true;
+            }
+        }
+
+        function checkAnswers() {
+            const realZone = document.querySelector('[data-category="real"] .dropped-items');
+            const fakeZone = document.querySelector('[data-category="fake"] .dropped-items');
+            
+            let score = 0;
+            let total = 0;
+            let feedback = '<div class="bg-white p-6 rounded-lg shadow-lg"><h4 class="text-lg font-semibold mb-4">Résultats :</h4>';
+            
+            // Vérifier les réponses dans la zone "compétence réelle"
+            const realItems = realZone.querySelectorAll('.draggable-item');
+            realItems.forEach(item => {
+                const itemKey = item.dataset.item;
+                total++;
+                if (dragDropAnswers[itemKey] === 'real') {
+                    score++;
+                    feedback += `<p class="text-green-600">✅ ${item.textContent.replace('×', '')} - Correct !</p>`;
+                } else {
+                    feedback += `<p class="text-red-600">❌ ${item.textContent.replace('×', '')} - C'est un faux ami</p>`;
+                }
+            });
+            
+            // Vérifier les réponses dans la zone "faux ami"
+            const fakeItems = fakeZone.querySelectorAll('.draggable-item');
+            fakeItems.forEach(item => {
+                const itemKey = item.dataset.item;
+                total++;
+                if (dragDropAnswers[itemKey] === 'fake') {
+                    score++;
+                    feedback += `<p class="text-green-600">✅ ${item.textContent.replace('×', '')} - Correct !</p>`;
+                } else {
+                    feedback += `<p class="text-red-600">❌ ${item.textContent.replace('×', '')} - C'est une vraie compétence</p>`;
+                }
+            });
+            
+            const percentage = Math.round((score / total) * 100);
+            feedback += `<div class="mt-4 p-4 rounded-lg ${percentage >= 70 ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}">`;
+            feedback += `<p class="font-semibold">Score : ${score}/${total} (${percentage}%)</p>`;
+            
+            if (percentage >= 70) {
+                feedback += '<p>Excellent ! Vous maîtrisez bien la distinction entre compétences réelles et faux amis.</p>';
+            } else {
+                feedback += '<p>Continuez à vous entraîner pour mieux distinguer les vraies compétences des normes sociales.</p>';
+            }
+            
+            feedback += '</div>';
+            feedback += '<button onclick="resetActivity()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Recommencer l\'activité</button>';
+            feedback += '</div>';
+            
+            document.getElementById('feedback-zone').innerHTML = feedback;
+            document.getElementById('feedback-zone').classList.remove('hidden');
+        }
+        
+        function resetActivity() {
+            // Remettre tous les items dans la zone initiale
+            const itemsContainer = document.getElementById('items-container');
+            const allDroppedItems = document.querySelectorAll('.drop-zone .draggable-item');
+            
+            allDroppedItems.forEach(item => {
+                const originalItem = document.createElement('div');
+                originalItem.className = 'draggable-item bg-white border-2 border-gray-300 px-4 py-2 rounded-lg cursor-move hover:shadow-md transition-shadow';
+                originalItem.draggable = true;
+                originalItem.dataset.item = item.dataset.item;
+                originalItem.textContent = item.textContent.replace('×', '');
+                itemsContainer.appendChild(originalItem);
+                item.remove();
+            });
+            
+            // Cacher le feedback et désactiver le bouton
+            document.getElementById('feedback-zone').classList.add('hidden');
+            document.getElementById('check-answers').disabled = true;
+        }
+
+        // Variables du quiz
+        let currentQuestionIndex = 1;
+        let quizAnswers = {};
+        let quizScore = 0;
+        
+        // Bonnes réponses du quiz
+        const quizCorrectAnswers = {
+            'q1': 'b', // Accompagner l'insertion sociale et professionnelle des jeunes en développant leurs Life Skills
+            'q2': 'b', // 8 étapes
+            'q3': 'b', // Formation magistrale
+            'q4': 'b', // 10 Life Skills
+            'q5': 'b', // Les Life Skills visent l'autonomie et le bien-être, les Soft Skills l'employabilité
+            'q6': 'b', // Obéissance
+            'q7': 'b', // 5 domaines
+            'q8': 'b', // La roue des émotions
+            'q9': 'b', // Hybride (e-learning + présentiel + expérimentation)
+            'q10': 'b' // Renforcer les capacités des professionnels à travailler les Life Skills avec les jeunes
+        };
+
+        // Fonctions du quiz
+        function startQuiz() {
+            completedBlocs = 8;
+            updateProgress();
+            showScreen('quiz');
+            currentQuestionIndex = 1;
+            quizAnswers = {};
+            quizScore = 0;
+            updateQuizProgress();
+        }
+
+        function updateQuizProgress() {
+            document.getElementById('current-question').textContent = currentQuestionIndex;
+            document.getElementById('quiz-progress').style.width = `${(currentQuestionIndex / 10) * 100}%`;
+            
+            // Mettre à jour les boutons
+            const prevBtn = document.getElementById('prev-question');
+            const nextBtn = document.getElementById('next-question');
+            const submitBtn = document.getElementById('submit-quiz');
+            
+            prevBtn.disabled = currentQuestionIndex === 1;
+            
+            if (currentQuestionIndex === 10) {
+                nextBtn.classList.add('hidden');
+                submitBtn.classList.remove('hidden');
+            } else {
+                nextBtn.classList.remove('hidden');
+                submitBtn.classList.add('hidden');
+            }
+        }
+
+        function showQuestion(questionNumber) {
+            // Masquer toutes les questions
+            document.querySelectorAll('.quiz-question').forEach(q => {
+                q.classList.add('hidden');
+                q.classList.remove('active');
+            });
+            
+            // Afficher la question demandée
+            const targetQuestion = document.querySelector(`[data-question="${questionNumber}"]`);
+            if (targetQuestion) {
+                targetQuestion.classList.remove('hidden');
+                targetQuestion.classList.add('active');
+            }
+        }
+
+        function nextQuestion() {
+            // Sauvegarder la réponse actuelle
+            const currentAnswer = document.querySelector(`input[name="q${currentQuestionIndex}"]:checked`);
+            if (currentAnswer) {
+                quizAnswers[`q${currentQuestionIndex}`] = currentAnswer.value;
+            }
+            
+            if (currentQuestionIndex < 10) {
+                currentQuestionIndex++;
+                showQuestion(currentQuestionIndex);
+                updateQuizProgress();
+            }
+        }
+
+        function previousQuestion() {
+            if (currentQuestionIndex > 1) {
+                currentQuestionIndex--;
+                showQuestion(currentQuestionIndex);
+                updateQuizProgress();
+            }
+        }
+
+        function submitQuiz() {
+            // Sauvegarder la dernière réponse
+            const currentAnswer = document.querySelector(`input[name="q${currentQuestionIndex}"]:checked`);
+            if (currentAnswer) {
+                quizAnswers[`q${currentQuestionIndex}`] = currentAnswer.value;
+            }
+            
+            // Calculer le score
+            quizScore = 0;
+            for (let i = 1; i <= 10; i++) {
+                if (quizAnswers[`q${i}`] === quizCorrectAnswers[`q${i}`]) {
+                    quizScore++;
+                }
+            }
+            
+            // Afficher les résultats
+            showQuizResults();
+        }
+
+        function showQuizResults() {
+            showScreen('quiz-results');
+            
+            const successDiv = document.getElementById('quiz-success');
+            const failureDiv = document.getElementById('quiz-failure');
+            const retryBtn = document.getElementById('retry-quiz');
+            const continueBtn = document.getElementById('continue-to-completion');
+            
+            if (quizScore >= 7) {
+                // Réussite
+                successDiv.classList.remove('hidden');
+                failureDiv.classList.add('hidden');
+                document.getElementById('final-score-success').textContent = `${quizScore}/10`;
+                retryBtn.classList.add('hidden');
+                continueBtn.classList.remove('hidden');
+            } else {
+                // Échec
+                successDiv.classList.add('hidden');
+                failureDiv.classList.remove('hidden');
+                document.getElementById('final-score-failure').textContent = `${quizScore}/10`;
+                retryBtn.classList.remove('hidden');
+                continueBtn.classList.add('hidden');
+            }
+        }
+
+        function retryQuiz() {
+            // Réinitialiser le quiz
+            currentQuestionIndex = 1;
+            quizAnswers = {};
+            quizScore = 0;
+            
+            // Décocher toutes les réponses
+            document.querySelectorAll('input[type="radio"]').forEach(input => {
+                input.checked = false;
+            });
+            
+            // Retourner au quiz
+            showScreen('quiz');
+            showQuestion(1);
+            updateQuizProgress();
+        }
+
+        function showCompletion() {
+            showScreen('completion');
+            
+            // Mettre à jour les informations du badge
+            const today = new Date();
+            document.getElementById('completion-date').textContent = today.toLocaleDateString('fr-FR');
+            document.getElementById('badge-score').textContent = `${quizScore}/10`;
+            document.getElementById('final-quiz-score').textContent = `${quizScore}/10`;
+        }
+
+        function downloadBadge() {
+            const participantName = document.getElementById('participant-name').value.trim();
+            
+            if (!participantName) {
+                alert('Veuillez saisir votre nom complet avant de télécharger le badge.');
+                document.getElementById('participant-name').focus();
+                return;
+            }
+            
+            // Créer un canvas pour générer l'image du badge
+            const badge = document.getElementById('certification-badge');
+            
+            // Utiliser html2canvas si disponible, sinon message alternatif
+            if (typeof html2canvas !== 'undefined') {
+                html2canvas(badge, {
+                    backgroundColor: null,
+                    scale: 2
+                }).then(canvas => {
+                    // Créer un lien de téléchargement
+                    const link = document.createElement('a');
+                    link.download = `Badge_LS4YOU_${participantName.replace(/\s+/g, '_')}.png`;
+                    link.href = canvas.toDataURL();
+                    link.click();
+                });
+            } else {
+                // Alternative : copier le contenu du badge dans le presse-papiers
+                const badgeText = `
+CERTIFICATION - INTRODUCTION AUX LIFE SKILLS
+Projet LS4YOU
+
+Décerné à : ${participantName}
+Date : ${document.getElementById('completion-date').textContent}
+Score : ${document.getElementById('badge-score').textContent}
+
+Formation validée - E-learning préparatoire
+                `.trim();
+                
+                navigator.clipboard.writeText(badgeText).then(() => {
+                    alert('Les informations du badge ont été copiées dans le presse-papiers. Vous pouvez les coller dans un document pour votre référent.');
+                }).catch(() => {
+                    alert(`Badge de certification généré pour ${participantName}. Veuillez faire une capture d'écran de cette page pour votre référent.`);
+                });
+            }
+        }
+
+        function showTrainingInfo() {
+            alert(`🎓 Formation expérientielle LS4YOU
+
+La prochaine étape de votre parcours comprend :
+
+🎭 Mise en situation pratique
+• Expérimentation des outils comme les jeunes
+• Jeux de rôle et simulations
+
+🤝 Travail collaboratif  
+• Échanges entre professionnels
+• Co-construction de pratiques
+
+🛠️ Appropriation des outils
+• Manipulation concrète du Guidebook
+• Adaptation à vos contextes
+
+📋 Plan d'action personnalisé
+• Intégration dans votre pratique
+• Suivi et accompagnement
+
+Contactez votre référent pour connaître les dates et modalités de la formation présentielle.`);
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            updateProgress();
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'981f06a1e611592b',t:'MTc1ODM0NzIyMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
