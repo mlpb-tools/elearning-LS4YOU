@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LS4YOU e-learning</title>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -12,168 +13,321 @@
                 extend: {
                     colors: {
                         'ls-red': '#E63946',
-                        'ls-yellow': '#FFD166',
+                        'ls-blue': '#457B9D',
                         'ls-turquoise': '#06D6A0',
-                        'ls-gray': '#F6F6F6'
+                        'ls-yellow': '#FFD166',
+                        'urban-black': '#1a1a1a',
+                        'urban-gray': '#2d2d2d',
+                        'urban-light': '#f5f5f5',
+                        'concrete': '#8a8a8a'
                     },
                     fontFamily: {
-                        'title': ['Nunito', 'sans-serif'],
+                        'street': ['Oswald', 'sans-serif'],
                         'body': ['Nunito', 'sans-serif']
+                    },
+                    backgroundImage: {
+                        'brick': "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%23333\" fill-opacity=\"0.05\"%3E%3Cpath d=\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
+                        'graffiti': "linear-gradient(45deg, transparent 30%, rgba(230, 57, 70, 0.1) 30%, rgba(230, 57, 70, 0.1) 70%, transparent 70%)",
+                        'urban-texture': "url('data:image/svg+xml,%3Csvg width=\"100\" height=\"100\" viewBox=\"0 0 100 100\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill-opacity=\"0.03\"%3E%3Cpolygon fill=\"%23000\" points=\"50 0 60 40 100 50 60 60 50 100 40 60 0 50 40 40\"/%3E%3C/g%3E%3C/svg%3E')"
+                    },
+                    boxShadow: {
+                        'street': '0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                        'tag': '0 4px 16px rgba(0, 0, 0, 0.4)',
+                        'neon': '0 0 20px rgba(6, 214, 160, 0.5)'
                     }
                 }
             }
         }
     </script>
     <style>
-        .puzzle-piece {
-            clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+        body {
+            background: #ffffff;
+            background-attachment: fixed;
         }
-        .hover-lift {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        .street-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%);
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            overflow: hidden;
         }
-        .hover-lift:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        
+        .street-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--tw-gradient-from), var(--tw-gradient-to);
+            z-index: -1;
+            margin: -2px;
+            border-radius: inherit;
         }
-        .content-placeholder {
-            border: 2px dashed #ccc;
-            background: linear-gradient(45deg, #f9f9f9 25%, transparent 25%), 
-                        linear-gradient(-45deg, #f9f9f9 25%, transparent 25%), 
-                        linear-gradient(45deg, transparent 75%, #f9f9f9 75%), 
-                        linear-gradient(-45deg, transparent 75%, #f9f9f9 75%);
+        
+        .street-card:hover {
+            transform: translateY(-8px) rotate(1deg);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .graffiti-text {
+            text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.3), 
+                         6px 6px 0px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, var(--color-1), var(--color-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .brick-wall {
+            background: #ffffff;
+        }
+        
+        .neon-border {
+            border: 2px solid;
+            border-image: linear-gradient(45deg, #E63946, #FFD166, #06D6A0, #E63946) 1;
+            animation: neon-pulse 2s ease-in-out infinite alternate;
+        }
+        
+        @keyframes neon-pulse {
+            from { box-shadow: 0 0 10px rgba(6, 214, 160, 0.5); }
+            to { box-shadow: 0 0 20px rgba(230, 57, 70, 0.8), 0 0 30px rgba(255, 209, 102, 0.5); }
+        }
+        
+        .street-button {
+            background: linear-gradient(145deg, #ffffff, #f0f0f0);
+            border: 3px solid #1a1a1a;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .street-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .street-button:hover::before {
+            left: 100%;
+        }
+        
+        .street-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .tag-style {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            border-left: 6px solid;
+            position: relative;
+        }
+        
+        .tag-style::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .urban-grid {
+            background-image: 
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
             background-size: 20px 20px;
-            background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+        }
+        
+        .stencil-text {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+        }
+        
+        .stencil-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            z-index: -1;
+            color: rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
-<body class="bg-ls-gray font-body">
+<body class="font-body text-urban-black">
     <!-- Page d'accueil -->
-    <div id="home" class="min-h-screen p-6">
+    <div id="home" class="min-h-screen p-6 brick-wall">
         <div class="max-w-7xl mx-auto">
-            <!-- Header -->
-            <div class="text-center mb-16">
-                <div class="mb-8">
-                    <h1 class="text-7xl md:text-8xl font-black text-ls-red mb-6 font-title tracking-tight leading-none">
-                        LS4YOU
-                        <span class="block text-4xl md:text-5xl font-light text-gray-600 mt-2">e-learning</span>
-                    </h1>
-                </div>
-                <div class="max-w-3xl mx-auto">
-                    <p class="text-2xl md:text-3xl text-gray-700 font-light leading-relaxed">
-                        Un parcours en <span class="font-semibold text-ls-red">7 étapes</span> pour comprendre<br class="hidden md:block"> 
-                        et déployer les <span class="font-semibold text-ls-turquoise">Life Skills</span>
-                    </p>
+            <!-- Header Street Art -->
+            <div class="text-center mb-16 relative">
+                <div class="absolute inset-0 urban-grid opacity-20"></div>
+                <div class="relative z-10">
+                    <div class="relative inline-block mb-6">
+                        <div class="absolute inset-0 bg-ls-yellow rounded-2xl transform rotate-1 scale-105"></div>
+                        <div class="absolute inset-0 bg-ls-turquoise rounded-2xl transform -rotate-1 scale-110"></div>
+                        <h1 class="relative font-street text-8xl md:text-9xl font-bold text-ls-red stencil-text bg-white rounded-xl px-8 py-4 border-4 border-ls-red shadow-street" 
+                            data-text="LS4YOU">
+                            LS4YOU
+                        </h1>
+                    </div>
+                    <div class="bg-urban-black text-white px-8 py-4 inline-block transform -rotate-2 mb-8">
+                        <span class="font-street text-2xl md:text-3xl font-semibold tracking-wider">E-LEARNING</span>
+                    </div>
+                    <div class="max-w-4xl mx-auto bg-white/90 backdrop-blur-sm rounded-lg p-6 shadow-street">
+                        <p class="text-xl md:text-2xl text-urban-black font-semibold leading-relaxed">
+                            Un parcours en <span class="text-ls-red font-bold">7 étapes</span> pour comprendre<br class="hidden md:block"> 
+                            et déployer les <span class="text-ls-turquoise font-bold">Life Skills</span>
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <!-- Menu des 7 blocs -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <!-- Menu des 7 blocs - Style Street Art -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 <!-- Bloc 1 - Introduction -->
-                <div onclick="showPage('intro')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-red">
-                    <div class="text-4xl mb-4">🎯</div>
-                    <h3 class="text-xl font-bold text-ls-red mb-2">Introduction</h3>
-                    <p class="text-gray-600">Découvrez le projet LS4YOU</p>
+                <div onclick="showPage('intro')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-red text-white">
+                    <div class="text-5xl mb-4">🎯</div>
+                    <h3 class="font-street text-xl font-bold text-ls-red mb-2 uppercase tracking-wide">Introduction</h3>
+                    <p class="text-gray-300 font-medium">Découvrez le projet LS4YOU</p>
+                    <div class="absolute top-2 right-2 w-3 h-3 bg-ls-red rounded-full animate-pulse"></div>
                 </div>
 
                 <!-- Bloc 2 - 4 domaines -->
-                <div onclick="showPage('domaines')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-yellow">
-                    <div class="text-4xl mb-4">🧩</div>
-                    <h3 class="text-xl font-bold text-ls-yellow mb-2">4 Domaines</h3>
-                    <p class="text-gray-600">Les compétences essentielles</p>
+                <div onclick="showPage('domaines')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-yellow text-white">
+                    <div class="text-5xl mb-4">🧩</div>
+                    <h3 class="font-street text-xl font-bold text-ls-yellow mb-2 uppercase tracking-wide">4 Domaines</h3>
+                    <p class="text-gray-300 font-medium">Les compétences essentielles</p>
+                    <div class="absolute top-2 right-2 w-3 h-3 bg-ls-yellow rounded-full animate-pulse"></div>
                 </div>
 
                 <!-- Bloc 3 - Outils -->
-                <div onclick="showPage('outils')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-turquoise">
-                    <div class="text-4xl mb-4">🛠️</div>
-                    <h3 class="text-xl font-bold text-ls-turquoise mb-2">Outils LS4YOU</h3>
-                    <p class="text-gray-600">Bibliothèque interactive</p>
+                <div onclick="showPage('outils')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-turquoise text-white">
+                    <div class="text-5xl mb-4">🛠️</div>
+                    <h3 class="font-street text-xl font-bold text-ls-turquoise mb-2 uppercase tracking-wide">Outils LS4YOU</h3>
+                    <p class="text-gray-300 font-medium">Bibliothèque interactive</p>
+                    <div class="absolute top-2 right-2 w-3 h-3 bg-ls-turquoise rounded-full animate-pulse"></div>
                 </div>
 
                 <!-- Bloc 4 - Phases -->
-                <div onclick="showPage('phases')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-red">
-                    <div class="text-4xl mb-4">📋</div>
-                    <h3 class="text-xl font-bold text-ls-red mb-2">Phases & Livrables</h3>
-                    <p class="text-gray-600">Ce qu'on a fait</p>
+                <div onclick="showPage('phases')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-red text-white">
+                    <div class="text-5xl mb-4">📋</div>
+                    <h3 class="font-street text-xl font-bold text-ls-red mb-2 uppercase tracking-wide">Phases & Livrables</h3>
+                    <p class="text-gray-300 font-medium">Ce qu'on a fait</p>
+                    <div class="absolute top-2 right-2 w-3 h-3 bg-ls-red rounded-full animate-pulse"></div>
                 </div>
 
                 <!-- Bloc 5 - Déploiement -->
-                <div onclick="showPage('deploiement')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-yellow">
-                    <div class="text-4xl mb-4">🚀</div>
-                    <h3 class="text-xl font-bold text-ls-yellow mb-2">Déploiement</h3>
-                    <p class="text-gray-600">Ce qu'on va faire</p>
+                <div onclick="showPage('deploiement')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-yellow text-white">
+                    <div class="text-5xl mb-4">🚀</div>
+                    <h3 class="font-street text-xl font-bold text-ls-yellow mb-2 uppercase tracking-wide">Déploiement</h3>
+                    <p class="text-gray-300 font-medium">Ce qu'on va faire</p>
+                    <div class="absolute top-2 right-2 w-3 h-3 bg-ls-yellow rounded-full animate-pulse"></div>
                 </div>
 
                 <!-- Bloc 6 - Formation -->
-                <div onclick="showPage('formation')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-turquoise">
-                    <div class="text-4xl mb-4">🎓</div>
-                    <h3 class="text-xl font-bold text-ls-turquoise mb-2">Formation</h3>
-                    <p class="text-gray-600">Principes pédagogiques</p>
+                <div onclick="showPage('formation')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-turquoise text-white">
+                    <div class="text-5xl mb-4">🎓</div>
+                    <h3 class="font-street text-xl font-bold text-ls-turquoise mb-2 uppercase tracking-wide">Formation</h3>
+                    <p class="text-gray-300 font-medium">Principes pédagogiques</p>
+                    <div class="absolute top-2 right-2 w-3 h-3 bg-ls-turquoise rounded-full animate-pulse"></div>
                 </div>
 
                 <!-- Bloc 7 - Quiz -->
-                <div onclick="showPage('quiz')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-red">
-                    <div class="text-4xl mb-4">✅</div>
-                    <h3 class="text-xl font-bold text-ls-red mb-2">Quiz Final</h3>
-                    <p class="text-gray-600">Testez vos connaissances</p>
+                <div onclick="showPage('quiz')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-red text-white neon-border">
+                    <div class="text-5xl mb-4">✅</div>
+                    <h3 class="font-street text-xl font-bold text-ls-red mb-2 uppercase tracking-wide">Quiz Final</h3>
+                    <p class="text-gray-300 font-medium">Testez vos connaissances</p>
+                    <div class="absolute top-2 right-2 w-3 h-3 bg-ls-red rounded-full animate-pulse"></div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Page Introduction -->
-    <div id="intro" class="min-h-screen p-6 hidden">
-        <div class="max-w-4xl mx-auto">
-            <button onclick="showPage('home')" class="mb-6 bg-ls-red text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+    <div id="intro" class="min-h-screen p-6 brick-wall hidden">
+        <div class="max-w-5xl mx-auto">
+            <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
                 ⬅ Retour au menu principal
             </button>
             
-            <h1 class="text-4xl font-bold text-ls-red mb-8">Introduction au projet LS4YOU</h1>
+            <div class="text-center mb-12">
+                <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="Introduction">
+                    <span class="graffiti-text" style="--color-1: #E63946; --color-2: #FFD166;">Introduction</span>
+                </h1>
+                <div class="bg-ls-red text-white px-6 py-2 inline-block transform rotate-1">
+                    <span class="font-street text-lg font-semibold">PROJET LS4YOU</span>
+                </div>
+            </div>
             
-            <div class="bg-white rounded-lg p-8 mb-6 shadow-sm">
-                <div class="prose prose-lg max-w-none">
-                    <div class="text-center mb-8">
-                        <div class="text-6xl mb-4">🎯</div>
-                        <h2 class="text-2xl font-bold text-ls-red mb-4">Le défi des jeunes européens d'aujourd'hui</h2>
+            <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-street border-l-8 border-ls-red">
+                <div class="text-center mb-8">
+                    <div class="text-7xl mb-6">🎯</div>
+                    <h2 class="font-street text-3xl font-bold text-ls-red mb-6 uppercase">Le défi des jeunes européens</h2>
+                </div>
+                
+                <div class="space-y-8 text-lg leading-relaxed">
+                    <p class="text-gray-800">
+                        Les jeunes européens rencontrent aujourd'hui de nombreux défis qui dépassent la simple réussite scolaire ou professionnelle. Les transitions vers l'emploi, l'autonomie et la vie adulte exigent de nouvelles compétences : savoir communiquer, gérer son stress, s'organiser au quotidien, coopérer avec les autres et se projeter dans l'avenir.
+                    </p>
+                    
+                    <div class="bg-urban-black text-white p-8 rounded-lg border-l-6 border-ls-turquoise">
+                        <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-4 uppercase">Life Skills for Youth (LS4YOU)</h3>
+                        <p class="text-gray-200">
+                            Le projet LS4YOU a été conçu pour répondre à un défi majeur : <strong class="text-ls-red">soutenir l'intégration sociale et professionnelle des jeunes</strong> en leur donnant les moyens de développer des ressources personnelles, sociales et pratiques qui vont au-delà des acquis de formation initiale et des compétences professionnelles.
+                        </p>
                     </div>
                     
-                    <div class="text-gray-700 leading-relaxed space-y-6">
-                        <p class="text-lg">
-                            Les jeunes européens rencontrent aujourd'hui de nombreux défis qui dépassent la simple réussite scolaire ou professionnelle. Les transitions vers l'emploi, l'autonomie et la vie adulte exigent de nouvelles compétences : savoir communiquer, gérer son stress, s'organiser au quotidien, coopérer avec les autres et se projeter dans l'avenir.
-                        </p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="bg-gradient-to-br from-ls-red to-red-700 text-white p-8 rounded-xl shadow-tag">
+                            <h4 class="font-street font-bold mb-4 text-xl uppercase">Exemples concrets</h4>
+                            <ul class="space-y-3">
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-2xl">💼</span>
+                                    <span>Se présenter en entretien</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-2xl">🧘</span>
+                                    <span>Gérer le stress</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-2xl">💰</span>
+                                    <span>Organiser un budget</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-2xl">🤝</span>
+                                    <span>Travailler en équipe</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-2xl">🎯</span>
+                                    <span>Se projeter dans l'avenir</span>
+                                </li>
+                            </ul>
+                        </div>
                         
-                        <div class="bg-ls-gray p-6 rounded-lg border-l-4 border-ls-turquoise">
-                            <h3 class="text-xl font-semibold text-ls-turquoise mb-3">Le projet Life Skills for Youth (LS4YOU)</h3>
-                            <p>
-                                Le projet LS4YOU a été conçu pour répondre à un défi majeur : <strong class="text-ls-red">soutenir l'intégration sociale et professionnelle des jeunes</strong> en leur donnant les moyens de développer des ressources personnelles, sociales et pratiques qui vont au-delà des acquis de formation initiale et des compétences professionnelles.
+                        <div class="bg-gradient-to-br from-ls-turquoise to-teal-600 text-white p-8 rounded-xl shadow-tag">
+                            <h4 class="font-street font-bold mb-4 text-xl uppercase">Qu'est-ce que les Life Skills ?</h4>
+                            <p class="leading-relaxed">
+                                Un ensemble de capacités pratiques, personnelles et sociales qui permettent aux jeunes de mieux se connaître, de communiquer efficacement, de gérer leurs émotions et leur quotidien, et de renforcer leur autonomie.
                             </p>
                         </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 my-8">
-                            <div class="bg-gradient-to-br from-ls-red to-red-600 text-white p-6 rounded-lg">
-                                <h4 class="font-semibold mb-3 text-lg">Exemples concrets</h4>
-                                <ul class="space-y-2 text-sm">
-                                    <li>• Se présenter en entretien</li>
-                                    <li>• Gérer le stress</li>
-                                    <li>• Organiser un budget</li>
-                                    <li>• Travailler en équipe</li>
-                                    <li>• Se projeter dans l'avenir</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-gradient-to-br from-ls-turquoise to-green-500 text-white p-6 rounded-lg">
-                                <h4 class="font-semibold mb-3 text-lg">Qu'est-ce que les Life Skills ?</h4>
-                                <p class="text-sm leading-relaxed">
-                                    Un ensemble de capacités pratiques, personnelles et sociales qui permettent aux jeunes de mieux se connaître, de communiquer efficacement, de gérer leurs émotions et leur quotidien, et de renforcer leur autonomie.
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <div class="text-center mt-8">
-                            <div class="inline-flex items-center space-x-4 bg-ls-yellow bg-opacity-20 px-6 py-4 rounded-full">
-                                <span class="text-2xl">🌟</span>
-                                <span class="font-semibold text-ls-yellow">Un projet européen pour l'autonomie des jeunes</span>
-                                <span class="text-2xl">🌟</span>
-                            </div>
+                    </div>
+                    
+                    <div class="text-center mt-12">
+                        <div class="inline-flex items-center space-x-6 bg-ls-yellow text-urban-black px-8 py-6 rounded-full shadow-street">
+                            <span class="text-3xl">🌟</span>
+                            <span class="font-street font-bold text-xl uppercase">Un projet européen pour l'autonomie</span>
+                            <span class="text-3xl">🌟</span>
                         </div>
                     </div>
                 </div>
@@ -182,876 +336,600 @@
     </div>
 
     <!-- Page 4 Domaines -->
-    <div id="domaines" class="min-h-screen p-6 hidden">
-        <div class="max-w-6xl mx-auto">
-            <button onclick="showPage('home')" class="mb-6 bg-ls-red text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+    <div id="domaines" class="min-h-screen p-6 brick-wall hidden">
+        <div class="max-w-7xl mx-auto">
+            <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
                 ⬅ Retour au menu principal
             </button>
             
-            <h1 class="text-4xl font-bold text-ls-yellow mb-8">Les 4 Domaines de Compétences</h1>
+            <div class="text-center mb-12">
+                <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="4 Domaines">
+                    <span class="graffiti-text" style="--color-1: #FFD166; --color-2: #06D6A0;">4 Domaines</span>
+                </h1>
+                <div class="bg-ls-yellow text-urban-black px-6 py-2 inline-block transform -rotate-1">
+                    <span class="font-street text-lg font-semibold uppercase">Compétences Essentielles</span>
+                </div>
+            </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
                 <!-- Personnalité -->
-                <div onclick="showDomainDetail('personnalite')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-turquoise">
-                    <div class="text-4xl mb-4">🌱</div>
-                    <h3 class="text-xl font-bold text-ls-turquoise mb-2">Personnalité</h3>
-                    <p class="text-gray-600">Développement personnel et connaissance de soi</p>
+                <div class="street-card rounded-xl p-8 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-street border-l-8 border-ls-turquoise hover:scale-105">
+                    <div class="text-6xl mb-6 text-center">🌱</div>
+                    <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-3 uppercase text-center">Personnalité</h3>
+                    <p class="text-gray-700 text-center font-medium mb-4">Développement personnel et connaissance de soi</p>
+                    <div class="text-sm text-gray-600 space-y-2">
+                        <p>• Estime de soi et confiance</p>
+                        <p>• Gestion des émotions</p>
+                        <p>• Identification des forces</p>
+                        <p>• Développement de l'autonomie</p>
+                    </div>
+                    <div class="mt-4 h-2 bg-gradient-to-r from-ls-turquoise to-teal-500 rounded-full"></div>
                 </div>
 
                 <!-- Valorisation de soi -->
-                <div onclick="showDomainDetail('autopromotion')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-red">
-                    <div class="text-4xl mb-4">🎤</div>
-                    <h3 class="text-xl font-bold text-ls-red mb-2">Valorisation de soi</h3>
-                    <p class="text-gray-600">Communication et valorisation de ses compétences</p>
+                <div class="street-card rounded-xl p-8 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-street border-l-8 border-ls-red hover:scale-105">
+                    <div class="text-6xl mb-6 text-center">🎤</div>
+                    <h3 class="font-street text-2xl font-bold text-ls-red mb-3 uppercase text-center">Valorisation</h3>
+                    <p class="text-gray-700 text-center font-medium mb-4">Communication et valorisation de ses compétences</p>
+                    <div class="text-sm text-gray-600 space-y-2">
+                        <p>• Techniques de présentation</p>
+                        <p>• Communication efficace</p>
+                        <p>• Mise en valeur des atouts</p>
+                        <p>• Préparation aux entretiens</p>
+                    </div>
+                    <div class="mt-4 h-2 bg-gradient-to-r from-ls-red to-red-600 rounded-full"></div>
                 </div>
 
                 <!-- Forme physique et mentale -->
-                <div onclick="showDomainDetail('bienetre')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-yellow">
-                    <div class="text-4xl mb-4">🧘</div>
-                    <h3 class="text-xl font-bold text-ls-yellow mb-2">Forme physique et mentale</h3>
-                    <p class="text-gray-600">Santé mentale et équilibre de vie</p>
+                <div class="street-card rounded-xl p-8 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-street border-l-8 border-ls-yellow hover:scale-105">
+                    <div class="text-6xl mb-6 text-center">🧘</div>
+                    <h3 class="font-street text-2xl font-bold text-ls-yellow mb-3 uppercase text-center">Bien-être</h3>
+                    <p class="text-gray-700 text-center font-medium mb-4">Santé mentale et équilibre de vie</p>
+                    <div class="text-sm text-gray-600 space-y-2">
+                        <p>• Gestion du stress</p>
+                        <p>• Équilibre vie pro/perso</p>
+                        <p>• Techniques de relaxation</p>
+                        <p>• Hygiène de vie</p>
+                    </div>
+                    <div class="mt-4 h-2 bg-gradient-to-r from-ls-yellow to-yellow-500 rounded-full"></div>
                 </div>
 
                 <!-- Ressources matérielles et financières -->
-                <div onclick="showDomainDetail('finances')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-yellow">
-                    <div class="text-4xl mb-4">💶</div>
-                    <h3 class="text-xl font-bold text-ls-yellow mb-2">Ressources matérielles et financières</h3>
-                    <p class="text-gray-600">Gestion budgétaire et éducation financière</p>
+                <div class="street-card rounded-xl p-8 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-street border-l-8 border-ls-turquoise hover:scale-105">
+                    <div class="text-6xl mb-6 text-center">💶</div>
+                    <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-3 uppercase text-center">Finances</h3>
+                    <p class="text-gray-700 text-center font-medium mb-4">Gestion budgétaire et éducation financière</p>
+                    <div class="text-sm text-gray-600 space-y-2">
+                        <p>• Élaboration d'un budget</p>
+                        <p>• Gestion des dépenses</p>
+                        <p>• Épargne et investissement</p>
+                        <p>• Droits et démarches</p>
+                    </div>
+                    <div class="mt-4 h-2 bg-gradient-to-r from-ls-turquoise to-teal-500 rounded-full"></div>
                 </div>
-            </div>
-
-            <!-- Bouton Synthèse -->
-            <div class="text-center">
-                <button onclick="showPage('synthese')" class="bg-gradient-to-r from-ls-red via-ls-yellow to-ls-turquoise text-white px-8 py-4 rounded-xl font-bold text-lg hover-lift">
-                    📌 Voir la synthèse des 4 domaines
-                </button>
             </div>
         </div>
     </div>
 
     <!-- Page Outils -->
-    <div id="outils" class="min-h-screen p-6 hidden">
-        <div class="max-w-6xl mx-auto">
-            <button onclick="showPage('home')" class="mb-6 bg-ls-red text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+    <div id="outils" class="min-h-screen p-6 brick-wall hidden">
+        <div class="max-w-7xl mx-auto">
+            <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
                 ⬅ Retour au menu principal
             </button>
             
-            <h1 class="text-4xl font-bold text-ls-turquoise mb-8">Explorer les Outils LS4YOU</h1>
+            <div class="text-center mb-12">
+                <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="Outils">
+                    <span class="graffiti-text" style="--color-1: #06D6A0; --color-2: #FFD166;">Outils LS4YOU</span>
+                </h1>
+                <div class="bg-ls-turquoise text-white px-6 py-2 inline-block transform rotate-1">
+                    <span class="font-street text-lg font-semibold uppercase">Bibliothèque Interactive</span>
+                </div>
+            </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <!-- Auto-évaluation -->
-                <div onclick="showToolDetail('autoevaluation')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-turquoise">
-                    <div class="text-4xl mb-4">📊</div>
-                    <h3 class="text-xl font-bold text-ls-turquoise mb-2">Auto-évaluation</h3>
-                    <p class="text-gray-600">Outil d'auto-positionnement pour les jeunes</p>
+                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-turquoise">
+                    <div class="text-6xl mb-6 text-center">📊</div>
+                    <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-4 uppercase text-center">Auto-évaluation</h3>
+                    <p class="text-gray-700 mb-6 text-center font-medium">Outil d'auto-positionnement pour les jeunes</p>
+                    <div class="text-center">
+                        <a href="https://mlpb-tools.github.io/Auto--valuation-LS4Y/" target="_blank" rel="noopener noreferrer" class="street-button inline-flex items-center px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide hover:scale-105 transition-all duration-300">
+                            📊 Accéder à l'outil
+                            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Guidebook -->
-                <div class="bg-white rounded-xl p-6 border-l-4 border-ls-red">
-                    <div class="text-4xl mb-4">📖</div>
-                    <h3 class="text-xl font-bold text-ls-red mb-2">Guidebook</h3>
-                    <p class="text-gray-600 mb-4">Guide méthodologique pour les professionnels</p>
-                    <a href="https://www.canva.com/design/DAGyBW1ulz4/IqIVXBCoWOzahB6ZFOGOrw/edit" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-ls-red text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors font-semibold text-sm">
-                        📖 Consulter le Guidebook
-                        <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                        </svg>
-                    </a>
+                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-red">
+                    <div class="text-6xl mb-6 text-center">📖</div>
+                    <h3 class="font-street text-2xl font-bold text-ls-red mb-4 uppercase text-center">Guidebook</h3>
+                    <p class="text-gray-700 mb-6 text-center font-medium">Guide méthodologique pour les professionnels</p>
+                    <div class="text-center">
+                        <a href="https://www.canva.com/design/DAGyBW1ulz4/IqIVXBCoWOzahB6ZFOGOrw/edit" target="_blank" rel="noopener noreferrer" class="street-button inline-flex items-center px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide hover:scale-105 transition-all duration-300">
+                            📖 Consulter le guide
+                            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Plateforme numérique -->
-                <div onclick="showToolDetail('plateforme')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-yellow">
-                    <div class="text-4xl mb-4">💻</div>
-                    <h3 class="text-xl font-bold text-ls-yellow mb-2">Plateforme numérique</h3>
-                    <p class="text-gray-600">Environnement digital interactif</p>
+                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-yellow">
+                    <div class="text-6xl mb-6 text-center">💻</div>
+                    <h3 class="font-street text-2xl font-bold text-ls-yellow mb-4 uppercase text-center">Plateforme</h3>
+                    <p class="text-gray-700 mb-6 text-center font-medium">Environnement digital interactif</p>
+                    <div class="text-center">
+                        <a href="https://www.lifeskills4youth.eu/fr/plateforme-dapprentissage/" target="_blank" rel="noopener noreferrer" class="street-button inline-flex items-center px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide hover:scale-105 transition-all duration-300">
+                            🌐 Accéder à la plateforme
+                            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Matrice de correspondance -->
-                <div onclick="showToolDetail('matrice')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-turquoise">
-                    <div class="text-4xl mb-4">🎯</div>
-                    <h3 class="text-xl font-bold text-ls-turquoise mb-2">Matrice de correspondance</h3>
-                    <p class="text-gray-600">Outil de ciblage et d'orientation</p>
-                </div>
-            </div>
-
-            <div id="tool-detail" class="mt-8 content-placeholder rounded-lg p-8 min-h-64 hidden">
-                <div class="text-center text-gray-500">
-                    <div class="text-4xl mb-4">🛠️</div>
-                    <h3 class="text-xl font-semibold mb-2">Détail de l'outil</h3>
-                    <p>Espace pour décrire l'outil sélectionné, ses objectifs, son utilisation et des exemples concrets.</p>
+                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-turquoise">
+                    <div class="text-6xl mb-6 text-center">🎯</div>
+                    <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-4 uppercase text-center">Matrice</h3>
+                    <p class="text-gray-700 mb-6 text-center font-medium">Outil de ciblage et d'orientation</p>
+                    <div class="text-center">
+                        <a href="https://mlpb-tools.github.io/matrice-LS4Y/" target="_blank" rel="noopener noreferrer" class="street-button inline-flex items-center px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide hover:scale-105 transition-all duration-300">
+                            🔗 Accéder à la matrice
+                            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Page Phases -->
-    <div id="phases" class="min-h-screen p-6 hidden">
-        <div class="max-w-6xl mx-auto">
-            <button onclick="showPage('home')" class="mb-6 bg-ls-red text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+    <!-- Page Phases & Livrables -->
+    <div id="phases" class="min-h-screen p-6 brick-wall hidden">
+        <div class="max-w-7xl mx-auto">
+            <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
                 ⬅ Retour au menu principal
             </button>
             
-            <h1 class="text-4xl font-bold text-ls-red mb-8">Les Phases & Livrables</h1>
-            <p class="text-lg text-gray-700 mb-8">Ce qu'on a fait - Frise chronologique interactive</p>
-            
-            <div class="relative">
-                <!-- Timeline line -->
-                <div class="absolute left-1/2 transform -translate-x-1/2 w-1 bg-ls-red h-full"></div>
-                
-                <!-- WP2 - Construire -->
-                <div class="flex items-center mb-12">
-                    <div class="w-1/2 pr-8 text-right">
-                        <div onclick="showPhaseDetail('wp2')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-r-4 border-ls-red">
-                            <h3 class="text-xl font-bold text-ls-red mb-2">WP2 - Construire</h3>
-                            <p class="text-gray-600">Phase de construction des outils</p>
-                        </div>
-                    </div>
-                    <div class="w-8 h-8 bg-ls-red rounded-full border-4 border-white z-10"></div>
-                    <div class="w-1/2 pl-8"></div>
-                </div>
-
-                <!-- WP3 - Développer -->
-                <div class="flex items-center mb-12">
-                    <div class="w-1/2 pr-8"></div>
-                    <div class="w-8 h-8 bg-ls-yellow rounded-full border-4 border-white z-10"></div>
-                    <div class="w-1/2 pl-8">
-                        <div onclick="showPhaseDetail('wp3')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-yellow">
-                            <h3 class="text-xl font-bold text-ls-yellow mb-2">WP3 - Développer</h3>
-                            <p class="text-gray-600">Phase de développement et test</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- WP4 - Déployer -->
-                <div class="flex items-center mb-12">
-                    <div class="w-1/2 pr-8 text-right">
-                        <div onclick="showPhaseDetail('wp4')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-r-4 border-ls-turquoise">
-                            <h3 class="text-xl font-bold text-ls-turquoise mb-2">WP4 - Déployer</h3>
-                            <p class="text-gray-600">Phase de déploiement final</p>
-                        </div>
-                    </div>
-                    <div class="w-8 h-8 bg-ls-turquoise rounded-full border-4 border-white z-10"></div>
-                    <div class="w-1/2 pl-8"></div>
+            <div class="text-center mb-12">
+                <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="Phases">
+                    <span class="graffiti-text" style="--color-1: #E63946; --color-2: #FFD166;">Phases & Livrables</span>
+                </h1>
+                <div class="bg-ls-red text-white px-6 py-2 inline-block transform rotate-1">
+                    <span class="font-street text-lg font-semibold uppercase">Ce qu'on a fait</span>
                 </div>
             </div>
+            
+            <div class="space-y-8">
+                <!-- Phase 1 -->
+                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-turquoise">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-6">🔍</div>
+                        <div>
+                            <h3 class="font-street text-2xl font-bold text-ls-turquoise uppercase">Phase 1 - Recherche</h3>
+                            <p class="text-gray-600 font-medium">Analyse des besoins et état des lieux</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-street font-bold text-lg mb-3 text-gray-800 uppercase">Livrables :</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-turquoise">✓</span>
+                                    <span>Rapport de recherche européen</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-turquoise">✓</span>
+                                    <span>Analyse comparative des pratiques</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-turquoise">✓</span>
+                                    <span>Identification des 4 domaines clés</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-street font-bold text-lg mb-3 text-gray-800 uppercase">Résultats :</h4>
+                            <p class="text-gray-700">Définition du cadre conceptuel LS4YOU et validation des besoins prioritaires des jeunes européens.</p>
+                        </div>
+                    </div>
+                </div>
 
-            <div id="phase-detail" class="mt-8 bg-white rounded-lg p-8 min-h-64 hidden">
-                <div id="phase-content">
-                    <!-- Le contenu sera injecté dynamiquement -->
+                <!-- Phase 2 -->
+                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-yellow">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-6">🛠️</div>
+                        <div>
+                            <h3 class="font-street text-2xl font-bold text-ls-yellow uppercase">Phase 2 - Développement</h3>
+                            <p class="text-gray-600 font-medium">Création des outils et contenus</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-street font-bold text-lg mb-3 text-gray-800 uppercase">Livrables :</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-yellow">✓</span>
+                                    <span>Guidebook méthodologique</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-yellow">✓</span>
+                                    <span>Outil d'auto-évaluation</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-yellow">✓</span>
+                                    <span>Matrice de correspondance</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-yellow">✓</span>
+                                    <span>Plateforme numérique</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-street font-bold text-lg mb-3 text-gray-800 uppercase">Résultats :</h4>
+                            <p class="text-gray-700">Écosystème complet d'outils LS4YOU prêts à l'utilisation par les professionnels et les jeunes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-red">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-6">🧪</div>
+                        <div>
+                            <h3 class="font-street text-2xl font-bold text-ls-red uppercase">Phase 3 - Test & Validation</h3>
+                            <p class="text-gray-600 font-medium">Expérimentation sur le terrain</p>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-street font-bold text-lg mb-3 text-gray-800 uppercase">Livrables :</h4>
+                            <ul class="space-y-2 text-gray-700">
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-red">✓</span>
+                                    <span>Tests pilotes dans 5 pays</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-red">✓</span>
+                                    <span>Rapport d'évaluation</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-red">✓</span>
+                                    <span>Ajustements et améliorations</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-street font-bold text-lg mb-3 text-gray-800 uppercase">Résultats :</h4>
+                            <p class="text-gray-700">Validation de l'efficacité des outils LS4YOU et optimisation basée sur les retours terrain.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Page Déploiement -->
-    <div id="deploiement" class="min-h-screen p-6 hidden">
-        <div class="max-w-6xl mx-auto">
-            <button onclick="showPage('home')" class="mb-6 bg-ls-red text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+    <div id="deploiement" class="min-h-screen p-6 brick-wall hidden">
+        <div class="max-w-7xl mx-auto">
+            <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
                 ⬅ Retour au menu principal
             </button>
             
-            <h1 class="text-4xl font-bold text-ls-yellow mb-8">Le Déploiement</h1>
-            <p class="text-lg text-gray-700 mb-8">Ce qu'on va faire - 6 étapes interactives</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- Étape 1 -->
-                <div onclick="showDeployStep('test-interne')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-red">
-                    <div class="text-3xl mb-4">🔬</div>
-                    <h3 class="text-lg font-bold text-ls-red mb-2">1. Test Interne</h3>
-                    <p class="text-gray-600 text-sm">Validation en équipe</p>
-                </div>
-
-                <!-- Étape 2 -->
-                <div onclick="showDeployStep('test-jeunes')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-yellow">
-                    <div class="text-3xl mb-4">👥</div>
-                    <h3 class="text-lg font-bold text-ls-yellow mb-2">2. Test Jeunes</h3>
-                    <p class="text-gray-600 text-sm">Retours utilisateurs</p>
-                </div>
-
-                <!-- Étape 3 -->
-                <div onclick="showDeployStep('version-finale')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-turquoise">
-                    <div class="text-3xl mb-4">✨</div>
-                    <h3 class="text-lg font-bold text-ls-turquoise mb-2">3. Version Finale</h3>
-                    <p class="text-gray-600 text-sm">Intégration améliorations</p>
-                </div>
-
-                <!-- Étape 4 -->
-                <div onclick="showDeployStep('formation-equipes')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-red">
-                    <div class="text-3xl mb-4">🎓</div>
-                    <h3 class="text-lg font-bold text-ls-red mb-2">4. Formation</h3>
-                    <p class="text-gray-600 text-sm">Formation des équipes</p>
-                </div>
-
-                <!-- Étape 5 -->
-                <div onclick="showDeployStep('communication')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-yellow">
-                    <div class="text-3xl mb-4">📢</div>
-                    <h3 class="text-lg font-bold text-ls-yellow mb-2">5. Communication</h3>
-                    <p class="text-gray-600 text-sm">Stratégie de diffusion</p>
-                </div>
-
-                <!-- Étape 6 -->
-                <div onclick="showDeployStep('integration')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-turquoise">
-                    <div class="text-3xl mb-4">🔗</div>
-                    <h3 class="text-lg font-bold text-ls-turquoise mb-2">6. Intégration</h3>
-                    <p class="text-gray-600 text-sm">Mise en œuvre terrain</p>
+            <div class="text-center mb-12">
+                <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="Déploiement">
+                    <span class="graffiti-text" style="--color-1: #FFD166; --color-2: #06D6A0;">Déploiement</span>
+                </h1>
+                <div class="bg-ls-yellow text-urban-black px-6 py-2 inline-block transform -rotate-1">
+                    <span class="font-street text-lg font-semibold uppercase">Ce qu'on va faire</span>
                 </div>
             </div>
+            
+            <div class="space-y-8">
+                <!-- Stratégie de déploiement -->
+                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-turquoise">
+                    <div class="text-center mb-8">
+                        <div class="text-7xl mb-6">🚀</div>
+                        <h2 class="font-street text-3xl font-bold text-ls-turquoise mb-6 uppercase">Stratégie de déploiement</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center p-6 bg-gradient-to-br from-ls-red to-red-700 text-white rounded-xl">
+                            <div class="text-4xl mb-4">🎯</div>
+                            <h3 class="font-street text-xl font-bold mb-3 uppercase">Phase 1</h3>
+                            <p class="font-medium">Formation des formateurs et création du réseau d'ambassadeurs LS4YOU</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-gradient-to-br from-ls-yellow to-yellow-600 text-urban-black rounded-xl">
+                            <div class="text-4xl mb-4">📢</div>
+                            <h3 class="font-street text-xl font-bold mb-3 uppercase">Phase 2</h3>
+                            <p class="font-medium">Campagne de communication et sensibilisation des structures</p>
+                        </div>
+                        
+                        <div class="text-center p-6 bg-gradient-to-br from-ls-turquoise to-teal-600 text-white rounded-xl">
+                            <div class="text-4xl mb-4">🌍</div>
+                            <h3 class="font-street text-xl font-bold mb-3 uppercase">Phase 3</h3>
+                            <p class="font-medium">Déploiement européen et suivi des implémentations</p>
+                        </div>
+                    </div>
+                </div>
 
-            <div id="deploy-detail" class="mt-8 content-placeholder rounded-lg p-8 min-h-64 hidden">
-                <div class="text-center text-gray-500">
-                    <div class="text-4xl mb-4">🚀</div>
-                    <h3 class="text-xl font-semibold mb-2">Détail de l'étape</h3>
-                    <p>Espace pour détailler les méthodes, outils et exemples pour cette étape de déploiement.</p>
+                <!-- Objectifs -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-yellow">
+                        <h3 class="font-street text-2xl font-bold text-ls-yellow mb-6 uppercase">Objectifs 2024-2025</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-start space-x-3">
+                                <span class="text-ls-yellow text-2xl">📊</span>
+                                <div>
+                                    <strong>500 professionnels formés</strong>
+                                    <p class="text-gray-600">Dans 10 pays européens</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <span class="text-ls-yellow text-2xl">👥</span>
+                                <div>
+                                    <strong>5000 jeunes accompagnés</strong>
+                                    <p class="text-gray-600">Avec les outils LS4YOU</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start space-x-3">
+                                <span class="text-ls-yellow text-2xl">🏢</span>
+                                <div>
+                                    <strong>200 structures partenaires</strong>
+                                    <p class="text-gray-600">Missions locales, centres de formation</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-red">
+                        <h3 class="font-street text-2xl font-bold text-ls-red mb-6 uppercase">Actions prioritaires</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg">
+                                <span class="text-ls-red text-xl">✓</span>
+                                <span class="font-semibold">Formations certifiantes LS4YOU</span>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg">
+                                <span class="text-ls-red text-xl">✓</span>
+                                <span class="font-semibold">Webinaires de présentation</span>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg">
+                                <span class="text-ls-red text-xl">✓</span>
+                                <span class="font-semibold">Accompagnement personnalisé</span>
+                            </div>
+                            <div class="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg">
+                                <span class="text-ls-red text-xl">✓</span>
+                                <span class="font-semibold">Communauté de pratiques</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact -->
+                <div class="bg-urban-black text-white rounded-xl p-8 text-center">
+                    <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-4 uppercase">Rejoignez le mouvement LS4YOU</h3>
+                    <p class="text-xl mb-6">Intéressé par le déploiement dans votre structure ?</p>
+                    <div class="flex flex-col md:flex-row gap-4 justify-center">
+                        <a href="mailto:contact@lifeskills4youth.eu" class="street-button px-8 py-4 rounded-lg font-street font-semibold uppercase bg-ls-turquoise text-white hover:scale-105 transition-all duration-300">
+                            📧 Nous contacter
+                        </a>
+                        <a href="https://www.lifeskills4youth.eu" target="_blank" rel="noopener noreferrer" class="street-button px-8 py-4 rounded-lg font-street font-semibold uppercase bg-ls-yellow text-urban-black hover:scale-105 transition-all duration-300">
+                            🌐 Site officiel
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Page Formation -->
-    <div id="formation" class="min-h-screen p-6 hidden">
-        <div class="max-w-6xl mx-auto">
-            <button onclick="showPage('home')" class="mb-6 bg-ls-red text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+    <div id="formation" class="min-h-screen p-6 brick-wall hidden">
+        <div class="max-w-7xl mx-auto">
+            <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
                 ⬅ Retour au menu principal
             </button>
             
-            <h1 class="text-4xl font-bold text-ls-turquoise mb-8">Principes Pédagogiques</h1>
+            <div class="text-center mb-12">
+                <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="Formation">
+                    <span class="graffiti-text" style="--color-1: #06D6A0; --color-2: #FFD166;">Formation</span>
+                </h1>
+                <div class="bg-ls-turquoise text-white px-6 py-2 inline-block transform rotate-1">
+                    <span class="font-street text-lg font-semibold uppercase">Principes Pédagogiques</span>
+                </div>
+            </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Pédagogie expérientielle -->
-                <div onclick="showFormationDetail('experientielle')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-turquoise">
-                    <div class="text-4xl mb-4">🎯</div>
-                    <h3 class="text-xl font-bold text-ls-turquoise mb-2">Pédagogie Expérientielle</h3>
-                    <p class="text-gray-600">Apprendre par l'expérience et la pratique</p>
-                </div>
-
-                <!-- Co-construction -->
-                <div onclick="showFormationDetail('coconstruction')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-red">
-                    <div class="text-4xl mb-4">🤝</div>
-                    <h3 class="text-xl font-bold text-ls-red mb-2">Co-construction</h3>
-                    <p class="text-gray-600">Construire ensemble les apprentissages</p>
-                </div>
-
-                <!-- Hybride -->
-                <div onclick="showFormationDetail('hybride')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-yellow">
-                    <div class="text-4xl mb-4">🔄</div>
-                    <h3 class="text-xl font-bold text-ls-yellow mb-2">Approche Hybride</h3>
-                    <p class="text-gray-600">Mélange présentiel et distanciel</p>
-                </div>
-
-                <!-- Durabilité -->
-                <div onclick="showFormationDetail('durabilite')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-yellow">
-                    <div class="text-4xl mb-4">🌱</div>
-                    <h3 class="text-xl font-bold text-ls-yellow mb-2">Durabilité</h3>
-                    <p class="text-gray-600">Apprentissages durables et transférables</p>
+            <div class="space-y-8">
+                <!-- Approche pédagogique -->
+                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-turquoise">
+                    <div class="text-center mb-8">
+                        <div class="text-7xl mb-6">🎓</div>
+                        <h2 class="font-street text-3xl font-bold text-ls-turquoise mb-6 uppercase">Approche pédagogique LS4YOU</h2>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div>
+                            <h3 class="font-street text-xl font-bold text-gray-800 mb-4 uppercase">Pédagogie expérientielle</h3>
+                            <p class="text-gray-700 mb-4">L'apprentissage par l'expérience est au cœur de la méthode LS4YOU. Les jeunes apprennent en faisant, en expérimentant et en réfléchissant sur leurs actions.</p>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-turquoise">•</span>
+                                    <span>Mise en situation concrète</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-turquoise">•</span>
+                                    <span>Réflexion sur l'action</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-turquoise">•</span>
+                                    <span>Transfert vers la vie quotidienne</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h3 class="font-street text-xl font-bold text-gray-800 mb-4 uppercase">Individualisation</h3>
+                            <p class="text-gray-700 mb-4">Chaque jeune est unique. L'approche LS4YOU s'adapte aux besoins, au rythme et aux objectifs de chacun.</p>
+                            <ul class="space-y-2 text-gray-600">
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-turquoise">•</span>
+                                    <span>Diagnostic personnalisé</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-turquoise">•</span>
+                                    <span>Parcours sur-mesure</span>
+                                </li>
+                                <li class="flex items-center space-x-3">
+                                    <span class="text-ls-turquoise">•</span>
+                                    <span>Suivi individualisé</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Programme de formation -->
-                <div onclick="showFormationDetail('programme')" class="bg-white rounded-xl p-6 cursor-pointer hover-lift border-l-4 border-ls-red md:col-span-2">
-                    <div class="text-4xl mb-4">📚</div>
-                    <h3 class="text-xl font-bold text-ls-red mb-2">Programme de formation LS4YOU</h3>
-                    <p class="text-gray-600">2 demi-journées (3h30 chacune)</p>
-                </div>
-            </div>
+                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-yellow">
+                    <h2 class="font-street text-3xl font-bold text-ls-yellow mb-8 uppercase text-center">Programme de formation (2 x 3h30)</h2>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Jour 1 -->
+                        <div class="bg-gradient-to-br from-ls-red to-red-700 text-white p-6 rounded-xl">
+                            <h3 class="font-street text-2xl font-bold mb-6 uppercase">🌅 Jour 1 - Découverte</h3>
+                            <div class="space-y-4">
+                                <div class="border-l-4 border-white pl-4">
+                                    <h4 class="font-street font-bold uppercase">9h00 - 10h30</h4>
+                                    <p>Présentation du projet LS4YOU</p>
+                                    <p class="text-sm opacity-90">Contexte, enjeux, 4 domaines</p>
+                                </div>
+                                <div class="border-l-4 border-white pl-4">
+                                    <h4 class="font-street font-bold uppercase">11h00 - 12h30</h4>
+                                    <p>Découverte des outils</p>
+                                    <p class="text-sm opacity-90">Auto-évaluation, matrice, guidebook</p>
+                                </div>
+                            </div>
+                        </div>
 
-            <div id="formation-detail" class="mt-8 content-placeholder rounded-lg p-8 min-h-64 hidden">
-                <div class="text-center text-gray-500">
-                    <div class="text-4xl mb-4">🎓</div>
-                    <h3 class="text-xl font-semibold mb-2">Détail du principe pédagogique</h3>
-                    <p>Espace pour développer le principe sélectionné avec exemples concrets et applications pratiques.</p>
+                        <!-- Jour 2 -->
+                        <div class="bg-gradient-to-br from-ls-turquoise to-teal-600 text-white p-6 rounded-xl">
+                            <h3 class="font-street text-2xl font-bold mb-6 uppercase">🚀 Jour 2 - Pratique</h3>
+                            <div class="space-y-4">
+                                <div class="border-l-4 border-white pl-4">
+                                    <h4 class="font-street font-bold uppercase">9h00 - 10h30</h4>
+                                    <p>Mise en pratique</p>
+                                    <p class="text-sm opacity-90">Simulation d'accompagnement</p>
+                                </div>
+                                <div class="border-l-4 border-white pl-4">
+                                    <h4 class="font-street font-bold uppercase">11h00 - 12h30</h4>
+                                    <p>Intégration et certification</p>
+                                    <p class="text-sm opacity-90">Plan d'action, évaluation</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Méthodes et outils -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-8 border-ls-red text-center">
+                        <div class="text-5xl mb-4">🎭</div>
+                        <h3 class="font-street text-xl font-bold text-ls-red mb-3 uppercase">Jeux de rôle</h3>
+                        <p class="text-gray-700">Simulations d'entretiens, de situations professionnelles</p>
+                    </div>
+                    
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-8 border-ls-yellow text-center">
+                        <div class="text-5xl mb-4">🧩</div>
+                        <h3 class="font-street text-xl font-bold text-ls-yellow mb-3 uppercase">Ateliers pratiques</h3>
+                        <p class="text-gray-700">Exercices concrets, mises en situation réelles</p>
+                    </div>
+                    
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-8 border-ls-turquoise text-center">
+                        <div class="text-5xl mb-4">💭</div>
+                        <h3 class="font-street text-xl font-bold text-ls-turquoise mb-3 uppercase">Réflexion guidée</h3>
+                        <p class="text-gray-700">Débriefings, auto-évaluation, projection</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Page Quiz -->
-    <div id="quiz" class="min-h-screen p-6 hidden">
-        <div class="max-w-4xl mx-auto">
-            <button onclick="showPage('home')" class="mb-6 bg-ls-red text-white px-4 py-2 rounded-lg hover:bg-red-600 transition-colors">
+    <div id="quiz" class="min-h-screen p-6 brick-wall hidden">
+        <div class="max-w-5xl mx-auto">
+            <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
                 ⬅ Retour au menu principal
             </button>
             
-            <h1 class="text-4xl font-bold text-ls-red mb-8">Quiz Final</h1>
-            <p class="text-lg text-gray-700 mb-8">Testez vos connaissances sur LS4YOU</p>
-            
-            <div class="content-placeholder rounded-lg p-8 min-h-96">
-                <div class="text-center text-gray-500">
-                    <div class="text-6xl mb-4">❓</div>
-                    <h3 class="text-xl font-semibold mb-4">Zone Quiz Interactive</h3>
-                    <p class="mb-6">Espace réservé pour :</p>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
-                        <div class="bg-white bg-opacity-50 rounded-lg p-4">
-                            <div class="text-2xl mb-2">📝</div>
-                            <h4 class="font-semibold">QCM</h4>
-                            <p class="text-sm">Questions à choix multiples</p>
-                        </div>
-                        
-                        <div class="bg-white bg-opacity-50 rounded-lg p-4">
-                            <div class="text-2xl mb-2">🎯</div>
-                            <h4 class="font-semibold">Drag & Drop</h4>
-                            <p class="text-sm">Glisser-déposer</p>
-                        </div>
-                        
-                        <div class="bg-white bg-opacity-50 rounded-lg p-4">
-                            <div class="text-2xl mb-2">✅</div>
-                            <h4 class="font-semibold">Vrai/Faux</h4>
-                            <p class="text-sm">Questions binaires</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page Personnalité -->
-    <div id="personnalite" class="min-h-screen p-6 hidden">
-        <div class="max-w-4xl mx-auto">
-            <button onclick="showPage('domaines')" class="mb-6 bg-ls-yellow text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors">
-                ⬅ Retour aux domaines
-            </button>
-            
             <div class="text-center mb-8">
-                <div class="text-6xl mb-4">🌱</div>
-                <h1 class="text-4xl font-bold text-ls-turquoise mb-4">Personnalité</h1>
-                <p class="text-xl text-gray-600">Connaissance de soi</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white rounded-xl p-6 border-l-4 border-ls-turquoise">
-                    <h3 class="text-xl font-bold text-ls-turquoise mb-4 flex items-center">
-                        <span class="text-2xl mr-3">🎯</span>
-                        Objectif
-                    </h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Aider le jeune à mieux se connaître, à identifier ses forces, ses valeurs, sa personnalité et ses aspirations.
-                    </p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 border-l-4 border-ls-yellow">
-                    <h3 class="text-xl font-bold text-ls-yellow mb-4 flex items-center">
-                        <span class="text-2xl mr-3">✨</span>
-                        Bénéfice
-                    </h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Renforcer la confiance en soi et la capacité à définir des projets de vie et professionnels cohérents.
-                    </p>
+                <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="Quiz Final">
+                    <span class="graffiti-text" style="--color-1: #E63946; --color-2: #FFD166;">Quiz Final</span>
+                </h1>
+                <div class="bg-ls-red text-white px-6 py-2 inline-block transform -rotate-1">
+                    <span class="font-street text-lg font-semibold uppercase">LS4YOU</span>
                 </div>
             </div>
-
-            <div class="bg-gradient-to-br from-ls-turquoise to-green-500 text-white rounded-xl p-8 text-center">
-                <h3 class="text-2xl font-bold mb-4">Découvrez qui vous êtes vraiment</h3>
-                <p class="text-lg opacity-90">Un parcours pour explorer vos forces, vos valeurs et construire votre identité</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page Auto-promotion -->
-    <div id="autopromotion" class="min-h-screen p-6 hidden">
-        <div class="max-w-4xl mx-auto">
-            <button onclick="showPage('domaines')" class="mb-6 bg-ls-yellow text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors">
-                ⬅ Retour aux domaines
-            </button>
             
-            <div class="text-center mb-8">
-                <div class="text-6xl mb-4">🎤</div>
-                <h1 class="text-4xl font-bold text-ls-red mb-4">Valorisation de soi</h1>
-                <p class="text-xl text-gray-600">Communication et mise en valeur</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white rounded-xl p-6 border-l-4 border-ls-red">
-                    <h3 class="text-xl font-bold text-ls-red mb-4 flex items-center">
-                        <span class="text-2xl mr-3">🎯</span>
-                        Objectif
-                    </h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Développer la capacité à se présenter et à se valoriser positivement auprès d'autrui (employeurs, formateurs, réseaux).
-                    </p>
+            <!-- Quiz Container -->
+            <div id="quiz-container" class="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-street">
+                <!-- Écran d'accueil -->
+                <div id="quiz-welcome" class="text-center">
+                    <div class="text-6xl mb-6">🎯</div>
+                    <h2 class="font-street text-3xl font-bold text-ls-red mb-4 uppercase">Testez vos connaissances LS4YOU</h2>
+                    <p class="text-xl text-gray-700 mb-8">10 questions pour valider votre compréhension des Life Skills</p>
+                    <button onclick="startQuiz()" class="street-button px-8 py-4 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide text-xl hover:scale-105 transition-all duration-300">
+                        🚀 Commencer le Quiz
+                    </button>
                 </div>
 
-                <div class="bg-white rounded-xl p-6 border-l-4 border-ls-yellow">
-                    <h3 class="text-xl font-bold text-ls-yellow mb-4 flex items-center">
-                        <span class="text-2xl mr-3">✨</span>
-                        Bénéfice
-                    </h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Apprendre à convaincre de son potentiel et à saisir les opportunités.
-                    </p>
-                </div>
-            </div>
-
-            <div class="bg-gradient-to-br from-ls-red to-red-600 text-white rounded-xl p-8 text-center">
-                <h3 class="text-2xl font-bold mb-4">Mettez-vous en valeur avec confiance</h3>
-                <p class="text-lg opacity-90">Apprenez à communiquer vos atouts et à saisir toutes les opportunités</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page Bien-être -->
-    <div id="bienetre" class="min-h-screen p-6 hidden">
-        <div class="max-w-4xl mx-auto">
-            <button onclick="showPage('domaines')" class="mb-6 bg-ls-yellow text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors">
-                ⬅ Retour aux domaines
-            </button>
-            
-            <div class="text-center mb-8">
-                <div class="text-6xl mb-4">🧘</div>
-                <h1 class="text-4xl font-bold text-ls-yellow mb-4">Forme physique et mentale</h1>
-                <p class="text-xl text-gray-600">Santé et équilibre de vie</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white rounded-xl p-6 border-l-4 border-ls-yellow">
-                    <h3 class="text-xl font-bold text-ls-yellow mb-4 flex items-center">
-                        <span class="text-2xl mr-3">🎯</span>
-                        Objectif
-                    </h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Apprendre à maintenir un équilibre de vie sain et développer sa résilience face aux difficultés.
-                    </p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 border-l-4 border-ls-turquoise">
-                    <h3 class="text-xl font-bold text-ls-turquoise mb-4 flex items-center">
-                        <span class="text-2xl mr-3">✨</span>
-                        Bénéfice
-                    </h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Devenir plus serein, autonome et disponible pour avancer dans ses projets.
-                    </p>
-                </div>
-            </div>
-
-            <div class="bg-gradient-to-br from-ls-yellow to-yellow-500 text-white rounded-xl p-8 text-center">
-                <h3 class="text-2xl font-bold mb-4">Cultivez votre équilibre de vie</h3>
-                <p class="text-lg opacity-90">Développez votre résilience et maintenez une santé physique et mentale optimale</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page Finances -->
-    <div id="finances" class="min-h-screen p-6 hidden">
-        <div class="max-w-4xl mx-auto">
-            <button onclick="showPage('domaines')" class="mb-6 bg-ls-yellow text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors">
-                ⬅ Retour aux domaines
-            </button>
-            
-            <div class="text-center mb-8">
-                <div class="text-6xl mb-4">💶</div>
-                <h1 class="text-4xl font-bold text-ls-yellow mb-4">Ressources matérielles et financières</h1>
-                <p class="text-xl text-gray-600">Gestion des ressources</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                <div class="bg-white rounded-xl p-6 border-l-4 border-ls-yellow">
-                    <h3 class="text-xl font-bold text-ls-yellow mb-4 flex items-center">
-                        <span class="text-2xl mr-3">🎯</span>
-                        Objectif
-                    </h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Acquérir des compétences de base pour gérer un budget, anticiper ses dépenses et organiser ses ressources.
-                    </p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 border-l-4 border-ls-red">
-                    <h3 class="text-xl font-bold text-ls-red mb-4 flex items-center">
-                        <span class="text-2xl mr-3">✨</span>
-                        Bénéfice
-                    </h3>
-                    <p class="text-gray-700 leading-relaxed">
-                        Réduire le stress lié à l'argent, gagner en autonomie et renforcer la confiance en l'avenir.
-                    </p>
-                </div>
-            </div>
-
-            <div class="bg-gradient-to-br from-ls-yellow to-yellow-500 text-white rounded-xl p-8 text-center">
-                <h3 class="text-2xl font-bold mb-4">Maîtrisez vos finances personnelles</h3>
-                <p class="text-lg opacity-90">Apprenez à gérer votre budget et à planifier votre avenir financier</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page Synthèse des 4 domaines -->
-    <div id="synthese" class="min-h-screen p-6 hidden">
-        <div class="max-w-6xl mx-auto">
-            <button onclick="showPage('domaines')" class="mb-6 bg-ls-yellow text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition-colors">
-                ⬅ Retour aux domaines
-            </button>
-            
-            <div class="text-center mb-12">
-                <h1 class="text-4xl font-bold text-ls-red mb-6">Synthèse des 4 Domaines</h1>
-                <p class="text-xl text-gray-700 mb-8">Les piliers essentiels de l'autonomie des jeunes</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                <div class="bg-white rounded-xl p-6 text-center border-t-4 border-ls-turquoise">
-                    <div class="text-4xl mb-4">🌱</div>
-                    <h3 class="font-bold text-ls-turquoise mb-2">Savoir qui on est</h3>
-                    <p class="text-sm text-gray-600">(Personnalité)</p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 text-center border-t-4 border-ls-red">
-                    <div class="text-4xl mb-4">🎤</div>
-                    <h3 class="font-bold text-ls-red mb-2">Savoir se mettre en valeur</h3>
-                    <p class="text-sm text-gray-600">(Valorisation de soi)</p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 text-center border-t-4 border-ls-yellow">
-                    <div class="text-4xl mb-4">🧘</div>
-                    <h3 class="font-bold text-ls-yellow mb-2">Préserver sa santé</h3>
-                    <p class="text-sm text-gray-600">(Forme physique et mentale)</p>
-                </div>
-
-                <div class="bg-white rounded-xl p-6 text-center border-t-4 border-ls-yellow">
-                    <div class="text-4xl mb-4">💶</div>
-                    <h3 class="font-bold text-ls-yellow mb-2">Maîtriser le quotidien</h3>
-                    <p class="text-sm text-gray-600">(Ressources matérielles et financières)</p>
-                </div>
-            </div>
-
-            <div class="bg-gradient-to-r from-ls-red via-ls-yellow to-ls-turquoise text-white rounded-xl p-8">
-                <div class="text-center">
-                    <div class="text-4xl mb-4">📌</div>
-                    <h3 class="text-2xl font-bold mb-4">Message clé</h3>
-                    <p class="text-lg leading-relaxed max-w-4xl mx-auto">
-                        La méthode LS4YOU est <strong>flexible et individualisable</strong>, chaque jeune pouvant travailler prioritairement les domaines correspondant à ses besoins.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page Tutoriel Matrice de Correspondance -->
-    <div id="matrice-tutorial" class="min-h-screen p-6 hidden">
-        <div class="max-w-5xl mx-auto">
-            <button onclick="showPage('outils')" class="mb-6 bg-ls-turquoise text-white px-4 py-2 rounded-lg hover:bg-teal-600 transition-colors">
-                ⬅ Retour aux outils
-            </button>
-            
-            <div class="text-center mb-12">
-                <div class="text-6xl mb-4">🎯</div>
-                <h1 class="text-4xl font-bold text-ls-turquoise mb-6">Tutoriel : Matrice de Correspondance LS4YOU</h1>
-                <div class="bg-ls-turquoise bg-opacity-10 rounded-lg p-6 max-w-3xl mx-auto">
-                    <p class="text-xl text-gray-700">
-                        <strong>Objectif :</strong> Vous apprendre à ouvrir, comprendre et utiliser efficacement la matrice pour orienter vos choix pédagogiques.
-                    </p>
-                </div>
-            </div>
-
-            <!-- Navigation des étapes -->
-            <div class="flex justify-center mb-8">
-                <div class="flex space-x-2 bg-white rounded-full p-2 shadow-lg">
-                    <button onclick="showMatriceStep(1)" id="step-btn-1" class="px-4 py-2 rounded-full bg-ls-turquoise text-white font-semibold">1</button>
-                    <button onclick="showMatriceStep(2)" id="step-btn-2" class="px-4 py-2 rounded-full bg-gray-200 text-gray-600 font-semibold">2</button>
-                    <button onclick="showMatriceStep(3)" id="step-btn-3" class="px-4 py-2 rounded-full bg-gray-200 text-gray-600 font-semibold">3</button>
-                    <button onclick="showMatriceStep(4)" id="step-btn-4" class="px-4 py-2 rounded-full bg-gray-200 text-gray-600 font-semibold">4</button>
-                    <button onclick="showMatriceStep(5)" id="step-btn-5" class="px-4 py-2 rounded-full bg-gray-200 text-gray-600 font-semibold">💡</button>
-                </div>
-            </div>
-
-            <!-- Étape 1 - Ouvrir l'outil -->
-            <div id="matrice-step-1" class="step-content">
-                <div class="bg-white rounded-xl p-8 border-l-4 border-ls-turquoise">
-                    <div class="flex items-center mb-6">
-                        <div class="text-4xl mr-4">💻</div>
-                        <h2 class="text-3xl font-bold text-ls-turquoise">Étape 1 – Ouvrir l'outil</h2>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Comment procéder :</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-start space-x-3">
-                                    <span class="bg-ls-turquoise text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">1</span>
-                                    <p class="text-gray-700">La matrice est un fichier interactif (.html)</p>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <span class="bg-ls-turquoise text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">2</span>
-                                    <p class="text-gray-700">Ouvrez-le dans un navigateur web (Chrome, Firefox, Edge)</p>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <span class="bg-ls-turquoise text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">3</span>
-                                    <p class="text-gray-700">L'interface s'affiche automatiquement</p>
-                                </div>
-                            </div>
-                            
-                            <div class="mt-6 space-y-3">
-                                <a href="https://mlpb-tools.github.io/matrice-LS4Y/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-ls-turquoise text-white px-6 py-3 rounded-lg hover:bg-teal-600 transition-colors font-semibold">
-                                    🔗 Accéder à la matrice
-                                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                                    </svg>
-                                </a>
-                                <br>
-                                <a href="https://www.lifeskills4youth.eu/fr/resultats/boite-a-outils/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-ls-red text-white px-6 py-3 rounded-lg hover:bg-red-600 transition-colors font-semibold">
-                                    📋 Fiches activités des 4 domaines
-                                    <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                                    </svg>
-                                </a>
-                            </div>
+                <!-- Questions du quiz -->
+                <div id="quiz-questions" class="hidden">
+                    <div class="flex justify-between items-center mb-8">
+                        <div class="bg-ls-turquoise text-white px-4 py-2 rounded-full font-street font-bold">
+                            Question <span id="current-question">1</span>/10
                         </div>
-                        
-                        <div class="bg-ls-gray rounded-lg p-6">
-                            <div class="text-center text-gray-500">
-                                <div class="text-4xl mb-4">🖥️</div>
-                                <h4 class="font-semibold mb-2">Capture d'écran</h4>
-                                <p class="text-sm">Illustration de l'ouverture de la matrice dans le navigateur</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Étape 2 - Comprendre la structure -->
-            <div id="matrice-step-2" class="step-content hidden">
-                <div class="bg-white rounded-xl p-8 border-l-4 border-ls-yellow">
-                    <div class="flex items-center mb-6">
-                        <div class="text-4xl mr-4">📊</div>
-                        <h2 class="text-3xl font-bold text-ls-yellow">Étape 2 – Comprendre la structure</h2>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-8">
-                        <div class="bg-ls-red bg-opacity-10 rounded-lg p-6 border-l-4 border-ls-red">
-                            <h3 class="text-lg font-bold text-ls-red mb-3 flex items-center">
-                                <span class="text-2xl mr-2">📋</span>
-                                Colonnes
-                            </h3>
-                            <p class="text-gray-700 text-sm leading-relaxed">
-                                Situations ou besoins des jeunes<br>
-                                <em>Ex: Diagnostic CEJ, Insertion pro/emploi, Santé/bien-être</em>
-                            </p>
-                        </div>
-                        
-                        <div class="bg-ls-yellow bg-opacity-10 rounded-lg p-6 border-l-4 border-ls-yellow">
-                            <h3 class="text-lg font-bold text-ls-yellow mb-3 flex items-center">
-                                <span class="text-2xl mr-2">📝</span>
-                                Lignes
-                            </h3>
-                            <p class="text-gray-700 text-sm leading-relaxed">
-                                Activités LS4YOU regroupées par domaines<br>
-                                <em>❤️ Personnalité, 📢 Auto-promotion, 🧘 Bien-être, 💰 Finances</em>
-                            </p>
-                        </div>
-                        
-                        <div class="bg-ls-turquoise bg-opacity-10 rounded-lg p-6 border-l-4 border-ls-turquoise">
-                            <h3 class="text-lg font-bold text-ls-turquoise mb-3 flex items-center">
-                                <span class="text-2xl mr-2">🎨</span>
-                                Icônes
-                            </h3>
-                            <p class="text-gray-700 text-sm leading-relaxed">
-                                Modalités d'animation<br>
-                                <em>👤 Individuel / 👥 Collectif / 💡 Autonomie</em>
-                            </p>
+                        <div class="bg-ls-yellow text-urban-black px-4 py-2 rounded-full font-street font-bold">
+                            Score: <span id="current-score">0</span>
                         </div>
                     </div>
 
-                    <div class="bg-gradient-to-r from-ls-yellow to-yellow-500 text-white rounded-lg p-6">
-                        <h4 class="text-xl font-bold mb-3 flex items-center">
-                            <span class="text-2xl mr-3">💡</span>
-                            Astuce de lecture
-                        </h4>
-                        <p class="leading-relaxed">
-                            Chaque case de la matrice indique si une activité LS4YOU est pertinente (✅) pour une situation donnée. Plus il y a de ✅ dans une colonne, plus cette situation nécessite un accompagnement LS4YOU complet.
-                        </p>
+                    <div id="question-container" class="mb-8">
+                        <h3 id="question-text" class="font-street text-2xl font-bold text-gray-800 mb-6"></h3>
+                        <div id="answers-container" class="space-y-4"></div>
+                    </div>
+
+                    <div class="flex justify-between">
+                        <button id="prev-btn" onclick="previousQuestion()" class="street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase opacity-50 cursor-not-allowed" disabled>
+                            ⬅ Précédent
+                        </button>
+                        <button id="next-btn" onclick="nextQuestion()" class="street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase opacity-50 cursor-not-allowed" disabled>
+                            Suivant ➡
+                        </button>
                     </div>
                 </div>
-            </div>
 
-            <!-- Étape 3 - Utiliser la matrice -->
-            <div id="matrice-step-3" class="step-content hidden">
-                <div class="bg-white rounded-xl p-8 border-l-4 border-ls-red">
-                    <div class="flex items-center mb-6">
-                        <div class="text-4xl mr-4">🔎</div>
-                        <h2 class="text-3xl font-bold text-ls-red">Étape 3 – Utiliser la matrice</h2>
-                    </div>
-                    
-                    <div class="bg-ls-red bg-opacity-10 rounded-lg p-6 mb-8">
-                        <h3 class="text-xl font-bold text-ls-red mb-4 flex items-center">
-                            <span class="text-2xl mr-3">👤</span>
-                            Exemple concret : Léo
-                        </h3>
-                        <p class="text-gray-700 text-lg">
-                            <strong>Situation :</strong> Léo prépare un entretien d'entrée en formation mais doute de lui.
-                        </p>
-                    </div>
-
-                    <div class="space-y-6">
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-ls-red text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg flex-shrink-0">1</div>
-                            <div class="bg-ls-gray rounded-lg p-4 flex-1">
-                                <h4 class="font-bold text-ls-red mb-2">Identifier la colonne</h4>
-                                <p class="text-gray-700">Cherchez la colonne <strong>"Formation"</strong> dans la matrice</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-ls-red text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg flex-shrink-0">2</div>
-                            <div class="bg-ls-gray rounded-lg p-4 flex-1">
-                                <h4 class="font-bold text-ls-red mb-2">Explorer les outils marqués</h4>
-                                <p class="text-gray-700">Repérez toutes les activités marquées d'un <span class="text-green-600 font-bold">✅</span></p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-ls-red text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg flex-shrink-0">3</div>
-                            <div class="bg-ls-gray rounded-lg p-4 flex-1">
-                                <h4 class="font-bold text-ls-red mb-2">Repérer les domaines pertinents</h4>
-                                <p class="text-gray-700">Les activités <strong>"Valorisation de soi"</strong> et <strong>"Personnalité"</strong> sont les plus adaptées</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start space-x-4">
-                            <div class="bg-ls-red text-white rounded-full w-10 h-10 flex items-center justify-center font-bold text-lg flex-shrink-0">4</div>
-                            <div class="bg-ls-gray rounded-lg p-4 flex-1">
-                                <h4 class="font-bold text-ls-red mb-2">Choisir une activité</h4>
-                                <div class="space-y-2">
-                                    <p class="text-gray-700"><strong>Option 1 :</strong> 2.2 – Montrez-vous sous votre meilleur jour (structurer un pitch)</p>
-                                    <p class="text-gray-700"><strong>Option 2 :</strong> 2.1 – Moi au sommet de mon art (valoriser une réussite)</p>
-                                </div>
-                            </div>
-                        </div>
+                <!-- Résultats -->
+                <div id="quiz-results" class="hidden text-center">
+                    <div id="result-icon" class="text-8xl mb-6"></div>
+                    <h2 id="result-title" class="font-street text-4xl font-bold mb-4 uppercase"></h2>
+                    <div id="result-score" class="text-2xl mb-6"></div>
+                    <div id="result-message" class="text-lg text-gray-700 mb-8"></div>
+                    <div class="flex justify-center space-x-4">
+                        <button onclick="restartQuiz()" class="street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase">
+                            🔄 Recommencer
+                        </button>
+                        <button onclick="showPage('home')" class="street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase">
+                            🏠 Menu Principal
+                        </button>
                     </div>
                 </div>
-            </div>
-
-            <!-- Étape 4 - Accéder à la fiche action -->
-            <div id="matrice-step-4" class="step-content hidden">
-                <div class="bg-white rounded-xl p-8 border-l-4 border-ls-turquoise">
-                    <div class="flex items-center mb-6">
-                        <div class="text-4xl mr-4">📄</div>
-                        <h2 class="text-3xl font-bold text-ls-turquoise">Étape 4 – Accéder à la Fiche Action</h2>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                        <div>
-                            <h3 class="text-xl font-semibold text-gray-800 mb-4">Instructions :</h3>
-                            <div class="space-y-4">
-                                <div class="flex items-start space-x-3">
-                                    <span class="bg-ls-turquoise text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">1</span>
-                                    <p class="text-gray-700">Cliquez sur le nom de l'activité dans la matrice</p>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <span class="bg-ls-turquoise text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">2</span>
-                                    <p class="text-gray-700">Le texte apparaît en <span class="text-blue-600 underline">bleu souligné</span> (lien cliquable)</p>
-                                </div>
-                                <div class="flex items-start space-x-3">
-                                    <span class="bg-ls-turquoise text-white rounded-full w-6 h-6 flex items-center justify-center text-sm font-bold flex-shrink-0 mt-1">3</span>
-                                    <p class="text-gray-700">Une nouvelle fenêtre s'ouvre automatiquement</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="bg-ls-turquoise bg-opacity-10 rounded-lg p-6">
-                            <h4 class="text-lg font-bold text-ls-turquoise mb-4 flex items-center">
-                                <span class="text-2xl mr-2">📋</span>
-                                Contenu de la fiche
-                            </h4>
-                            <ul class="space-y-3">
-                                <li class="flex items-start space-x-2">
-                                    <span class="text-ls-turquoise mt-1">•</span>
-                                    <span class="text-gray-700"><strong>Objectifs clés</strong> de l'activité</span>
-                                </li>
-                                <li class="flex items-start space-x-2">
-                                    <span class="text-ls-turquoise mt-1">•</span>
-                                    <span class="text-gray-700"><strong>Domaine LS4YOU</strong> concerné</span>
-                                </li>
-                                <li class="flex items-start space-x-2">
-                                    <span class="text-ls-turquoise mt-1">•</span>
-                                    <span class="text-gray-700"><strong>Étape d'utilisation</strong> (ex: Étape 4 : Mise en action)</span>
-                                </li>
-                                <li class="flex items-start space-x-2">
-                                    <span class="text-ls-turquoise mt-1">•</span>
-                                    <span class="text-gray-700"><strong>Déroulé détaillé</strong> de l'animation</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <div class="mt-8 bg-gradient-to-r from-ls-turquoise to-teal-500 text-white rounded-lg p-6">
-                        <h4 class="text-xl font-bold mb-3 flex items-center">
-                            <span class="text-2xl mr-3">✅</span>
-                            Résultat
-                        </h4>
-                        <p class="leading-relaxed">
-                            Vous disposez maintenant de toutes les informations nécessaires pour animer l'activité choisie avec le jeune, en toute autonomie et avec une méthode éprouvée.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Étape 5 - Conseils pratiques -->
-            <div id="matrice-step-5" class="step-content hidden">
-                <div class="bg-white rounded-xl p-8 border-l-4 border-ls-yellow">
-                    <div class="flex items-center mb-6">
-                        <div class="text-4xl mr-4">💡</div>
-                        <h2 class="text-3xl font-bold text-ls-yellow">Conseils pratiques</h2>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <div class="space-y-6">
-                            <div class="bg-ls-yellow bg-opacity-10 rounded-lg p-6">
-                                <h3 class="text-lg font-bold text-ls-yellow mb-3 flex items-center">
-                                    <span class="text-2xl mr-2">🎯</span>
-                                    Guide, pas règle
-                                </h3>
-                                <p class="text-gray-700 text-sm leading-relaxed">
-                                    La matrice est un <strong>guide</strong> et non une règle stricte. Elle vous oriente mais ne remplace pas votre expertise professionnelle.
-                                </p>
-                            </div>
-
-                            <div class="bg-ls-turquoise bg-opacity-10 rounded-lg p-6">
-                                <h3 class="text-lg font-bold text-ls-turquoise mb-3 flex items-center">
-                                    <span class="text-2xl mr-2">⚡</span>
-                                    Gain de temps
-                                </h3>
-                                <p class="text-gray-700 text-sm leading-relaxed">
-                                    Elle vous aide à <strong>gagner du temps</strong> en identifiant rapidement les activités les plus pertinentes.
-                                </p>
-                            </div>
-                        </div>
-
-                        <div class="space-y-6">
-                            <div class="bg-ls-red bg-opacity-10 rounded-lg p-6">
-                                <h3 class="text-lg font-bold text-ls-red mb-3 flex items-center">
-                                    <span class="text-2xl mr-2">📋</span>
-                                    Structure vos propositions
-                                </h3>
-                                <p class="text-gray-700 text-sm leading-relaxed">
-                                    Elle <strong>structure vos propositions</strong> d'accompagnement de manière cohérente et progressive.
-                                </p>
-                            </div>
-
-                            <div class="bg-gradient-to-r from-ls-red via-ls-yellow to-ls-turquoise text-white rounded-lg p-6">
-                                <h3 class="text-lg font-bold mb-3 flex items-center">
-                                    <span class="text-2xl mr-2">🎯</span>
-                                    L'essentiel
-                                </h3>
-                                <p class="text-sm leading-relaxed">
-                                    <strong>Adapter à chaque jeune</strong> grâce à votre expertise et à votre connaissance de sa situation personnelle.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-center">
-                        <div class="inline-flex items-center space-x-4 bg-ls-yellow bg-opacity-20 px-8 py-4 rounded-full">
-                            <span class="text-3xl">🌟</span>
-                            <span class="font-bold text-ls-yellow text-lg">Vous êtes maintenant prêt à utiliser la matrice LS4YOU !</span>
-                            <span class="text-3xl">🌟</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Navigation -->
-            <div class="flex justify-between mt-8">
-                <button onclick="previousMatriceStep()" id="prev-btn" class="bg-gray-300 text-gray-600 px-6 py-3 rounded-lg font-semibold opacity-50 cursor-not-allowed" disabled>
-                    ⬅ Précédent
-                </button>
-                <button onclick="nextMatriceStep()" id="next-btn" class="bg-ls-turquoise text-white px-6 py-3 rounded-lg hover:bg-teal-600 transition-colors font-semibold">
-                    Suivant ➡
-                </button>
             </div>
         </div>
     </div>
@@ -1059,652 +937,286 @@
     <script>
         function showPage(pageId) {
             // Cacher toutes les pages
-            const pages = ['home', 'intro', 'domaines', 'outils', 'phases', 'deploiement', 'formation', 'quiz', 'personnalite', 'autopromotion', 'bienetre', 'finances', 'synthese', 'matrice-tutorial'];
+            const pages = ['home', 'intro', 'domaines', 'outils', 'phases', 'deploiement', 'formation', 'quiz'];
             pages.forEach(page => {
-                document.getElementById(page).classList.add('hidden');
+                const element = document.getElementById(page);
+                if (element) element.classList.add('hidden');
             });
             
             // Afficher la page demandée
-            document.getElementById(pageId).classList.remove('hidden');
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+            }
+        }
+
+        // Variables du quiz
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+        
+        const questions = [
+            {
+                question: "Combien de domaines principaux composent les Life Skills selon LS4YOU ?",
+                answers: ["2 domaines", "4 domaines", "6 domaines", "8 domaines"],
+                correct: 1,
+                explanation: "LS4YOU se structure autour de 4 domaines : Personnalité, Valorisation, Bien-être, et Finances."
+            },
+            {
+                question: "Quel est l'objectif principal du projet LS4YOU ?",
+                answers: [
+                    "Améliorer les résultats scolaires",
+                    "Soutenir l'intégration sociale et professionnelle des jeunes",
+                    "Développer des compétences techniques",
+                    "Créer des emplois"
+                ],
+                correct: 1,
+                explanation: "LS4YOU vise à soutenir l'intégration sociale et professionnelle des jeunes en développant leurs compétences de vie."
+            },
+            {
+                question: "Le domaine 'Personnalité' dans LS4YOU concerne principalement :",
+                answers: [
+                    "La gestion financière",
+                    "Les techniques de communication",
+                    "Le développement personnel et la connaissance de soi",
+                    "L'activité physique"
+                ],
+                correct: 2,
+                explanation: "Le domaine Personnalité se concentre sur l'estime de soi, la gestion des émotions et l'autonomie."
+            },
+            {
+                question: "Quelle approche pédagogique privilégie LS4YOU ?",
+                answers: [
+                    "L'apprentissage théorique",
+                    "La pédagogie expérientielle",
+                    "L'enseignement magistral",
+                    "L'apprentissage en ligne uniquement"
+                ],
+                correct: 1,
+                explanation: "LS4YOU privilégie la pédagogie expérientielle : apprendre par l'expérience et la mise en situation."
+            },
+            {
+                question: "L'outil d'auto-évaluation LS4YOU permet aux jeunes de :",
+                answers: [
+                    "Obtenir un diplôme",
+                    "S'auto-positionner sur leurs compétences",
+                    "Trouver un emploi directement",
+                    "Calculer leur salaire"
+                ],
+                correct: 1,
+                explanation: "L'auto-évaluation aide les jeunes à identifier leurs forces et axes d'amélioration."
+            },
+            {
+                question: "Le domaine 'Bien-être' dans LS4YOU inclut :",
+                answers: [
+                    "La gestion du stress et l'équilibre de vie",
+                    "Les techniques de vente",
+                    "La comptabilité",
+                    "Les langues étrangères"
+                ],
+                correct: 0,
+                explanation: "Le domaine Bien-être couvre la gestion du stress, l'équilibre vie pro/perso et les techniques de relaxation."
+            },
+            {
+                question: "Combien de pays européens participent au projet LS4YOU ?",
+                answers: ["3 pays", "5 pays", "7 pays", "10 pays"],
+                correct: 1,
+                explanation: "Le projet LS4YOU implique 5 pays européens dans son développement et ses tests."
+            },
+            {
+                question: "La formation LS4YOU pour les professionnels dure :",
+                answers: ["1 jour", "2 x 3h30", "1 semaine", "1 mois"],
+                correct: 1,
+                explanation: "La formation se déroule sur 2 sessions de 3h30 chacune, soit 7 heures au total."
+            },
+            {
+                question: "Le domaine 'Finances' dans LS4YOU traite de :",
+                answers: [
+                    "L'investissement en bourse",
+                    "La gestion budgétaire et l'éducation financière",
+                    "La création d'entreprise",
+                    "Les assurances"
+                ],
+                correct: 1,
+                explanation: "Le domaine Finances se concentre sur l'élaboration d'un budget, la gestion des dépenses et l'épargne."
+            },
+            {
+                question: "L'objectif de déploiement LS4YOU pour 2024-2025 est de former :",
+                answers: ["100 professionnels", "500 professionnels", "1000 professionnels", "2000 professionnels"],
+                correct: 1,
+                explanation: "L'objectif est de former 500 professionnels dans 10 pays européens d'ici 2024-2025."
+            }
+        ];
+
+        function startQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = [];
             
-            // Cacher les détails
-            const details = ['tool-detail', 'phase-detail', 'deploy-detail', 'formation-detail'];
-            details.forEach(detail => {
-                const element = document.getElementById(detail);
-                if (element) element.classList.add('hidden');
+            document.getElementById('quiz-welcome').classList.add('hidden');
+            document.getElementById('quiz-questions').classList.remove('hidden');
+            document.getElementById('quiz-results').classList.add('hidden');
+            
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const question = questions[currentQuestionIndex];
+            
+            document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+            document.getElementById('current-score').textContent = score;
+            document.getElementById('question-text').textContent = question.question;
+            
+            const answersContainer = document.getElementById('answers-container');
+            answersContainer.innerHTML = '';
+            
+            question.answers.forEach((answer, index) => {
+                const answerDiv = document.createElement('div');
+                answerDiv.className = 'answer-option p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-ls-turquoise hover:bg-ls-turquoise hover:bg-opacity-10 transition-all duration-300';
+                answerDiv.innerHTML = `
+                    <label class="flex items-center cursor-pointer">
+                        <input type="radio" name="answer" value="${index}" class="mr-4 w-5 h-5 text-ls-turquoise">
+                        <span class="text-lg font-medium">${answer}</span>
+                    </label>
+                `;
+                
+                answerDiv.addEventListener('click', () => selectAnswer(index));
+                answersContainer.appendChild(answerDiv);
             });
+            
+            // Mise à jour des boutons
+            updateNavigationButtons();
         }
 
-        function showDomainDetail(domain) {
-            showPage(domain);
+        function selectAnswer(answerIndex) {
+            // Désélectionner toutes les réponses
+            document.querySelectorAll('.answer-option').forEach(option => {
+                option.classList.remove('border-ls-turquoise', 'bg-ls-turquoise', 'bg-opacity-10');
+                option.classList.add('border-gray-300');
+            });
+            
+            // Sélectionner la réponse choisie
+            const selectedOption = document.querySelectorAll('.answer-option')[answerIndex];
+            selectedOption.classList.remove('border-gray-300');
+            selectedOption.classList.add('border-ls-turquoise', 'bg-ls-turquoise', 'bg-opacity-10');
+            
+            // Cocher le radio button
+            const radioButton = selectedOption.querySelector('input[type="radio"]');
+            radioButton.checked = true;
+            
+            // Stocker la réponse
+            userAnswers[currentQuestionIndex] = answerIndex;
+            
+            // Activer le bouton suivant
+            updateNavigationButtons();
         }
 
-        function showToolDetail(tool) {
-            const toolDetail = document.getElementById('tool-detail');
-            
-            if (tool === 'matrice') {
-                showPage('matrice-tutorial');
-                return;
-            }
-            
-            const toolsData = {
-                'plateforme': {
-                    title: '💻 Plateforme numérique LS4YOU',
-                    color: 'ls-yellow',
-                    icon: '🌐',
-                    description: 'La plateforme LS4YOU est un espace numérique convivial qui rassemble des ressources pour les jeunes et les professionnels de la jeunesse.',
-                    objectif: 'Rendre l\'apprentissage des compétences de vie accessible, agréable et utile, afin de renforcer l\'autonomie, la confiance et l\'insertion des jeunes.',
-                    composantes: [
-                        {
-                            title: 'Modules e-learning pour les jeunes',
-                            icon: '🎓',
-                            description: 'Quiz, vidéos, exercices courts pour mieux se connaître, identifier ses compétences et construire son parcours de vie.',
-                            elements: ['Quiz interactifs', 'Vidéos pédagogiques', 'Micro-apprentissages', 'Exercices d\'auto-évaluation']
-                        },
-                        {
-                            title: 'Ressources pour les professionnels',
-                            icon: '🛠️',
-                            description: 'Fiches d\'activités, supports pédagogiques et guides pratiques pour accompagner les jeunes.',
-                            elements: ['Fiches d\'activités détaillées', 'Supports pédagogiques', 'Guides pratiques', 'Outils d\'animation']
-                        }
-                    ],
-                    lien: 'https://www.lifeskills4youth.eu/fr/plateforme-dapprentissage/'
-                },
-                'autoevaluation': {
-                    title: '📊 Outil d\'auto-évaluation',
-                    color: 'ls-turquoise',
-                    icon: '📋',
-                    description: 'Un questionnaire interactif permettant aux jeunes de faire le point sur leurs compétences de vie actuelles.',
-                    objectif: 'Aider les jeunes à identifier leurs forces et les domaines à développer pour mieux cibler leur accompagnement.',
-                    fonctionnalites: [
-                        'Auto-positionnement sur les 4 domaines LS4YOU',
-                        'Résultats visuels et personnalisés',
-                        'Recommandations d\'activités adaptées',
-                        'Suivi de progression dans le temps'
-                    ]
-                }
-            };
-            
-            const data = toolsData[tool];
-            if (!data) {
-                toolDetail.innerHTML = `
-                    <div class="text-center text-gray-500">
-                        <div class="text-4xl mb-4">🛠️</div>
-                        <h3 class="text-xl font-semibold mb-2">Détail de l'outil</h3>
-                        <p>Espace pour décrire l'outil sélectionné, ses objectifs, son utilisation et des exemples concrets.</p>
-                    </div>
-                `;
-            } else {
-                let html = `
-                    <div class="text-center mb-8">
-                        <div class="text-6xl mb-4">${data.icon}</div>
-                        <h3 class="text-3xl font-bold text-${data.color} mb-4">${data.title}</h3>
-                        <div class="bg-${data.color} bg-opacity-10 rounded-lg p-6 max-w-4xl mx-auto">
-                            <p class="text-lg text-gray-700 leading-relaxed">${data.description}</p>
-                        </div>
-                    </div>
-                `;
-                
-                if (data.objectif) {
-                    html += `
-                        <div class="bg-gradient-to-r from-${data.color} to-teal-500 text-white rounded-xl p-6 mb-8">
-                            <h4 class="text-xl font-bold mb-3 flex items-center">
-                                <span class="text-2xl mr-3">🎯</span>
-                                Objectif
-                            </h4>
-                            <p class="leading-relaxed">${data.objectif}</p>
-                        </div>
-                    `;
-                }
-                
-                if (data.composantes) {
-                    html += `<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">`;
-                    data.composantes.forEach(composante => {
-                        html += `
-                            <div class="bg-white rounded-xl p-6 border-l-4 border-${data.color}">
-                                <h4 class="text-xl font-bold text-${data.color} mb-3 flex items-center">
-                                    <span class="text-2xl mr-3">${composante.icon}</span>
-                                    ${composante.title}
-                                </h4>
-                                <p class="text-gray-700 mb-4">${composante.description}</p>
-                                <ul class="space-y-2">
-                        `;
-                        composante.elements.forEach(element => {
-                            html += `
-                                <li class="flex items-start space-x-2">
-                                    <span class="text-${data.color} mt-1">•</span>
-                                    <span class="text-gray-600">${element}</span>
-                                </li>
-                            `;
-                        });
-                        html += '</ul></div>';
-                    });
-                    html += '</div>';
-                }
-                
-                if (data.fonctionnalites) {
-                    html += `
-                        <div class="bg-white rounded-xl p-6 border-l-4 border-${data.color} mb-8">
-                            <h4 class="text-xl font-bold text-${data.color} mb-4 flex items-center">
-                                <span class="text-2xl mr-3">⚡</span>
-                                Fonctionnalités
-                            </h4>
-                            <ul class="space-y-3">
-                    `;
-                    data.fonctionnalites.forEach(fonctionnalite => {
-                        html += `
-                            <li class="flex items-start space-x-3">
-                                <span class="text-${data.color} text-xl">✓</span>
-                                <span class="text-gray-700">${fonctionnalite}</span>
-                            </li>
-                        `;
-                    });
-                    html += '</ul></div>';
-                }
-                
-                if (data.lien) {
-                    html += `
-                        <div class="text-center">
-                            <a href="${data.lien}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center bg-${data.color} text-white px-6 py-3 rounded-lg hover:opacity-90 transition-colors font-semibold">
-                                🌐 Accéder à la plateforme
-                                <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
-                                </svg>
-                            </a>
-                        </div>
-                    `;
-                }
-                
-                toolDetail.innerHTML = html;
-                toolDetail.classList.remove('content-placeholder');
-            }
-            
-            toolDetail.classList.remove('hidden');
-            toolDetail.scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function showPhaseDetail(phase) {
-            const phaseContent = document.getElementById('phase-content');
-            
-            const phaseData = {
-                'wp2': {
-                    title: 'WP2 - Construire la méthode et les outils',
-                    color: 'ls-red',
-                    icon: '🔨',
-                    activities: [
-                        {
-                            code: 'A1',
-                            title: 'Kick-off meeting',
-                            description: 'Lancement, plan d\'action, modèles de suivi, plan d\'évaluation et d\'impact.'
-                        },
-                        {
-                            code: 'A2',
-                            title: 'Grille des compétences & bonnes pratiques',
-                            description: 'Mise en commun des savoirs des partenaires, référentiels communs.'
-                        },
-                        {
-                            code: 'A3',
-                            title: 'Résidence pédagogique',
-                            description: 'Rencontre européenne de formateurs → appropriation de la méthode LS4YOU, échanges de pratiques, renforcement des compétences pédagogiques.'
-                        },
-                        {
-                            code: 'A4',
-                            title: 'Guide Life Skills for Youth',
-                            description: 'Livret pour animateurs & conseillers, enrichi de ressources numériques.'
-                        },
-                        {
-                            code: 'A5',
-                            title: 'Localisation',
-                            description: 'Traduction et adaptation culturelle/nationale, mise en forme digitale.'
-                        }
-                    ]
-                },
-                'wp3': {
-                    title: 'WP3 - Créer la plateforme et les contenus',
-                    color: 'ls-yellow',
-                    icon: '💻',
-                    activities: [
-                        {
-                            code: 'A1',
-                            title: 'Plateforme',
-                            description: 'Design UX, développement web, charte graphique, tests utilisateurs.'
-                        },
-                        {
-                            code: 'A2',
-                            title: 'Toolbox & activités',
-                            description: 'Contenus e-learning (vidéos, quiz, fiches, jeux interactifs) pour jeunes et professionnels.'
-                        },
-                        {
-                            code: 'A3',
-                            title: 'Formation de formateurs',
-                            description: 'Coordination pédagogique, déroulé détaillé, animation et évaluation.'
-                        },
-                        {
-                            code: 'A4',
-                            title: 'Localisation',
-                            description: 'Traduction, adaptation nationale, intégration dans les pratiques locales.'
-                        }
-                    ]
-                },
-                'wp4': {
-                    title: 'WP4 - Tester et déployer',
-                    color: 'ls-turquoise',
-                    icon: '🚀',
-                    description: 'C\'est la phase de mise en œuvre sur le terrain :',
-                    points: [
-                        'Les professionnels testent les outils avec les jeunes.',
-                        'Des ateliers de retour permettent d\'évaluer l\'ergonomie, la qualité et l\'impact.',
-                        'Les résultats sont capitalisés pour améliorer la méthode et l\'outillage.'
-                    ]
-                }
-            };
-            
-            const data = phaseData[phase];
-            if (!data) return;
-            
-            let html = `
-                <div class="text-center mb-8">
-                    <div class="text-6xl mb-4">${data.icon}</div>
-                    <h3 class="text-3xl font-bold text-${data.color} mb-4">${data.title}</h3>
-                </div>
-            `;
-            
-            if (data.activities) {
-                html += '<div class="space-y-4">';
-                data.activities.forEach(activity => {
-                    html += `
-                        <div class="bg-ls-gray rounded-lg p-6 border-l-4 border-${data.color}">
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-${data.color} text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm flex-shrink-0">
-                                    ${activity.code}
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-${data.color} text-lg mb-2">${activity.title}</h4>
-                                    <p class="text-gray-700">${activity.description}</p>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-                html += '</div>';
-            } else if (data.points) {
-                html += `
-                    <div class="bg-ls-gray rounded-lg p-6 border-l-4 border-${data.color}">
-                        <p class="text-lg text-gray-700 mb-4">${data.description}</p>
-                        <ul class="space-y-3">
-                `;
-                data.points.forEach(point => {
-                    html += `<li class="flex items-start space-x-3">
-                        <span class="text-${data.color} text-xl">•</span>
-                        <span class="text-gray-700">${point}</span>
-                    </li>`;
-                });
-                html += '</ul></div>';
-            }
-            
-            phaseContent.innerHTML = html;
-            document.getElementById('phase-detail').classList.remove('hidden');
-            document.getElementById('phase-detail').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function showDeployStep(step) {
-            document.getElementById('deploy-detail').classList.remove('hidden');
-            document.getElementById('deploy-detail').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        let currentMatriceStep = 1;
-
-        function showMatriceStep(step) {
-            // Cacher toutes les étapes
-            for (let i = 1; i <= 5; i++) {
-                const stepElement = document.getElementById(`matrice-step-${i}`);
-                if (stepElement) stepElement.classList.add('hidden');
-                
-                const btnElement = document.getElementById(`step-btn-${i}`);
-                if (btnElement) {
-                    btnElement.classList.remove('bg-ls-turquoise', 'text-white');
-                    btnElement.classList.add('bg-gray-200', 'text-gray-600');
-                }
-            }
-            
-            // Afficher l'étape demandée
-            const targetStep = document.getElementById(`matrice-step-${step}`);
-            if (targetStep) {
-                targetStep.classList.remove('hidden');
-                currentMatriceStep = step;
-                
-                // Mettre à jour le bouton actif
-                const activeBtn = document.getElementById(`step-btn-${step}`);
-                if (activeBtn) {
-                    activeBtn.classList.remove('bg-gray-200', 'text-gray-600');
-                    activeBtn.classList.add('bg-ls-turquoise', 'text-white');
-                }
-                
-                // Mettre à jour les boutons de navigation
-                updateMatriceNavigation();
-            }
-        }
-
-        function nextMatriceStep() {
-            if (currentMatriceStep < 5) {
-                showMatriceStep(currentMatriceStep + 1);
-            }
-        }
-
-        function previousMatriceStep() {
-            if (currentMatriceStep > 1) {
-                showMatriceStep(currentMatriceStep - 1);
-            }
-        }
-
-        function updateMatriceNavigation() {
+        function updateNavigationButtons() {
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             
             // Bouton précédent
-            if (currentMatriceStep === 1) {
-                prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
-                prevBtn.classList.remove('bg-ls-turquoise', 'text-white', 'hover:bg-teal-600');
-                prevBtn.classList.add('bg-gray-300', 'text-gray-600');
-                prevBtn.disabled = true;
-            } else {
-                prevBtn.classList.remove('opacity-50', 'cursor-not-allowed', 'bg-gray-300', 'text-gray-600');
-                prevBtn.classList.add('bg-ls-turquoise', 'text-white', 'hover:bg-teal-600');
+            if (currentQuestionIndex > 0) {
                 prevBtn.disabled = false;
+                prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            } else {
+                prevBtn.disabled = true;
+                prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
             }
             
             // Bouton suivant
-            if (currentMatriceStep === 5) {
-                nextBtn.textContent = '✅ Terminé';
-                nextBtn.onclick = () => showPage('outils');
+            if (userAnswers[currentQuestionIndex] !== undefined) {
+                nextBtn.disabled = false;
+                nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+                
+                if (currentQuestionIndex === questions.length - 1) {
+                    nextBtn.textContent = 'Terminer 🏁';
+                } else {
+                    nextBtn.textContent = 'Suivant ➡';
+                }
             } else {
-                nextBtn.textContent = 'Suivant ➡';
-                nextBtn.onclick = nextMatriceStep;
+                nextBtn.disabled = true;
+                nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
             }
         }
 
-        function showFormationDetail(principe) {
-            const formationContent = document.getElementById('formation-detail');
-            
-            const principesData = {
-                'experientielle': {
-                    title: '🧩 Pédagogie expérientielle',
-                    color: 'ls-turquoise',
-                    objectif: 'Faire vivre les activités comme si les participants étaient eux-mêmes des jeunes.',
-                    sousBlocs: [
-                        {
-                            title: 'Mise en situation',
-                            description: 'Jeux de rôle, études de cas réels, immersion.'
-                        },
-                        {
-                            title: 'Lien direct avec les jeunes',
-                            description: 'Chaque expérience est transposable en accompagnement.'
-                        }
-                    ]
-                },
-                'coconstruction': {
-                    title: '🤝 Co-construction',
-                    color: 'ls-red',
-                    objectif: 'Placer le collectif au cœur de l\'apprentissage.',
-                    sousBlocs: [
-                        {
-                            title: 'Travail collaboratif',
-                            description: 'Petits groupes, feedbacks entre pairs.'
-                        },
-                        {
-                            title: 'Partage d\'expériences',
-                            description: 'Valoriser les savoir-faire des conseillers et animateurs.'
-                        },
-                        {
-                            title: 'Appropriation commune',
-                            description: 'Le groupe co-construit ses propres façons d\'utiliser LS4YOU.'
-                        }
-                    ]
-                },
-                'hybride': {
-                    title: '🌐 Apprentissage hybride',
-                    color: 'ls-yellow',
-                    objectif: 'Combiner le meilleur du numérique et du présentiel.',
-                    sousBlocs: [
-                        {
-                            title: 'Avant la formation',
-                            description: 'E-learning (théorie, socle commun, auto-positionnement).'
-                        },
-                        {
-                            title: 'Pendant la formation',
-                            description: 'Présentiel (expériences, pratiques, échanges).'
-                        },
-                        {
-                            title: 'Après la formation',
-                            description: 'Intégration sur le terrain, tutorat, retours collectifs.'
-                        }
-                    ]
-                },
-                'durabilite': {
-                    title: '🔄 Durabilité',
-                    color: 'ls-yellow',
-                    objectif: 'Assurer l\'ancrage à long terme de la méthode LS4YOU.',
-                    sousBlocs: [
-                        {
-                            title: 'Plan d\'action concret',
-                            description: 'Chaque participant repart avec des engagements adaptés à sa pratique.'
-                        },
-                        {
-                            title: 'Suivi et tutorat',
-                            description: 'Accompagnement post-formation (4–6 semaines après).'
-                        },
-                        {
-                            title: 'Intégration dans les pratiques',
-                            description: 'Rendre LS4YOU réutilisable et vivant dans les structures.'
-                        }
-                    ]
-                },
-                'programme': {
-                    title: '📚 Programme de formation LS4YOU',
-                    subtitle: '2 demi-journées (3h30 chacune)',
-                    color: 'ls-red',
-                    demiJournees: [
-                        {
-                            title: '🌅 Demi-journée 1 – Appropriation & ateliers expérientiels',
-                            sessions: [
-                                {
-                                    titre: '1. Accueil et lancement',
-                                    duree: '15 min',
-                                    contenu: [
-                                        'Rappel des objectifs de la formation (appliquer LS4YOU par l\'expérience).',
-                                        'Tour de table rapide sur attentes.'
-                                    ]
-                                },
-                                {
-                                    titre: '2. Icebreaker – Ligne des compétences',
-                                    duree: '20 min',
-                                    contenu: [
-                                        'Positionnement physique sur des compétences de vie (confiance, communication, gestion du stress).',
-                                        'Mise en évidence des représentations et vécus.'
-                                    ]
-                                },
-                                {
-                                    titre: '3. Ateliers expérientiels',
-                                    duree: '2h15',
-                                    contenu: [
-                                        'Travail en sous-groupes à partir de cas concrets de jeunes (issus du guide LS4YOU).',
-                                        'Étape 1 : identifier les besoins et domaines LS4YOU.',
-                                        'Étape 2 : simulation « conseiller ↔ jeune » (jeu de rôle).',
-                                        'Étape 3 : restitution croisée et feedback collectif.'
-                                    ]
-                                },
-                                {
-                                    titre: '4. Synthèse intermédiaire',
-                                    duree: '15 min',
-                                    contenu: [
-                                        'Retour sur les apprentissages.',
-                                        'Préparation pour l\'approfondissement de la deuxième demi-journée.'
-                                    ]
-                                }
-                            ]
-                        },
-                        {
-                            title: '🌅 Demi-journée 2 – Approfondissement & intégration',
-                            sessions: [
-                                {
-                                    titre: '1. Réactivation',
-                                    duree: '15 min',
-                                    contenu: [
-                                        'Tour de table express : une idée forte retenue de la veille.'
-                                    ]
-                                },
-                                {
-                                    titre: '2. Ateliers par domaine',
-                                    duree: '1h30',
-                                    contenu: [
-                                        '4 sous-groupes → chacun explore un domaine (personnalité, auto-promotion, bien-être, finances).',
-                                        'Réflexion collective : leviers prioritaires pour accompagner les jeunes.',
-                                        'Restitution en plénière avec tableau récapitulatif.'
-                                    ]
-                                },
-                                {
-                                    titre: '3. Matrice de correspondance',
-                                    duree: '30 min',
-                                    contenu: [
-                                        'Présentation guidée et appropriation.',
-                                        'Exercice pratique sur profils types : comment la matrice aide à choisir les bons leviers d\'action.'
-                                    ]
-                                },
-                                {
-                                    titre: '4. Plan d\'action individuel + tutorat',
-                                    duree: '45 min',
-                                    contenu: [
-                                        'Chaque participant définit :',
-                                        '• Comment intégrer LS4YOU dans sa pratique.',
-                                        '• Quels jeunes prioriser.',
-                                        '• Quels repères utiliser (dont la matrice).',
-                                        'Mise en commun volontaire.',
-                                        'Explication du suivi tutoré : accompagnement post-formation, feedback collectif, échanges de pratiques.'
-                                    ]
-                                },
-                                {
-                                    titre: '5. Clôture',
-                                    duree: '15 min',
-                                    contenu: [
-                                        'Synthèse partagée.',
-                                        'Distribution du support : guide + matrice.'
-                                    ]
-                                }
-                            ]
-                        }
-                    ],
-                    resultats: [
-                        'Forte appropriation pratique via ateliers.',
-                        'Utilisation concrète de la matrice LS4YOU comme repère opérationnel.',
-                        'Mise en route d\'un plan d\'action personnel pour chaque conseiller.',
-                        'Vision claire du tutorat post-formation pour consolider les acquis.'
-                    ]
+        function previousQuestion() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                showQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (userAnswers[currentQuestionIndex] !== undefined) {
+                if (currentQuestionIndex < questions.length - 1) {
+                    currentQuestionIndex++;
+                    showQuestion();
+                } else {
+                    finishQuiz();
                 }
-            };
+            }
+        }
+
+        function finishQuiz() {
+            // Calculer le score
+            score = 0;
+            userAnswers.forEach((answer, index) => {
+                if (answer === questions[index].correct) {
+                    score++;
+                }
+            });
             
-            const data = principesData[principe];
-            if (!data) return;
+            // Afficher les résultats
+            showResults();
+        }
+
+        function showResults() {
+            document.getElementById('quiz-questions').classList.add('hidden');
+            document.getElementById('quiz-results').classList.remove('hidden');
             
-            let html = '';
+            const percentage = Math.round((score / questions.length) * 100);
             
-            if (principe === 'programme') {
-                // Affichage spécial pour le programme de formation
-                html = `
-                    <div class="text-center mb-8">
-                        <h3 class="text-3xl font-bold text-${data.color} mb-2">${data.title}</h3>
-                        <p class="text-xl text-gray-600 mb-6">${data.subtitle}</p>
-                    </div>
-                `;
-                
-                // Affichage des demi-journées
-                data.demiJournees.forEach((demiJournee, djIndex) => {
-                    html += `
-                        <div class="mb-8 bg-white rounded-xl p-6 border-l-4 border-${data.color}">
-                            <h4 class="text-2xl font-bold text-${data.color} mb-6">${demiJournee.title}</h4>
-                            <div class="space-y-4">
-                    `;
-                    
-                    demiJournee.sessions.forEach((session, sessionIndex) => {
-                        html += `
-                            <div class="bg-ls-gray rounded-lg p-4">
-                                <div class="flex items-start justify-between mb-3">
-                                    <h5 class="font-bold text-gray-800">${session.titre}</h5>
-                                    <span class="bg-${data.color} text-white px-3 py-1 rounded-full text-sm font-semibold">${session.duree}</span>
-                                </div>
-                                <ul class="space-y-2">
-                        `;
-                        
-                        session.contenu.forEach(item => {
-                            html += `<li class="text-gray-700 flex items-start space-x-2">
-                                <span class="text-${data.color} mt-1">•</span>
-                                <span>${item}</span>
-                            </li>`;
-                        });
-                        
-                        html += '</ul></div>';
-                    });
-                    
-                    html += '</div></div>';
-                });
-                
-                // Résultats attendus
-                html += `
-                    <div class="bg-gradient-to-r from-${data.color} to-red-600 text-white rounded-xl p-6">
-                        <h4 class="text-xl font-bold mb-4 flex items-center">
-                            <span class="text-2xl mr-3">🎯</span>
-                            Résultats attendus
-                        </h4>
-                        <ul class="space-y-2">
-                `;
-                
-                data.resultats.forEach(resultat => {
-                    html += `<li class="flex items-start space-x-2">
-                        <span class="text-yellow-300 mt-1">✓</span>
-                        <span>${resultat}</span>
-                    </li>`;
-                });
-                
-                html += '</ul></div>';
-                
+            // Icône et titre selon le score
+            let icon, title, titleColor, message;
+            
+            if (percentage >= 80) {
+                icon = '🏆';
+                title = 'Excellent !';
+                titleColor = 'text-ls-turquoise';
+                message = 'Vous maîtrisez parfaitement les concepts LS4YOU. Félicitations !';
+            } else if (percentage >= 60) {
+                icon = '👍';
+                title = 'Bien joué !';
+                titleColor = 'text-ls-yellow';
+                message = 'Vous avez une bonne compréhension de LS4YOU. Quelques révisions et ce sera parfait !';
             } else {
-                // Affichage normal pour les autres principes
-                html = `
-                    <div class="text-center mb-8">
-                        <h3 class="text-3xl font-bold text-${data.color} mb-4">${data.title}</h3>
-                        <div class="bg-${data.color} bg-opacity-10 rounded-lg p-4 max-w-3xl mx-auto">
-                            <p class="text-lg text-gray-700"><strong>Objectif :</strong> ${data.objectif}</p>
-                        </div>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <h4 class="text-xl font-bold text-${data.color} mb-4">Sous-blocs :</h4>
-                `;
-                
-                data.sousBlocs.forEach((bloc, index) => {
-                    html += `
-                        <div class="bg-white rounded-lg p-6 border-l-4 border-${data.color}">
-                            <div class="flex items-start space-x-4">
-                                <div class="bg-${data.color} text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm flex-shrink-0">
-                                    ${index + 1}
-                                </div>
-                                <div>
-                                    <h5 class="font-bold text-${data.color} text-lg mb-2">${bloc.title}</h5>
-                                    <p class="text-gray-700">${bloc.description}</p>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-                });
-                
-                html += '</div>';
+                icon = '📚';
+                title = 'À revoir';
+                titleColor = 'text-ls-red';
+                message = 'Il serait bon de revoir les concepts LS4YOU. N\'hésitez pas à reprendre les modules de formation !';
             }
             
-            formationContent.innerHTML = html;
-            formationContent.classList.remove('content-placeholder');
-            document.getElementById('formation-detail').classList.remove('hidden');
-            document.getElementById('formation-detail').scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('result-icon').textContent = icon;
+            document.getElementById('result-title').textContent = title;
+            document.getElementById('result-title').className = `font-street text-4xl font-bold mb-4 uppercase ${titleColor}`;
+            document.getElementById('result-score').innerHTML = `
+                <span class="text-4xl font-bold ${titleColor}">${score}/${questions.length}</span>
+                <span class="text-2xl text-gray-600 ml-4">(${percentage}%)</span>
+            `;
+            document.getElementById('result-message').textContent = message;
         }
+
+        function restartQuiz() {
+            document.getElementById('quiz-results').classList.add('hidden');
+            document.getElementById('quiz-welcome').classList.remove('hidden');
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            showPage('home');
+        });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98389b57b0d82a82',t:'MTc1ODYxNTQ1OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'983931a5a36ad107',t:'MTc1ODYyMTYxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
 
