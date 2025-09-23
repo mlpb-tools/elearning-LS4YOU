@@ -184,12 +184,7 @@
                     <div class="bg-urban-black text-white px-8 py-4 inline-block transform -rotate-2 mb-8">
                         <span class="font-street text-2xl md:text-3xl font-semibold tracking-wider">E-LEARNING</span>
                     </div>
-                    <div class="max-w-4xl mx-auto bg-white/90 backdrop-blur-sm rounded-lg p-6 shadow-street">
-                        <p class="text-xl md:text-2xl text-urban-black font-semibold leading-relaxed">
-                            Un parcours en <span class="text-ls-red font-bold">7 étapes</span> pour comprendre<br class="hidden md:block"> 
-                            et déployer les <span class="text-ls-turquoise font-bold">Life Skills</span>
-                        </p>
-                    </div>
+
                 </div>
             </div>
 
@@ -219,28 +214,12 @@
                     <div class="absolute top-2 right-2 w-3 h-3 bg-ls-turquoise rounded-full animate-pulse"></div>
                 </div>
 
-                <!-- Bloc 4 - Phases -->
-                <div onclick="showPage('phases')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-red text-white">
-                    <div class="text-5xl mb-4">📋</div>
-                    <h3 class="font-street text-xl font-bold text-ls-red mb-2 uppercase tracking-wide">Phases & Livrables</h3>
-                    <p class="text-gray-300 font-medium">Ce qu'on a fait</p>
+                <!-- Bloc 4 - Méthode -->
+                <div onclick="showPage('methode')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-red text-white">
+                    <div class="text-5xl mb-4">⚙️</div>
+                    <h3 class="font-street text-xl font-bold text-ls-red mb-2 uppercase tracking-wide">Méthode</h3>
+                    <p class="text-gray-300 font-medium">Phases, déploiement et formation</p>
                     <div class="absolute top-2 right-2 w-3 h-3 bg-ls-red rounded-full animate-pulse"></div>
-                </div>
-
-                <!-- Bloc 5 - Déploiement -->
-                <div onclick="showPage('deploiement')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-yellow text-white">
-                    <div class="text-5xl mb-4">🚀</div>
-                    <h3 class="font-street text-xl font-bold text-ls-yellow mb-2 uppercase tracking-wide">Déploiement</h3>
-                    <p class="text-gray-300 font-medium">Ce qu'on va faire</p>
-                    <div class="absolute top-2 right-2 w-3 h-3 bg-ls-yellow rounded-full animate-pulse"></div>
-                </div>
-
-                <!-- Bloc 6 - Formation -->
-                <div onclick="showPage('formation')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-turquoise text-white">
-                    <div class="text-5xl mb-4">🎓</div>
-                    <h3 class="font-street text-xl font-bold text-ls-turquoise mb-2 uppercase tracking-wide">Formation</h3>
-                    <p class="text-gray-300 font-medium">Principes pédagogiques</p>
-                    <div class="absolute top-2 right-2 w-3 h-3 bg-ls-turquoise rounded-full animate-pulse"></div>
                 </div>
 
                 <!-- Bloc 7 - Quiz -->
@@ -491,370 +470,450 @@
         </div>
     </div>
 
-    <!-- Page Phases & Livrables -->
-    <div id="phases" class="min-h-screen p-6 brick-wall hidden">
+    <!-- Page Méthode -->
+    <div id="methode" class="min-h-screen p-6 brick-wall hidden">
         <div class="max-w-7xl mx-auto">
             <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
                 ⬅ Retour au menu principal
             </button>
             
             <div class="text-center mb-12">
-                <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="Phases">
-                    <span class="graffiti-text" style="--color-1: #E63946; --color-2: #FFD166;">Phases & Livrables</span>
+                <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="Méthode">
+                    <span class="graffiti-text" style="--color-1: #E63946; --color-2: #FFD166;">Méthode</span>
                 </h1>
                 <div class="bg-ls-red text-white px-6 py-2 inline-block transform rotate-1">
-                    <span class="font-street text-lg font-semibold uppercase">Ce qu'on a fait</span>
+                    <span class="font-street text-lg font-semibold uppercase">Phases, Déploiement et Formation</span>
                 </div>
             </div>
             
-            <div class="space-y-8">
-                <!-- Phase 1 -->
-                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-turquoise">
-                    <div class="flex items-center mb-6">
-                        <div class="text-5xl mr-6">🔍</div>
-                        <div>
-                            <h3 class="font-street text-2xl font-bold text-ls-turquoise uppercase">Phase 1 - Recherche</h3>
-                            <p class="text-gray-600 font-medium">Analyse des besoins et état des lieux</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h4 class="font-street font-bold text-lg mb-3 text-gray-800 uppercase">Livrables :</h4>
-                            <ul class="space-y-2 text-gray-700">
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-turquoise">✓</span>
-                                    <span>Rapport de recherche européen</span>
-                                </li>
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-turquoise">✓</span>
-                                    <span>Analyse comparative des pratiques</span>
-                                </li>
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-turquoise">✓</span>
-                                    <span>Identification des 4 domaines clés</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-street font-bold text-lg mb-3 text-gray-800 uppercase">Résultats :</h4>
-                            <p class="text-gray-700">Définition du cadre conceptuel LS4YOU et validation des besoins prioritaires des jeunes européens.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Phase 2 -->
-                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-yellow">
-                    <div class="flex items-center mb-6">
-                        <div class="text-5xl mr-6">🛠️</div>
-                        <div>
-                            <h3 class="font-street text-2xl font-bold text-ls-yellow uppercase">Phase 2 - Développement</h3>
-                            <p class="text-gray-600 font-medium">Création des outils et contenus</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h4 class="font-street font-bold text-lg mb-3 text-gray-800 uppercase">Livrables :</h4>
-                            <ul class="space-y-2 text-gray-700">
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-yellow">✓</span>
-                                    <span>Guidebook méthodologique</span>
-                                </li>
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-yellow">✓</span>
-                                    <span>Outil d'auto-évaluation</span>
-                                </li>
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-yellow">✓</span>
-                                    <span>Matrice de correspondance</span>
-                                </li>
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-yellow">✓</span>
-                                    <span>Plateforme numérique</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-street font-bold text-lg mb-3 text-gray-800 uppercase">Résultats :</h4>
-                            <p class="text-gray-700">Écosystème complet d'outils LS4YOU prêts à l'utilisation par les professionnels et les jeunes.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Phase 3 -->
-                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-red">
-                    <div class="flex items-center mb-6">
-                        <div class="text-5xl mr-6">🧪</div>
-                        <div>
-                            <h3 class="font-street text-2xl font-bold text-ls-red uppercase">Phase 3 - Test & Validation</h3>
-                            <p class="text-gray-600 font-medium">Expérimentation sur le terrain</p>
-                        </div>
-                    </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <h4 class="font-street font-bold text-lg mb-3 text-gray-800 uppercase">Livrables :</h4>
-                            <ul class="space-y-2 text-gray-700">
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-red">✓</span>
-                                    <span>Tests pilotes dans 5 pays</span>
-                                </li>
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-red">✓</span>
-                                    <span>Rapport d'évaluation</span>
-                                </li>
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-red">✓</span>
-                                    <span>Ajustements et améliorations</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 class="font-street font-bold text-lg mb-3 text-gray-800 uppercase">Résultats :</h4>
-                            <p class="text-gray-700">Validation de l'efficacité des outils LS4YOU et optimisation basée sur les retours terrain.</p>
-                        </div>
-                    </div>
-                </div>
+            <!-- Navigation des sous-sections -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12">
+                <button onclick="showSubSection('phases')" id="btn-phases" class="street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide bg-ls-turquoise text-white">
+                    📋 Phases & Livrables
+                </button>
+                <button onclick="showSubSection('deploiement')" id="btn-deploiement" class="street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
+                    🚀 Déploiement
+                </button>
+                <button onclick="showSubSection('formation')" id="btn-formation" class="street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
+                    🎓 Formation
+                </button>
             </div>
-        </div>
-    </div>
 
-    <!-- Page Déploiement -->
-    <div id="deploiement" class="min-h-screen p-6 brick-wall hidden">
-        <div class="max-w-7xl mx-auto">
-            <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
-                ⬅ Retour au menu principal
-            </button>
-            
-            <div class="text-center mb-12">
-                <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="Déploiement">
-                    <span class="graffiti-text" style="--color-1: #FFD166; --color-2: #06D6A0;">Déploiement</span>
-                </h1>
-                <div class="bg-ls-yellow text-urban-black px-6 py-2 inline-block transform -rotate-1">
-                    <span class="font-street text-lg font-semibold uppercase">Ce qu'on va faire</span>
+            <!-- Sous-section Phases & Livrables -->
+            <div id="sub-phases" class="sub-section">
+                <div class="text-center mb-8">
+                    <h2 class="font-street text-3xl font-bold text-ls-turquoise mb-4 uppercase">Phases & Livrables</h2>
+                    <p class="text-xl text-gray-700">Ce qu'on a fait</p>
                 </div>
-            </div>
-            
-            <div class="space-y-8">
-                <!-- Stratégie de déploiement -->
-                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-turquoise">
-                    <div class="text-center mb-8">
-                        <div class="text-7xl mb-6">🚀</div>
-                        <h2 class="font-street text-3xl font-bold text-ls-turquoise mb-6 uppercase">Stratégie de déploiement</h2>
-                    </div>
+                
+                <!-- Frise chronologique interactive -->
+                <div class="relative">
+                    <!-- Ligne de temps -->
+                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-ls-turquoise via-ls-yellow to-ls-red"></div>
                     
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        <div class="text-center p-6 bg-gradient-to-br from-ls-red to-red-700 text-white rounded-xl">
-                            <div class="text-4xl mb-4">🎯</div>
-                            <h3 class="font-street text-xl font-bold mb-3 uppercase">Phase 1</h3>
-                            <p class="font-medium">Formation des formateurs et création du réseau d'ambassadeurs LS4YOU</p>
+                    <div class="space-y-16">
+                        <!-- WP2 - Construire -->
+                        <div class="relative">
+                            <div class="flex items-center justify-center mb-8">
+                                <div class="bg-ls-turquoise text-white px-8 py-4 rounded-full font-street text-2xl font-bold uppercase shadow-street">
+                                    🏗️ WP2 - Construire
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                <!-- A1 Kick-off -->
+                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-turquoise hover:scale-105 transition-all duration-300">
+                                    <div class="text-4xl mb-4 text-center">🚀</div>
+                                    <h4 class="font-street text-lg font-bold text-ls-turquoise mb-3 uppercase">A1 Kick-off meeting</h4>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• Lancement projet</li>
+                                        <li>• Plan d'action</li>
+                                        <li>• Modèles de suivi</li>
+                                        <li>• Plan d'évaluation</li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- A2 Grille compétences -->
+                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-turquoise hover:scale-105 transition-all duration-300">
+                                    <div class="text-4xl mb-4 text-center">📊</div>
+                                    <h4 class="font-street text-lg font-bold text-ls-turquoise mb-3 uppercase">A2 Grille compétences</h4>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• Mise en commun savoirs</li>
+                                        <li>• Référentiels communs</li>
+                                        <li>• Bonnes pratiques</li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- A3 Résidence -->
+                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-turquoise hover:scale-105 transition-all duration-300">
+                                    <div class="text-4xl mb-4 text-center">🏠</div>
+                                    <h4 class="font-street text-lg font-bold text-ls-turquoise mb-3 uppercase">A3 Résidence pédagogique</h4>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• Appropriation LS4YOU</li>
+                                        <li>• Échanges pratiques</li>
+                                        <li>• Renforcement pédagogique</li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- A4 Guide -->
+                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-turquoise hover:scale-105 transition-all duration-300">
+                                    <div class="text-4xl mb-4 text-center">📖</div>
+                                    <h4 class="font-street text-lg font-bold text-ls-turquoise mb-3 uppercase">A4 Guide LS4YOU</h4>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• Livret animateurs</li>
+                                        <li>• Guide conseillers</li>
+                                        <li>• Ressources numériques</li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- A5 Localisation -->
+                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-turquoise hover:scale-105 transition-all duration-300">
+                                    <div class="text-4xl mb-4 text-center">🌍</div>
+                                    <h4 class="font-street text-lg font-bold text-ls-turquoise mb-3 uppercase">A5 Localisation</h4>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• Traduction</li>
+                                        <li>• Adaptation culturelle</li>
+                                        <li>• Mise en forme digitale</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="text-center p-6 bg-gradient-to-br from-ls-yellow to-yellow-600 text-urban-black rounded-xl">
-                            <div class="text-4xl mb-4">📢</div>
-                            <h3 class="font-street text-xl font-bold mb-3 uppercase">Phase 2</h3>
-                            <p class="font-medium">Campagne de communication et sensibilisation des structures</p>
+
+                        <!-- WP3 - Développer -->
+                        <div class="relative">
+                            <div class="flex items-center justify-center mb-8">
+                                <div class="bg-ls-yellow text-urban-black px-8 py-4 rounded-full font-street text-2xl font-bold uppercase shadow-street">
+                                    💻 WP3 - Développer
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                                <!-- A1 Plateforme -->
+                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-yellow hover:scale-105 transition-all duration-300">
+                                    <div class="text-4xl mb-4 text-center">🌐</div>
+                                    <h4 class="font-street text-lg font-bold text-ls-yellow mb-3 uppercase">A1 Plateforme</h4>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• Design UX</li>
+                                        <li>• Développement web</li>
+                                        <li>• Charte graphique</li>
+                                        <li>• Tests utilisateurs</li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- A2 Toolbox -->
+                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-yellow hover:scale-105 transition-all duration-300">
+                                    <div class="text-4xl mb-4 text-center">🧰</div>
+                                    <h4 class="font-street text-lg font-bold text-ls-yellow mb-3 uppercase">A2 Toolbox</h4>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• Contenus e-learning</li>
+                                        <li>• Vidéos & quiz</li>
+                                        <li>• Fiches pratiques</li>
+                                        <li>• Jeux interactifs</li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- A3 Formation -->
+                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-yellow hover:scale-105 transition-all duration-300">
+                                    <div class="text-4xl mb-4 text-center">🎓</div>
+                                    <h4 class="font-street text-lg font-bold text-ls-yellow mb-3 uppercase">A3 Formation formateurs</h4>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• Coordination pédagogique</li>
+                                        <li>• Déroulé détaillé</li>
+                                        <li>• Animation & évaluation</li>
+                                    </ul>
+                                </div>
+                                
+                                <!-- A4 Localisation -->
+                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-yellow hover:scale-105 transition-all duration-300">
+                                    <div class="text-4xl mb-4 text-center">🗺️</div>
+                                    <h4 class="font-street text-lg font-bold text-ls-yellow mb-3 uppercase">A4 Localisation</h4>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li>• Traduction</li>
+                                        <li>• Adaptation nationale</li>
+                                        <li>• Intégration pratiques</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
-                        
-                        <div class="text-center p-6 bg-gradient-to-br from-ls-turquoise to-teal-600 text-white rounded-xl">
-                            <div class="text-4xl mb-4">🌍</div>
-                            <h3 class="font-street text-xl font-bold mb-3 uppercase">Phase 3</h3>
-                            <p class="font-medium">Déploiement européen et suivi des implémentations</p>
+
+                        <!-- WP4 - Déployer -->
+                        <div class="relative">
+                            <div class="flex items-center justify-center mb-8">
+                                <div class="bg-ls-red text-white px-8 py-4 rounded-full font-street text-2xl font-bold uppercase shadow-street">
+                                    🚀 WP4 - Déployer
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-red">
+                                <div class="text-center mb-6">
+                                    <div class="text-6xl mb-4">🎯</div>
+                                    <h3 class="font-street text-2xl font-bold text-ls-red mb-4 uppercase">Phase de mise en œuvre terrain</h3>
+                                </div>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                                    <div class="text-center p-6 bg-gradient-to-br from-ls-red to-red-700 text-white rounded-xl">
+                                        <div class="text-4xl mb-4">👥</div>
+                                        <h4 class="font-street font-bold mb-3 uppercase">Tests terrain</h4>
+                                        <p class="text-sm">Les professionnels testent les outils avec les jeunes</p>
+                                    </div>
+                                    
+                                    <div class="text-center p-6 bg-gradient-to-br from-ls-red to-red-700 text-white rounded-xl">
+                                        <div class="text-4xl mb-4">🔄</div>
+                                        <h4 class="font-street font-bold mb-3 uppercase">Ateliers retour</h4>
+                                        <p class="text-sm">Évaluation ergonomie, qualité et impact</p>
+                                    </div>
+                                    
+                                    <div class="text-center p-6 bg-gradient-to-br from-ls-red to-red-700 text-white rounded-xl">
+                                        <div class="text-4xl mb-4">📈</div>
+                                        <h4 class="font-street font-bold mb-3 uppercase">Capitalisation</h4>
+                                        <p class="text-sm">Amélioration méthode et outillage</p>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <!-- Objectifs -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Sous-section Déploiement -->
+            <div id="sub-deploiement" class="sub-section hidden">
+                <div class="text-center mb-8">
+                    <h2 class="font-street text-3xl font-bold text-ls-yellow mb-4 uppercase">Déploiement</h2>
+                    <p class="text-xl text-gray-700">Ce qu'on va faire</p>
+                </div>
+                
+                <div class="space-y-8">
+                    <!-- 6 étapes interactives -->
                     <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-yellow">
-                        <h3 class="font-street text-2xl font-bold text-ls-yellow mb-6 uppercase">Objectifs 2024-2025</h3>
-                        <ul class="space-y-4">
-                            <li class="flex items-start space-x-3">
-                                <span class="text-ls-yellow text-2xl">📊</span>
-                                <div>
-                                    <strong>500 professionnels formés</strong>
-                                    <p class="text-gray-600">Dans 10 pays européens</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <span class="text-ls-yellow text-2xl">👥</span>
-                                <div>
-                                    <strong>5000 jeunes accompagnés</strong>
-                                    <p class="text-gray-600">Avec les outils LS4YOU</p>
-                                </div>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <span class="text-ls-yellow text-2xl">🏢</span>
-                                <div>
-                                    <strong>200 structures partenaires</strong>
-                                    <p class="text-gray-600">Missions locales, centres de formation</p>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-red">
-                        <h3 class="font-street text-2xl font-bold text-ls-red mb-6 uppercase">Actions prioritaires</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg">
-                                <span class="text-ls-red text-xl">✓</span>
-                                <span class="font-semibold">Formations certifiantes LS4YOU</span>
-                            </div>
-                            <div class="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg">
-                                <span class="text-ls-red text-xl">✓</span>
-                                <span class="font-semibold">Webinaires de présentation</span>
-                            </div>
-                            <div class="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg">
-                                <span class="text-ls-red text-xl">✓</span>
-                                <span class="font-semibold">Accompagnement personnalisé</span>
-                            </div>
-                            <div class="flex items-center space-x-3 p-3 bg-gray-100 rounded-lg">
-                                <span class="text-ls-red text-xl">✓</span>
-                                <span class="font-semibold">Communauté de pratiques</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Contact -->
-                <div class="bg-urban-black text-white rounded-xl p-8 text-center">
-                    <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-4 uppercase">Rejoignez le mouvement LS4YOU</h3>
-                    <p class="text-xl mb-6">Intéressé par le déploiement dans votre structure ?</p>
-                    <div class="flex flex-col md:flex-row gap-4 justify-center">
-                        <a href="mailto:contact@lifeskills4youth.eu" class="street-button px-8 py-4 rounded-lg font-street font-semibold uppercase bg-ls-turquoise text-white hover:scale-105 transition-all duration-300">
-                            📧 Nous contacter
-                        </a>
-                        <a href="https://www.lifeskills4youth.eu" target="_blank" rel="noopener noreferrer" class="street-button px-8 py-4 rounded-lg font-street font-semibold uppercase bg-ls-yellow text-urban-black hover:scale-105 transition-all duration-300">
-                            🌐 Site officiel
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Page Formation -->
-    <div id="formation" class="min-h-screen p-6 brick-wall hidden">
-        <div class="max-w-7xl mx-auto">
-            <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
-                ⬅ Retour au menu principal
-            </button>
-            
-            <div class="text-center mb-12">
-                <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="Formation">
-                    <span class="graffiti-text" style="--color-1: #06D6A0; --color-2: #FFD166;">Formation</span>
-                </h1>
-                <div class="bg-ls-turquoise text-white px-6 py-2 inline-block transform rotate-1">
-                    <span class="font-street text-lg font-semibold uppercase">Principes Pédagogiques</span>
-                </div>
-            </div>
-            
-            <div class="space-y-8">
-                <!-- Approche pédagogique -->
-                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-turquoise">
-                    <div class="text-center mb-8">
-                        <div class="text-7xl mb-6">🎓</div>
-                        <h2 class="font-street text-3xl font-bold text-ls-turquoise mb-6 uppercase">Approche pédagogique LS4YOU</h2>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div>
-                            <h3 class="font-street text-xl font-bold text-gray-800 mb-4 uppercase">Pédagogie expérientielle</h3>
-                            <p class="text-gray-700 mb-4">L'apprentissage par l'expérience est au cœur de la méthode LS4YOU. Les jeunes apprennent en faisant, en expérimentant et en réfléchissant sur leurs actions.</p>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-turquoise">•</span>
-                                    <span>Mise en situation concrète</span>
-                                </li>
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-turquoise">•</span>
-                                    <span>Réflexion sur l'action</span>
-                                </li>
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-turquoise">•</span>
-                                    <span>Transfert vers la vie quotidienne</span>
-                                </li>
-                            </ul>
+                        <div class="text-center mb-8">
+                            <div class="text-7xl mb-6">🎯</div>
+                            <h2 class="font-street text-3xl font-bold text-ls-yellow mb-6 uppercase">6 étapes interactives</h2>
                         </div>
                         
-                        <div>
-                            <h3 class="font-street text-xl font-bold text-gray-800 mb-4 uppercase">Individualisation</h3>
-                            <p class="text-gray-700 mb-4">Chaque jeune est unique. L'approche LS4YOU s'adapte aux besoins, au rythme et aux objectifs de chacun.</p>
-                            <ul class="space-y-2 text-gray-600">
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-turquoise">•</span>
-                                    <span>Diagnostic personnalisé</span>
-                                </li>
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-turquoise">•</span>
-                                    <span>Parcours sur-mesure</span>
-                                </li>
-                                <li class="flex items-center space-x-3">
-                                    <span class="text-ls-turquoise">•</span>
-                                    <span>Suivi individualisé</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Programme de formation -->
-                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-yellow">
-                    <h2 class="font-street text-3xl font-bold text-ls-yellow mb-8 uppercase text-center">Programme de formation (2 x 3h30)</h2>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <!-- Jour 1 -->
-                        <div class="bg-gradient-to-br from-ls-red to-red-700 text-white p-6 rounded-xl">
-                            <h3 class="font-street text-2xl font-bold mb-6 uppercase">🌅 Jour 1 - Découverte</h3>
-                            <div class="space-y-4">
-                                <div class="border-l-4 border-white pl-4">
-                                    <h4 class="font-street font-bold uppercase">9h00 - 10h30</h4>
-                                    <p>Présentation du projet LS4YOU</p>
-                                    <p class="text-sm opacity-90">Contexte, enjeux, 4 domaines</p>
-                                </div>
-                                <div class="border-l-4 border-white pl-4">
-                                    <h4 class="font-street font-bold uppercase">11h00 - 12h30</h4>
-                                    <p>Découverte des outils</p>
-                                    <p class="text-sm opacity-90">Auto-évaluation, matrice, guidebook</p>
-                                </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- Étape 1 - Test interne -->
+                            <div class="text-center p-6 bg-gradient-to-br from-ls-turquoise to-teal-600 text-white rounded-xl hover:scale-105 transition-all duration-300 shadow-street">
+                                <div class="text-5xl mb-4">🔬</div>
+                                <h3 class="font-street text-xl font-bold mb-3 uppercase">Test interne</h3>
+                                <p class="font-medium">Validation en équipe</p>
+                                <div class="mt-4 h-1 bg-white/30 rounded-full"></div>
                             </div>
-                        </div>
-
-                        <!-- Jour 2 -->
-                        <div class="bg-gradient-to-br from-ls-turquoise to-teal-600 text-white p-6 rounded-xl">
-                            <h3 class="font-street text-2xl font-bold mb-6 uppercase">🚀 Jour 2 - Pratique</h3>
-                            <div class="space-y-4">
-                                <div class="border-l-4 border-white pl-4">
-                                    <h4 class="font-street font-bold uppercase">9h00 - 10h30</h4>
-                                    <p>Mise en pratique</p>
-                                    <p class="text-sm opacity-90">Simulation d'accompagnement</p>
-                                </div>
-                                <div class="border-l-4 border-white pl-4">
-                                    <h4 class="font-street font-bold uppercase">11h00 - 12h30</h4>
-                                    <p>Intégration et certification</p>
-                                    <p class="text-sm opacity-90">Plan d'action, évaluation</p>
-                                </div>
+                            
+                            <!-- Étape 2 - Test jeunes -->
+                            <div class="text-center p-6 bg-gradient-to-br from-ls-red to-red-700 text-white rounded-xl hover:scale-105 transition-all duration-300 shadow-street">
+                                <div class="text-5xl mb-4">👥</div>
+                                <h3 class="font-street text-xl font-bold mb-3 uppercase">Test jeunes</h3>
+                                <p class="font-medium">Retours utilisateurs</p>
+                                <div class="mt-4 h-1 bg-white/30 rounded-full"></div>
+                            </div>
+                            
+                            <!-- Étape 3 - Version finale -->
+                            <div class="text-center p-6 bg-gradient-to-br from-ls-yellow to-yellow-600 text-urban-black rounded-xl hover:scale-105 transition-all duration-300 shadow-street">
+                                <div class="text-5xl mb-4">✨</div>
+                                <h3 class="font-street text-xl font-bold mb-3 uppercase">Version finale</h3>
+                                <p class="font-medium">Intégration améliorations</p>
+                                <div class="mt-4 h-1 bg-black/30 rounded-full"></div>
+                            </div>
+                            
+                            <!-- Étape 4 - Formation -->
+                            <div class="text-center p-6 bg-gradient-to-br from-ls-turquoise to-teal-600 text-white rounded-xl hover:scale-105 transition-all duration-300 shadow-street">
+                                <div class="text-5xl mb-4">🎓</div>
+                                <h3 class="font-street text-xl font-bold mb-3 uppercase">Formation</h3>
+                                <p class="font-medium">Formation des équipes</p>
+                                <div class="mt-4 h-1 bg-white/30 rounded-full"></div>
+                            </div>
+                            
+                            <!-- Étape 5 - Communication -->
+                            <div class="text-center p-6 bg-gradient-to-br from-ls-red to-red-700 text-white rounded-xl hover:scale-105 transition-all duration-300 shadow-street">
+                                <div class="text-5xl mb-4">📢</div>
+                                <h3 class="font-street text-xl font-bold mb-3 uppercase">Communication</h3>
+                                <p class="font-medium">Stratégie de diffusion</p>
+                                <div class="mt-4 h-1 bg-white/30 rounded-full"></div>
+                            </div>
+                            
+                            <!-- Étape 6 - Intégration -->
+                            <div class="text-center p-6 bg-gradient-to-br from-ls-yellow to-yellow-600 text-urban-black rounded-xl hover:scale-105 transition-all duration-300 shadow-street">
+                                <div class="text-5xl mb-4">🔗</div>
+                                <h3 class="font-street text-xl font-bold mb-3 uppercase">Intégration</h3>
+                                <p class="font-medium">Mise en œuvre terrain</p>
+                                <div class="mt-4 h-1 bg-black/30 rounded-full"></div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- Méthodes et outils -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-8 border-ls-red text-center">
-                        <div class="text-5xl mb-4">🎭</div>
-                        <h3 class="font-street text-xl font-bold text-ls-red mb-3 uppercase">Jeux de rôle</h3>
-                        <p class="text-gray-700">Simulations d'entretiens, de situations professionnelles</p>
+                    <!-- Contact -->
+                    <div class="bg-urban-black text-white rounded-xl p-8 text-center">
+                        <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-4 uppercase">Rejoignez le mouvement LS4YOU</h3>
+                        <p class="text-xl mb-6">Intéressé par le déploiement dans votre structure ?</p>
+                        <div class="flex flex-col md:flex-row gap-4 justify-center">
+                            <a href="mailto:contact@lifeskills4youth.eu" class="street-button px-8 py-4 rounded-lg font-street font-semibold uppercase bg-ls-turquoise text-white hover:scale-105 transition-all duration-300">
+                                📧 Nous contacter
+                            </a>
+                            <a href="https://www.lifeskills4youth.eu" target="_blank" rel="noopener noreferrer" class="street-button px-8 py-4 rounded-lg font-street font-semibold uppercase bg-ls-yellow text-urban-black hover:scale-105 transition-all duration-300">
+                                🌐 Site officiel
+                            </a>
+                        </div>
                     </div>
-                    
-                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-8 border-ls-yellow text-center">
-                        <div class="text-5xl mb-4">🧩</div>
-                        <h3 class="font-street text-xl font-bold text-ls-yellow mb-3 uppercase">Ateliers pratiques</h3>
-                        <p class="text-gray-700">Exercices concrets, mises en situation réelles</p>
+                </div>
+            </div>
+
+            <!-- Sous-section Formation -->
+            <div id="sub-formation" class="sub-section hidden">
+                <div class="text-center mb-8">
+                    <h2 class="font-street text-3xl font-bold text-ls-turquoise mb-4 uppercase">Formation</h2>
+                    <p class="text-xl text-gray-700">Principes pédagogiques</p>
+                </div>
+                
+                <div class="space-y-12">
+                    <!-- 1. Pédagogie expérientielle -->
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-turquoise">
+                        <div class="flex items-center mb-6">
+                            <div class="text-6xl mr-6">🎯</div>
+                            <div>
+                                <h3 class="font-street text-2xl font-bold text-ls-turquoise uppercase">Pédagogie expérientielle</h3>
+                                <p class="text-gray-600 font-medium">Faire vivre les activités comme si les participants étaient eux-mêmes des jeunes</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="bg-gradient-to-br from-ls-turquoise to-teal-600 text-white p-6 rounded-xl">
+                                <h4 class="font-street text-lg font-bold mb-3 uppercase">🎭 Mise en situation</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• Jeux de rôle immersifs</li>
+                                    <li>• Cas réels d'accompagnement</li>
+                                    <li>• Expériences pratiques</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-ls-turquoise to-teal-600 text-white p-6 rounded-xl">
+                                <h4 class="font-street text-lg font-bold mb-3 uppercase">🔗 Lien direct jeunes</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• Transposabilité immédiate</li>
+                                    <li>• Compréhension des enjeux</li>
+                                    <li>• Empathie renforcée</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                    
-                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-8 border-ls-turquoise text-center">
-                        <div class="text-5xl mb-4">💭</div>
-                        <h3 class="font-street text-xl font-bold text-ls-turquoise mb-3 uppercase">Réflexion guidée</h3>
-                        <p class="text-gray-700">Débriefings, auto-évaluation, projection</p>
+
+                    <!-- 2. Co-construction -->
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-yellow">
+                        <div class="flex items-center mb-6">
+                            <div class="text-6xl mr-6">🤝</div>
+                            <div>
+                                <h3 class="font-street text-2xl font-bold text-ls-yellow uppercase">Co-construction</h3>
+                                <p class="text-gray-600 font-medium">Placer le collectif au cœur de l'apprentissage</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-gradient-to-br from-ls-yellow to-yellow-600 text-urban-black p-6 rounded-xl">
+                                <h4 class="font-street text-lg font-bold mb-3 uppercase">👥 Travail collaboratif</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• Petits groupes</li>
+                                    <li>• Feedbacks entre pairs</li>
+                                    <li>• Intelligence collective</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-ls-yellow to-yellow-600 text-urban-black p-6 rounded-xl">
+                                <h4 class="font-street text-lg font-bold mb-3 uppercase">💡 Partage d'expériences</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• Valorisation savoir-faire</li>
+                                    <li>• Retours d'expérience</li>
+                                    <li>• Bonnes pratiques</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-ls-yellow to-yellow-600 text-urban-black p-6 rounded-xl">
+                                <h4 class="font-street text-lg font-bold mb-3 uppercase">🔧 Appropriation commune</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• Co-construction usages</li>
+                                    <li>• Adaptation contexte</li>
+                                    <li>• Engagement collectif</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Apprentissage hybride -->
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-red">
+                        <div class="flex items-center mb-6">
+                            <div class="text-6xl mr-6">🌐</div>
+                            <div>
+                                <h3 class="font-street text-2xl font-bold text-ls-red uppercase">Apprentissage hybride</h3>
+                                <p class="text-gray-600 font-medium">Combiner le meilleur du numérique et du présentiel</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-gradient-to-br from-ls-red to-red-700 text-white p-6 rounded-xl">
+                                <h4 class="font-street text-lg font-bold mb-3 uppercase">📱 Avant formation</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• E-learning théorie</li>
+                                    <li>• Socle commun</li>
+                                    <li>• Auto-positionnement</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-ls-red to-red-700 text-white p-6 rounded-xl">
+                                <h4 class="font-street text-lg font-bold mb-3 uppercase">🏢 Pendant formation</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• Présentiel interactif</li>
+                                    <li>• Expériences pratiques</li>
+                                    <li>• Échanges enrichissants</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-ls-red to-red-700 text-white p-6 rounded-xl">
+                                <h4 class="font-street text-lg font-bold mb-3 uppercase">🚀 Après formation</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• Intégration terrain</li>
+                                    <li>• Tutorat personnalisé</li>
+                                    <li>• Retours collectifs</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Durabilité -->
+                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-turquoise">
+                        <div class="flex items-center mb-6">
+                            <div class="text-6xl mr-6">🌱</div>
+                            <div>
+                                <h3 class="font-street text-2xl font-bold text-ls-turquoise uppercase">Durabilité</h3>
+                                <p class="text-gray-600 font-medium">Assurer l'ancrage à long terme de la méthode LS4YOU</p>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            <div class="bg-gradient-to-br from-ls-turquoise to-teal-600 text-white p-6 rounded-xl">
+                                <h4 class="font-street text-lg font-bold mb-3 uppercase">📋 Plan d'action concret</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• Engagements adaptés</li>
+                                    <li>• Objectifs réalisables</li>
+                                    <li>• Calendrier personnalisé</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-ls-turquoise to-teal-600 text-white p-6 rounded-xl">
+                                <h4 class="font-street text-lg font-bold mb-3 uppercase">🎯 Suivi et tutorat</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• Accompagnement 4-6 semaines</li>
+                                    <li>• Points réguliers</li>
+                                    <li>• Ajustements continus</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="bg-gradient-to-br from-ls-turquoise to-teal-600 text-white p-6 rounded-xl">
+                                <h4 class="font-street text-lg font-bold mb-3 uppercase">🔄 Intégration pratiques</h4>
+                                <ul class="space-y-2 text-sm">
+                                    <li>• LS4YOU vivant</li>
+                                    <li>• Ancrage durable</li>
+                                    <li>• Évolution continue</li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -937,7 +996,7 @@
     <script>
         function showPage(pageId) {
             // Cacher toutes les pages
-            const pages = ['home', 'intro', 'domaines', 'outils', 'phases', 'deploiement', 'formation', 'quiz'];
+            const pages = ['home', 'intro', 'domaines', 'outils', 'methode', 'quiz'];
             pages.forEach(page => {
                 const element = document.getElementById(page);
                 if (element) element.classList.add('hidden');
@@ -947,6 +1006,43 @@
             const targetPage = document.getElementById(pageId);
             if (targetPage) {
                 targetPage.classList.remove('hidden');
+                
+                // Si c'est la page méthode, afficher la première sous-section par défaut
+                if (pageId === 'methode') {
+                    showSubSection('phases');
+                }
+            }
+        }
+
+        function showSubSection(subSectionId) {
+            // Cacher toutes les sous-sections
+            const subSections = ['sub-phases', 'sub-deploiement', 'sub-formation'];
+            subSections.forEach(section => {
+                const element = document.getElementById(section);
+                if (element) element.classList.add('hidden');
+            });
+            
+            // Réinitialiser tous les boutons
+            const buttons = ['btn-phases', 'btn-deploiement', 'btn-formation'];
+            buttons.forEach(btnId => {
+                const btn = document.getElementById(btnId);
+                if (btn) {
+                    btn.classList.remove('bg-ls-turquoise', 'text-white');
+                    btn.classList.add('text-urban-black');
+                }
+            });
+            
+            // Afficher la sous-section demandée
+            const targetSubSection = document.getElementById('sub-' + subSectionId);
+            if (targetSubSection) {
+                targetSubSection.classList.remove('hidden');
+            }
+            
+            // Activer le bouton correspondant
+            const activeBtn = document.getElementById('btn-' + subSectionId);
+            if (activeBtn) {
+                activeBtn.classList.add('bg-ls-turquoise', 'text-white');
+                activeBtn.classList.remove('text-urban-black');
             }
         }
 
@@ -1217,6 +1313,6 @@
             showPage('home');
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'983931a5a36ad107',t:'MTc1ODYyMTYxNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9839c5f2846fd3e4',t:'MTc1ODYyNzY4OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
 
