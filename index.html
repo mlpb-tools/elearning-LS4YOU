@@ -996,25 +996,7 @@
     </div>
 
     <script>
-        function showPage(pageId) {
-            // Cacher toutes les pages
-            const pages = ['home', 'intro', 'domaines', 'outils', 'methode', 'quiz'];
-            pages.forEach(page => {
-                const element = document.getElementById(page);
-                if (element) element.classList.add('hidden');
-            });
-            
-            // Afficher la page demandée
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.remove('hidden');
-                
-                // Si c'est la page méthode, afficher la première sous-section par défaut
-                if (pageId === 'methode') {
-                    showSubSection('phases');
-                }
-            }
-        }
+
 
         function showSubSection(subSectionId) {
             // Cacher toutes les sous-sections
@@ -1310,10 +1292,48 @@
             document.getElementById('quiz-welcome').classList.remove('hidden');
         }
 
+        // Gestion des URLs
+        function handleURL() {
+            const hash = window.location.hash.substring(1); // Enlever le #
+            if (hash && ['home', 'intro', 'domaines', 'outils', 'methode', 'quiz'].includes(hash)) {
+                showPage(hash);
+            } else {
+                showPage('home');
+            }
+        }
+
+        function showPage(pageId) {
+            // Cacher toutes les pages
+            const pages = ['home', 'intro', 'domaines', 'outils', 'methode', 'quiz'];
+            pages.forEach(page => {
+                const element = document.getElementById(page);
+                if (element) element.classList.add('hidden');
+            });
+            
+            // Afficher la page demandée
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.remove('hidden');
+                
+                // Mettre à jour l'URL
+                window.location.hash = pageId;
+                
+                // Si c'est la page méthode, afficher la première sous-section par défaut
+                if (pageId === 'methode') {
+                    showSubSection('phases');
+                }
+            }
+        }
+
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
-            showPage('home');
+            // Écouter les changements d'URL
+            window.addEventListener('hashchange', handleURL);
+            
+            // Gérer l'URL initiale
+            handleURL();
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9839cb46f38ed3e4',t:'MTc1ODYyNzkwNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'986c2107b18d026f',t:'MTc1OTE1NTcwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
+
