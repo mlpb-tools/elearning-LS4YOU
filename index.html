@@ -43,6 +43,7 @@
         body {
             background: #ffffff;
             background-attachment: fixed;
+            box-sizing: border-box;
         }
         
         .street-card {
@@ -163,9 +164,26 @@
             z-index: -1;
             color: rgba(0, 0, 0, 0.3);
         }
+
+        .language-selector {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 8px center;
+            background-size: 16px;
+            padding-right: 32px;
+        }
     </style>
 </head>
 <body class="font-body text-urban-black">
+    <!-- Sélecteur de langue -->
+    <div class="fixed top-4 right-4 z-50">
+        <select id="language-selector" onchange="changeLanguage(this.value)" class="street-button language-selector px-4 py-2 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide cursor-pointer">
+            <option value="fr">🇫🇷 Français</option>
+            <option value="en">🇬🇧 English</option>
+        </select>
+    </div>
+
     <!-- Page d'accueil -->
     <div id="home" class="min-h-screen p-6 brick-wall">
         <div class="max-w-7xl mx-auto">
@@ -182,43 +200,42 @@
                         </h1>
                     </div>
                     <div class="bg-urban-black text-white px-8 py-4 inline-block transform -rotate-2 mb-8">
-                        <span class="font-street text-2xl md:text-3xl font-semibold tracking-wider">E-LEARNING</span>
+                        <span class="font-street text-2xl md:text-3xl font-semibold tracking-wider" data-translate="subtitle">E-LEARNING</span>
                     </div>
-
                 </div>
             </div>
 
-            <!-- Menu des 7 blocs - Style Street Art -->
+            <!-- Menu des 5 blocs - Style Street Art -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
                 <!-- Bloc 1 - Introduction -->
                 <div onclick="showPage('intro')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-red text-white">
                     <div class="text-5xl mb-4">🎯</div>
-                    <h3 class="font-street text-xl font-bold text-ls-red mb-2 uppercase tracking-wide">Introduction</h3>
-                    <p class="text-gray-300 font-medium">Découvrez le projet LS4YOU</p>
+                    <h3 class="font-street text-xl font-bold text-ls-red mb-2 uppercase tracking-wide" data-translate="menu-intro">Introduction</h3>
+                    <p class="text-gray-300 font-medium" data-translate="menu-intro-desc">Découvrez le projet LS4YOU</p>
                     <div class="absolute top-2 right-2 w-3 h-3 bg-ls-red rounded-full animate-pulse"></div>
                 </div>
 
                 <!-- Bloc 2 - 4 domaines -->
                 <div onclick="showPage('domaines')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-yellow text-white">
                     <div class="text-5xl mb-4">🧩</div>
-                    <h3 class="font-street text-xl font-bold text-ls-yellow mb-2 uppercase tracking-wide">4 Domaines</h3>
-                    <p class="text-gray-300 font-medium">Les compétences essentielles</p>
+                    <h3 class="font-street text-xl font-bold text-ls-yellow mb-2 uppercase tracking-wide" data-translate="menu-domains">4 Domaines</h3>
+                    <p class="text-gray-300 font-medium" data-translate="menu-domains-desc">Les compétences essentielles</p>
                     <div class="absolute top-2 right-2 w-3 h-3 bg-ls-yellow rounded-full animate-pulse"></div>
                 </div>
 
                 <!-- Bloc 3 - Outils -->
                 <div onclick="showPage('outils')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-turquoise text-white">
                     <div class="text-5xl mb-4">🛠️</div>
-                    <h3 class="font-street text-xl font-bold text-ls-turquoise mb-2 uppercase tracking-wide">Outils LS4YOU</h3>
-                    <p class="text-gray-300 font-medium">Bibliothèque interactive</p>
+                    <h3 class="font-street text-xl font-bold text-ls-turquoise mb-2 uppercase tracking-wide" data-translate="menu-tools">Outils LS4YOU</h3>
+                    <p class="text-gray-300 font-medium" data-translate="menu-tools-desc">Bibliothèque interactive</p>
                     <div class="absolute top-2 right-2 w-3 h-3 bg-ls-turquoise rounded-full animate-pulse"></div>
                 </div>
 
                 <!-- Bloc 4 - Méthode -->
                 <div onclick="showPage('methode')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-red text-white">
                     <div class="text-5xl mb-4">⚙️</div>
-                    <h3 class="font-street text-xl font-bold text-ls-red mb-2 uppercase tracking-wide">Méthode</h3>
-                    <p class="text-gray-300 font-medium">Phases, déploiement et formation</p>
+                    <h3 class="font-street text-xl font-bold text-ls-red mb-2 uppercase tracking-wide" data-translate="menu-method">Méthode</h3>
+                    <p class="text-gray-300 font-medium" data-translate="menu-method-desc">Phases, déploiement et formation</p>
                     <div class="absolute top-2 right-2 w-3 h-3 bg-ls-red rounded-full animate-pulse"></div>
                 </div>
             </div>
@@ -227,8 +244,8 @@
             <div class="flex justify-center mt-8">
                 <div onclick="showPage('quiz')" class="street-card rounded-xl p-6 cursor-pointer transition-all duration-300 tag-style border-ls-red text-white neon-border max-w-sm">
                     <div class="text-5xl mb-4 text-center">✅</div>
-                    <h3 class="font-street text-xl font-bold text-ls-red mb-2 uppercase tracking-wide text-center">Quiz Final</h3>
-                    <p class="text-gray-300 font-medium text-center">Testez vos connaissances</p>
+                    <h3 class="font-street text-xl font-bold text-ls-red mb-2 uppercase tracking-wide text-center" data-translate="menu-quiz">Quiz Final</h3>
+                    <p class="text-gray-300 font-medium text-center" data-translate="menu-quiz-desc">Testez vos connaissances</p>
                     <div class="absolute top-2 right-2 w-3 h-3 bg-ls-red rounded-full animate-pulse"></div>
                 </div>
             </div>
@@ -239,66 +256,66 @@
     <div id="intro" class="min-h-screen p-6 brick-wall hidden">
         <div class="max-w-5xl mx-auto">
             <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
-                ⬅ Retour au menu principal
+                <span data-translate="back-menu">⬅ Retour au menu principal</span>
             </button>
             
             <div class="text-center mb-12">
                 <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="Introduction">
-                    <span class="graffiti-text" style="--color-1: #E63946; --color-2: #FFD166;">Introduction</span>
+                    <span class="graffiti-text" style="--color-1: #E63946; --color-2: #FFD166;" data-translate="intro-title">Introduction</span>
                 </h1>
                 <div class="bg-ls-red text-white px-6 py-2 inline-block transform rotate-1">
-                    <span class="font-street text-lg font-semibold">PROJET LS4YOU</span>
+                    <span class="font-street text-lg font-semibold" data-translate="intro-subtitle">PROJET LS4YOU</span>
                 </div>
             </div>
             
             <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 mb-8 shadow-street border-l-8 border-ls-red">
                 <div class="text-center mb-8">
                     <div class="text-7xl mb-6">🎯</div>
-                    <h2 class="font-street text-3xl font-bold text-ls-red mb-6 uppercase">Le défi des jeunes européens</h2>
+                    <h2 class="font-street text-3xl font-bold text-ls-red mb-6 uppercase" data-translate="intro-challenge-title">Le défi des jeunes européens</h2>
                 </div>
                 
                 <div class="space-y-8 text-lg leading-relaxed">
-                    <p class="text-gray-800">
+                    <p class="text-gray-800" data-translate="intro-challenge-text">
                         Les jeunes européens rencontrent aujourd'hui de nombreux défis qui dépassent la simple réussite scolaire ou professionnelle. Les transitions vers l'emploi, l'autonomie et la vie adulte exigent de nouvelles compétences : savoir communiquer, gérer son stress, s'organiser au quotidien, coopérer avec les autres et se projeter dans l'avenir.
                     </p>
                     
                     <div class="bg-urban-black text-white p-8 rounded-lg border-l-6 border-ls-turquoise">
-                        <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-4 uppercase">Life Skills for Youth (LS4YOU)</h3>
-                        <p class="text-gray-200">
+                        <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-4 uppercase" data-translate="intro-ls4you-title">Life Skills for Youth (LS4YOU)</h3>
+                        <p class="text-gray-200" data-translate="intro-ls4you-text">
                             Le projet LS4YOU a été conçu pour répondre à un défi majeur : <strong class="text-ls-red">soutenir l'intégration sociale et professionnelle des jeunes</strong> en leur donnant les moyens de développer des ressources personnelles, sociales et pratiques qui vont au-delà des acquis de formation initiale et des compétences professionnelles.
                         </p>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div class="bg-gradient-to-br from-ls-red to-red-700 text-white p-8 rounded-xl shadow-tag">
-                            <h4 class="font-street font-bold mb-4 text-xl uppercase">Exemples concrets</h4>
+                            <h4 class="font-street font-bold mb-4 text-xl uppercase" data-translate="intro-examples-title">Exemples concrets</h4>
                             <ul class="space-y-3">
                                 <li class="flex items-center space-x-3">
                                     <span class="text-2xl">💼</span>
-                                    <span>Se présenter en entretien</span>
+                                    <span data-translate="intro-example-1">Se présenter en entretien</span>
                                 </li>
                                 <li class="flex items-center space-x-3">
                                     <span class="text-2xl">🧘</span>
-                                    <span>Gérer le stress</span>
+                                    <span data-translate="intro-example-2">Gérer le stress</span>
                                 </li>
                                 <li class="flex items-center space-x-3">
                                     <span class="text-2xl">💰</span>
-                                    <span>Organiser un budget</span>
+                                    <span data-translate="intro-example-3">Organiser un budget</span>
                                 </li>
                                 <li class="flex items-center space-x-3">
                                     <span class="text-2xl">🤝</span>
-                                    <span>Travailler en équipe</span>
+                                    <span data-translate="intro-example-4">Travailler en équipe</span>
                                 </li>
                                 <li class="flex items-center space-x-3">
                                     <span class="text-2xl">🎯</span>
-                                    <span>Se projeter dans l'avenir</span>
+                                    <span data-translate="intro-example-5">Se projeter dans l'avenir</span>
                                 </li>
                             </ul>
                         </div>
                         
                         <div class="bg-gradient-to-br from-ls-turquoise to-teal-600 text-white p-8 rounded-xl shadow-tag">
-                            <h4 class="font-street font-bold mb-4 text-xl uppercase">Qu'est-ce que les Life Skills ?</h4>
-                            <p class="leading-relaxed">
+                            <h4 class="font-street font-bold mb-4 text-xl uppercase" data-translate="intro-lifeskills-title">Qu'est-ce que les Life Skills ?</h4>
+                            <p class="leading-relaxed" data-translate="intro-lifeskills-text">
                                 Un ensemble de capacités pratiques, personnelles et sociales qui permettent aux jeunes de mieux se connaître, de communiquer efficacement, de gérer leurs émotions et leur quotidien, et de renforcer leur autonomie.
                             </p>
                         </div>
@@ -307,7 +324,7 @@
                     <div class="text-center mt-12">
                         <div class="inline-flex items-center space-x-6 bg-ls-yellow text-urban-black px-8 py-6 rounded-full shadow-street">
                             <span class="text-3xl">🌟</span>
-                            <span class="font-street font-bold text-xl uppercase">Un projet européen pour l'autonomie</span>
+                            <span class="font-street font-bold text-xl uppercase" data-translate="intro-european-project">Un projet européen pour l'autonomie</span>
                             <span class="text-3xl">🌟</span>
                         </div>
                     </div>
@@ -320,15 +337,15 @@
     <div id="domaines" class="min-h-screen p-6 brick-wall hidden">
         <div class="max-w-7xl mx-auto">
             <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
-                ⬅ Retour au menu principal
+                <span data-translate="back-menu">⬅ Retour au menu principal</span>
             </button>
             
             <div class="text-center mb-12">
                 <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="4 Domaines">
-                    <span class="graffiti-text" style="--color-1: #FFD166; --color-2: #06D6A0;">4 Domaines</span>
+                    <span class="graffiti-text" style="--color-1: #FFD166; --color-2: #06D6A0;" data-translate="domains-title">4 Domaines</span>
                 </h1>
                 <div class="bg-ls-yellow text-urban-black px-6 py-2 inline-block transform -rotate-1">
-                    <span class="font-street text-lg font-semibold uppercase">Compétences Essentielles</span>
+                    <span class="font-street text-lg font-semibold uppercase" data-translate="domains-subtitle">Compétences Essentielles</span>
                 </div>
             </div>
             
@@ -336,13 +353,13 @@
                 <!-- Personnalité -->
                 <div class="street-card rounded-xl p-8 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-street border-l-8 border-ls-turquoise hover:scale-105">
                     <div class="text-6xl mb-6 text-center">🌱</div>
-                    <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-3 uppercase text-center">Personnalité</h3>
-                    <p class="text-gray-700 text-center font-medium mb-4">Développement personnel et connaissance de soi</p>
+                    <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-3 uppercase text-center" data-translate="domain-personality">Personnalité</h3>
+                    <p class="text-gray-700 text-center font-medium mb-4" data-translate="domain-personality-desc">Développement personnel et connaissance de soi</p>
                     <div class="text-sm text-gray-600 space-y-2">
-                        <p>• Estime de soi et confiance</p>
-                        <p>• Gestion des émotions</p>
-                        <p>• Identification des forces</p>
-                        <p>• Développement de l'autonomie</p>
+                        <p data-translate="domain-personality-1">• Estime de soi et confiance</p>
+                        <p data-translate="domain-personality-2">• Gestion des émotions</p>
+                        <p data-translate="domain-personality-3">• Identification des forces</p>
+                        <p data-translate="domain-personality-4">• Développement de l'autonomie</p>
                     </div>
                     <div class="mt-4 h-2 bg-gradient-to-r from-ls-turquoise to-teal-500 rounded-full"></div>
                 </div>
@@ -350,13 +367,13 @@
                 <!-- Valorisation de soi -->
                 <div class="street-card rounded-xl p-8 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-street border-l-8 border-ls-red hover:scale-105">
                     <div class="text-6xl mb-6 text-center">🎤</div>
-                    <h3 class="font-street text-2xl font-bold text-ls-red mb-3 uppercase text-center">Valorisation</h3>
-                    <p class="text-gray-700 text-center font-medium mb-4">Communication et valorisation de ses compétences</p>
+                    <h3 class="font-street text-2xl font-bold text-ls-red mb-3 uppercase text-center" data-translate="domain-valorization">Valorisation</h3>
+                    <p class="text-gray-700 text-center font-medium mb-4" data-translate="domain-valorization-desc">Communication et valorisation de ses compétences</p>
                     <div class="text-sm text-gray-600 space-y-2">
-                        <p>• Techniques de présentation</p>
-                        <p>• Communication efficace</p>
-                        <p>• Mise en valeur des atouts</p>
-                        <p>• Préparation aux entretiens</p>
+                        <p data-translate="domain-valorization-1">• Techniques de présentation</p>
+                        <p data-translate="domain-valorization-2">• Communication efficace</p>
+                        <p data-translate="domain-valorization-3">• Mise en valeur des atouts</p>
+                        <p data-translate="domain-valorization-4">• Préparation aux entretiens</p>
                     </div>
                     <div class="mt-4 h-2 bg-gradient-to-r from-ls-red to-red-600 rounded-full"></div>
                 </div>
@@ -364,13 +381,13 @@
                 <!-- Forme physique et mentale -->
                 <div class="street-card rounded-xl p-8 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-street border-l-8 border-ls-yellow hover:scale-105">
                     <div class="text-6xl mb-6 text-center">🧘</div>
-                    <h3 class="font-street text-2xl font-bold text-ls-yellow mb-3 uppercase text-center">Bien-être</h3>
-                    <p class="text-gray-700 text-center font-medium mb-4">Santé mentale et équilibre de vie</p>
+                    <h3 class="font-street text-2xl font-bold text-ls-yellow mb-3 uppercase text-center" data-translate="domain-wellbeing">Bien-être</h3>
+                    <p class="text-gray-700 text-center font-medium mb-4" data-translate="domain-wellbeing-desc">Santé mentale et équilibre de vie</p>
                     <div class="text-sm text-gray-600 space-y-2">
-                        <p>• Gestion du stress</p>
-                        <p>• Équilibre vie pro/perso</p>
-                        <p>• Techniques de relaxation</p>
-                        <p>• Hygiène de vie</p>
+                        <p data-translate="domain-wellbeing-1">• Gestion du stress</p>
+                        <p data-translate="domain-wellbeing-2">• Équilibre vie pro/perso</p>
+                        <p data-translate="domain-wellbeing-3">• Techniques de relaxation</p>
+                        <p data-translate="domain-wellbeing-4">• Hygiène de vie</p>
                     </div>
                     <div class="mt-4 h-2 bg-gradient-to-r from-ls-yellow to-yellow-500 rounded-full"></div>
                 </div>
@@ -378,13 +395,13 @@
                 <!-- Ressources matérielles et financières -->
                 <div class="street-card rounded-xl p-8 transition-all duration-300 bg-white/95 backdrop-blur-sm shadow-street border-l-8 border-ls-turquoise hover:scale-105">
                     <div class="text-6xl mb-6 text-center">💶</div>
-                    <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-3 uppercase text-center">Finances</h3>
-                    <p class="text-gray-700 text-center font-medium mb-4">Gestion budgétaire et éducation financière</p>
+                    <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-3 uppercase text-center" data-translate="domain-finances">Finances</h3>
+                    <p class="text-gray-700 text-center font-medium mb-4" data-translate="domain-finances-desc">Gestion budgétaire et éducation financière</p>
                     <div class="text-sm text-gray-600 space-y-2">
-                        <p>• Élaboration d'un budget</p>
-                        <p>• Gestion des dépenses</p>
-                        <p>• Épargne et investissement</p>
-                        <p>• Droits et démarches</p>
+                        <p data-translate="domain-finances-1">• Élaboration d'un budget</p>
+                        <p data-translate="domain-finances-2">• Gestion des dépenses</p>
+                        <p data-translate="domain-finances-3">• Épargne et investissement</p>
+                        <p data-translate="domain-finances-4">• Droits et démarches</p>
                     </div>
                     <div class="mt-4 h-2 bg-gradient-to-r from-ls-turquoise to-teal-500 rounded-full"></div>
                 </div>
@@ -396,15 +413,15 @@
     <div id="outils" class="min-h-screen p-6 brick-wall hidden">
         <div class="max-w-7xl mx-auto">
             <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
-                ⬅ Retour au menu principal
+                <span data-translate="back-menu">⬅ Retour au menu principal</span>
             </button>
             
             <div class="text-center mb-12">
                 <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="Outils">
-                    <span class="graffiti-text" style="--color-1: #06D6A0; --color-2: #FFD166;">Outils LS4YOU</span>
+                    <span class="graffiti-text" style="--color-1: #06D6A0; --color-2: #FFD166;" data-translate="tools-title">Outils LS4YOU</span>
                 </h1>
                 <div class="bg-ls-turquoise text-white px-6 py-2 inline-block transform rotate-1">
-                    <span class="font-street text-lg font-semibold uppercase">Bibliothèque Interactive</span>
+                    <span class="font-street text-lg font-semibold uppercase" data-translate="tools-subtitle">Bibliothèque Interactive</span>
                 </div>
             </div>
             
@@ -412,11 +429,11 @@
                 <!-- Auto-évaluation -->
                 <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-turquoise">
                     <div class="text-6xl mb-6 text-center">📊</div>
-                    <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-4 uppercase text-center">Auto-évaluation</h3>
-                    <p class="text-gray-700 mb-6 text-center font-medium">Outil d'auto-positionnement pour les jeunes</p>
+                    <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-4 uppercase text-center" data-translate="tool-assessment">Auto-évaluation</h3>
+                    <p class="text-gray-700 mb-6 text-center font-medium" data-translate="tool-assessment-desc">Outil d'auto-positionnement pour les jeunes</p>
                     <div class="text-center">
                         <a href="https://mlpb-tools.github.io/Auto--valuation-LS4Y/" target="_blank" rel="noopener noreferrer" class="street-button inline-flex items-center px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide hover:scale-105 transition-all duration-300">
-                            📊 Accéder à l'outil
+                            <span data-translate="tool-assessment-btn">📊 Accéder à l'outil</span>
                             <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                             </svg>
@@ -427,11 +444,11 @@
                 <!-- Guidebook -->
                 <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-red">
                     <div class="text-6xl mb-6 text-center">📖</div>
-                    <h3 class="font-street text-2xl font-bold text-ls-red mb-4 uppercase text-center">Guidebook</h3>
-                    <p class="text-gray-700 mb-6 text-center font-medium">Guide méthodologique pour les professionnels</p>
+                    <h3 class="font-street text-2xl font-bold text-ls-red mb-4 uppercase text-center" data-translate="tool-guidebook">Guidebook</h3>
+                    <p class="text-gray-700 mb-6 text-center font-medium" data-translate="tool-guidebook-desc">Guide méthodologique pour les professionnels</p>
                     <div class="text-center">
                         <a href="https://www.canva.com/design/DAGyBW1ulz4/IqIVXBCoWOzahB6ZFOGOrw/edit" target="_blank" rel="noopener noreferrer" class="street-button inline-flex items-center px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide hover:scale-105 transition-all duration-300">
-                            📖 Consulter le guide
+                            <span data-translate="tool-guidebook-btn">📖 Consulter le guide</span>
                             <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                             </svg>
@@ -442,11 +459,11 @@
                 <!-- Plateforme numérique -->
                 <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-yellow">
                     <div class="text-6xl mb-6 text-center">💻</div>
-                    <h3 class="font-street text-2xl font-bold text-ls-yellow mb-4 uppercase text-center">Plateforme</h3>
-                    <p class="text-gray-700 mb-6 text-center font-medium">Environnement digital interactif</p>
+                    <h3 class="font-street text-2xl font-bold text-ls-yellow mb-4 uppercase text-center" data-translate="tool-platform">Plateforme</h3>
+                    <p class="text-gray-700 mb-6 text-center font-medium" data-translate="tool-platform-desc">Environnement digital interactif</p>
                     <div class="text-center">
                         <a href="https://www.lifeskills4youth.eu/fr/plateforme-dapprentissage/" target="_blank" rel="noopener noreferrer" class="street-button inline-flex items-center px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide hover:scale-105 transition-all duration-300">
-                            🌐 Accéder à la plateforme
+                            <span data-translate="tool-platform-btn">🌐 Accéder à la plateforme</span>
                             <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                             </svg>
@@ -457,11 +474,11 @@
                 <!-- Matrice de correspondance -->
                 <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-turquoise">
                     <div class="text-6xl mb-6 text-center">🎯</div>
-                    <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-4 uppercase text-center">Matrice</h3>
-                    <p class="text-gray-700 mb-6 text-center font-medium">Outil de ciblage et d'orientation</p>
+                    <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-4 uppercase text-center" data-translate="tool-matrix">Matrice</h3>
+                    <p class="text-gray-700 mb-6 text-center font-medium" data-translate="tool-matrix-desc">Outil de ciblage et d'orientation</p>
                     <div class="text-center">
                         <a href="https://mlpb-tools.github.io/matrice-LS4Y/" target="_blank" rel="noopener noreferrer" class="street-button inline-flex items-center px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide hover:scale-105 transition-all duration-300">
-                            🔗 Accéder à la matrice
+                            <span data-translate="tool-matrix-btn">🔗 Accéder à la matrice</span>
                             <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path>
                             </svg>
@@ -476,446 +493,49 @@
     <div id="methode" class="min-h-screen p-6 brick-wall hidden">
         <div class="max-w-7xl mx-auto">
             <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
-                ⬅ Retour au menu principal
+                <span data-translate="back-menu">⬅ Retour au menu principal</span>
             </button>
             
             <div class="text-center mb-12">
                 <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="Méthode">
-                    <span class="graffiti-text" style="--color-1: #E63946; --color-2: #FFD166;">Méthode</span>
+                    <span class="graffiti-text" style="--color-1: #E63946; --color-2: #FFD166;" data-translate="method-title">Méthode</span>
                 </h1>
                 <div class="bg-ls-red text-white px-6 py-2 inline-block transform rotate-1">
-                    <span class="font-street text-lg font-semibold uppercase">Phases, Déploiement et Formation</span>
+                    <span class="font-street text-lg font-semibold uppercase" data-translate="method-subtitle">Phases, Déploiement et Formation</span>
                 </div>
             </div>
             
-            <!-- Navigation des sous-sections -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12">
-                <button onclick="showSubSection('phases')" id="btn-phases" class="street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide bg-ls-turquoise text-white">
-                    📋 Phases & Livrables
-                </button>
-                <button onclick="showSubSection('deploiement')" id="btn-deploiement" class="street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
-                    🚀 Déploiement
-                </button>
-                <button onclick="showSubSection('formation')" id="btn-formation" class="street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
-                    🎓 Formation
-                </button>
-            </div>
-
-            <!-- Sous-section Phases & Livrables -->
-            <div id="sub-phases" class="sub-section">
+            <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-red">
                 <div class="text-center mb-8">
-                    <h2 class="font-street text-3xl font-bold text-ls-turquoise mb-4 uppercase">Phases & Livrables</h2>
-                    <p class="text-xl text-gray-700">Ce qu'on a fait</p>
+                    <div class="text-7xl mb-6">⚙️</div>
+                    <h2 class="font-street text-3xl font-bold text-ls-red mb-6 uppercase">Approche méthodologique LS4YOU</h2>
                 </div>
                 
-                <!-- Frise chronologique interactive -->
-                <div class="relative">
-                    <!-- Ligne de temps -->
-                    <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-ls-turquoise via-ls-yellow to-ls-red"></div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="text-center p-6 bg-gradient-to-br from-ls-turquoise to-teal-600 text-white rounded-xl">
+                        <div class="text-5xl mb-4">🎯</div>
+                        <h3 class="font-street text-xl font-bold mb-3 uppercase">Pédagogie expérientielle</h3>
+                        <p class="text-sm">Apprendre par l'expérience et la mise en situation réelle</p>
+                    </div>
                     
-                    <div class="space-y-16">
-                        <!-- WP2 - Construire -->
-                        <div class="relative">
-                            <div class="flex items-center justify-center mb-8">
-                                <div class="bg-ls-turquoise text-white px-8 py-4 rounded-full font-street text-2xl font-bold uppercase shadow-street">
-                                    🏗️ WP2 - Construire
-                                </div>
-                            </div>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                <!-- A1 Kick-off -->
-                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-turquoise hover:scale-105 transition-all duration-300">
-                                    <div class="text-4xl mb-4 text-center">🚀</div>
-                                    <h4 class="font-street text-lg font-bold text-ls-turquoise mb-3 uppercase">A1 Kick-off meeting</h4>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>• Lancement projet</li>
-                                        <li>• Plan d'action</li>
-                                        <li>• Modèles de suivi</li>
-                                        <li>• Plan d'évaluation</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- A2 Grille compétences -->
-                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-turquoise hover:scale-105 transition-all duration-300">
-                                    <div class="text-4xl mb-4 text-center">📊</div>
-                                    <h4 class="font-street text-lg font-bold text-ls-turquoise mb-3 uppercase">A2 Grille compétences</h4>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>• Mise en commun savoirs</li>
-                                        <li>• Référentiels communs</li>
-                                        <li>• Bonnes pratiques</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- A3 Résidence -->
-                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-turquoise hover:scale-105 transition-all duration-300">
-                                    <div class="text-4xl mb-4 text-center">🏠</div>
-                                    <h4 class="font-street text-lg font-bold text-ls-turquoise mb-3 uppercase">A3 Résidence pédagogique</h4>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>• Appropriation LS4YOU</li>
-                                        <li>• Échanges pratiques</li>
-                                        <li>• Renforcement pédagogique</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- A4 Guide -->
-                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-turquoise hover:scale-105 transition-all duration-300">
-                                    <div class="text-4xl mb-4 text-center">📖</div>
-                                    <h4 class="font-street text-lg font-bold text-ls-turquoise mb-3 uppercase">A4 Guide LS4YOU</h4>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>• Livret animateurs</li>
-                                        <li>• Guide conseillers</li>
-                                        <li>• Ressources numériques</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- A5 Localisation -->
-                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-turquoise hover:scale-105 transition-all duration-300">
-                                    <div class="text-4xl mb-4 text-center">🌍</div>
-                                    <h4 class="font-street text-lg font-bold text-ls-turquoise mb-3 uppercase">A5 Localisation</h4>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>• Traduction</li>
-                                        <li>• Adaptation culturelle</li>
-                                        <li>• Mise en forme digitale</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- WP3 - Développer -->
-                        <div class="relative">
-                            <div class="flex items-center justify-center mb-8">
-                                <div class="bg-ls-yellow text-urban-black px-8 py-4 rounded-full font-street text-2xl font-bold uppercase shadow-street">
-                                    💻 WP3 - Développer
-                                </div>
-                            </div>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                                <!-- A1 Plateforme -->
-                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-yellow hover:scale-105 transition-all duration-300">
-                                    <div class="text-4xl mb-4 text-center">🌐</div>
-                                    <h4 class="font-street text-lg font-bold text-ls-yellow mb-3 uppercase">A1 Plateforme</h4>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>• Design UX</li>
-                                        <li>• Développement web</li>
-                                        <li>• Charte graphique</li>
-                                        <li>• Tests utilisateurs</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- A2 Toolbox -->
-                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-yellow hover:scale-105 transition-all duration-300">
-                                    <div class="text-4xl mb-4 text-center">🧰</div>
-                                    <h4 class="font-street text-lg font-bold text-ls-yellow mb-3 uppercase">A2 Toolbox</h4>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>• Contenus e-learning</li>
-                                        <li>• Vidéos & quiz</li>
-                                        <li>• Fiches pratiques</li>
-                                        <li>• Jeux interactifs</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- A3 Formation -->
-                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-yellow hover:scale-105 transition-all duration-300">
-                                    <div class="text-4xl mb-4 text-center">🎓</div>
-                                    <h4 class="font-street text-lg font-bold text-ls-yellow mb-3 uppercase">A3 Formation formateurs</h4>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>• Coordination pédagogique</li>
-                                        <li>• Déroulé détaillé</li>
-                                        <li>• Animation & évaluation</li>
-                                    </ul>
-                                </div>
-                                
-                                <!-- A4 Localisation -->
-                                <div class="bg-white/95 backdrop-blur-sm rounded-xl p-6 shadow-street border-l-6 border-ls-yellow hover:scale-105 transition-all duration-300">
-                                    <div class="text-4xl mb-4 text-center">🗺️</div>
-                                    <h4 class="font-street text-lg font-bold text-ls-yellow mb-3 uppercase">A4 Localisation</h4>
-                                    <ul class="text-sm text-gray-700 space-y-1">
-                                        <li>• Traduction</li>
-                                        <li>• Adaptation nationale</li>
-                                        <li>• Intégration pratiques</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- WP4 - Déployer -->
-                        <div class="relative">
-                            <div class="flex items-center justify-center mb-8">
-                                <div class="bg-ls-red text-white px-8 py-4 rounded-full font-street text-2xl font-bold uppercase shadow-street">
-                                    🚀 WP4 - Déployer
-                                </div>
-                            </div>
-                            
-                            <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-red">
-                                <div class="text-center mb-6">
-                                    <div class="text-6xl mb-4">🎯</div>
-                                    <h3 class="font-street text-2xl font-bold text-ls-red mb-4 uppercase">Phase de mise en œuvre terrain</h3>
-                                </div>
-                                
-                                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                    <div class="text-center p-6 bg-gradient-to-br from-ls-red to-red-700 text-white rounded-xl">
-                                        <div class="text-4xl mb-4">👥</div>
-                                        <h4 class="font-street font-bold mb-3 uppercase">Tests terrain</h4>
-                                        <p class="text-sm">Les professionnels testent les outils avec les jeunes</p>
-                                    </div>
-                                    
-                                    <div class="text-center p-6 bg-gradient-to-br from-ls-red to-red-700 text-white rounded-xl">
-                                        <div class="text-4xl mb-4">🔄</div>
-                                        <h4 class="font-street font-bold mb-3 uppercase">Ateliers retour</h4>
-                                        <p class="text-sm">Évaluation ergonomie, qualité et impact</p>
-                                    </div>
-                                    
-                                    <div class="text-center p-6 bg-gradient-to-br from-ls-red to-red-700 text-white rounded-xl">
-                                        <div class="text-4xl mb-4">📈</div>
-                                        <h4 class="font-street font-bold mb-3 uppercase">Capitalisation</h4>
-                                        <p class="text-sm">Amélioration méthode et outillage</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="text-center p-6 bg-gradient-to-br from-ls-yellow to-yellow-600 text-urban-black rounded-xl">
+                        <div class="text-5xl mb-4">🤝</div>
+                        <h3 class="font-street text-xl font-bold mb-3 uppercase">Co-construction</h3>
+                        <p class="text-sm">Placer le collectif au cœur de l'apprentissage</p>
                     </div>
-                </div>
-            </div>
-
-            <!-- Sous-section Déploiement -->
-            <div id="sub-deploiement" class="sub-section hidden">
-                <div class="text-center mb-8">
-                    <h2 class="font-street text-3xl font-bold text-ls-yellow mb-4 uppercase">Déploiement</h2>
-                    <p class="text-xl text-gray-700">Ce qu'on va faire</p>
+                    
+                    <div class="text-center p-6 bg-gradient-to-br from-ls-red to-red-700 text-white rounded-xl">
+                        <div class="text-5xl mb-4">🌐</div>
+                        <h3 class="font-street text-xl font-bold mb-3 uppercase">Apprentissage hybride</h3>
+                        <p class="text-sm">Combiner numérique et présentiel pour plus d'efficacité</p>
+                    </div>
                 </div>
                 
-                <div class="space-y-8">
-                    <!-- 6 étapes interactives -->
-                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-yellow">
-                        <div class="text-center mb-8">
-                            <div class="text-7xl mb-6">🎯</div>
-                            <h2 class="font-street text-3xl font-bold text-ls-yellow mb-6 uppercase">6 étapes interactives</h2>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            <!-- Étape 1 - Test interne -->
-                            <div class="text-center p-6 bg-gradient-to-br from-ls-turquoise to-teal-600 text-white rounded-xl hover:scale-105 transition-all duration-300 shadow-street">
-                                <div class="text-5xl mb-4">🔬</div>
-                                <h3 class="font-street text-xl font-bold mb-3 uppercase">Test interne</h3>
-                                <p class="font-medium">Validation en équipe</p>
-                                <div class="mt-4 h-1 bg-white/30 rounded-full"></div>
-                            </div>
-                            
-                            <!-- Étape 2 - Test jeunes -->
-                            <div class="text-center p-6 bg-gradient-to-br from-ls-red to-red-700 text-white rounded-xl hover:scale-105 transition-all duration-300 shadow-street">
-                                <div class="text-5xl mb-4">👥</div>
-                                <h3 class="font-street text-xl font-bold mb-3 uppercase">Test jeunes</h3>
-                                <p class="font-medium">Retours utilisateurs</p>
-                                <div class="mt-4 h-1 bg-white/30 rounded-full"></div>
-                            </div>
-                            
-                            <!-- Étape 3 - Version finale -->
-                            <div class="text-center p-6 bg-gradient-to-br from-ls-yellow to-yellow-600 text-urban-black rounded-xl hover:scale-105 transition-all duration-300 shadow-street">
-                                <div class="text-5xl mb-4">✨</div>
-                                <h3 class="font-street text-xl font-bold mb-3 uppercase">Version finale</h3>
-                                <p class="font-medium">Intégration améliorations</p>
-                                <div class="mt-4 h-1 bg-black/30 rounded-full"></div>
-                            </div>
-                            
-                            <!-- Étape 4 - Formation -->
-                            <div class="text-center p-6 bg-gradient-to-br from-ls-turquoise to-teal-600 text-white rounded-xl hover:scale-105 transition-all duration-300 shadow-street">
-                                <div class="text-5xl mb-4">🎓</div>
-                                <h3 class="font-street text-xl font-bold mb-3 uppercase">Formation</h3>
-                                <p class="font-medium">Formation des équipes</p>
-                                <div class="mt-4 h-1 bg-white/30 rounded-full"></div>
-                            </div>
-                            
-                            <!-- Étape 5 - Communication -->
-                            <div class="text-center p-6 bg-gradient-to-br from-ls-red to-red-700 text-white rounded-xl hover:scale-105 transition-all duration-300 shadow-street">
-                                <div class="text-5xl mb-4">📢</div>
-                                <h3 class="font-street text-xl font-bold mb-3 uppercase">Communication</h3>
-                                <p class="font-medium">Stratégie de diffusion</p>
-                                <div class="mt-4 h-1 bg-white/30 rounded-full"></div>
-                            </div>
-                            
-                            <!-- Étape 6 - Intégration -->
-                            <div class="text-center p-6 bg-gradient-to-br from-ls-yellow to-yellow-600 text-urban-black rounded-xl hover:scale-105 transition-all duration-300 shadow-street">
-                                <div class="text-5xl mb-4">🔗</div>
-                                <h3 class="font-street text-xl font-bold mb-3 uppercase">Intégration</h3>
-                                <p class="font-medium">Mise en œuvre terrain</p>
-                                <div class="mt-4 h-1 bg-black/30 rounded-full"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Contact -->
-                    <div class="bg-urban-black text-white rounded-xl p-8 text-center">
-                        <h3 class="font-street text-2xl font-bold text-ls-turquoise mb-4 uppercase">Rejoignez le mouvement LS4YOU</h3>
-                        <p class="text-xl mb-6">Intéressé par le déploiement dans votre structure ?</p>
-                        <div class="flex flex-col md:flex-row gap-4 justify-center">
-                            <a href="mailto:contact@lifeskills4youth.eu" class="street-button px-8 py-4 rounded-lg font-street font-semibold uppercase bg-ls-turquoise text-white hover:scale-105 transition-all duration-300">
-                                📧 Nous contacter
-                            </a>
-                            <a href="https://www.lifeskills4youth.eu" target="_blank" rel="noopener noreferrer" class="street-button px-8 py-4 rounded-lg font-street font-semibold uppercase bg-ls-yellow text-urban-black hover:scale-105 transition-all duration-300">
-                                🌐 Site officiel
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sous-section Formation -->
-            <div id="sub-formation" class="sub-section hidden">
-                <div class="text-center mb-8">
-                    <h2 class="font-street text-3xl font-bold text-ls-turquoise mb-4 uppercase">Formation</h2>
-                    <p class="text-xl text-gray-700">Principes pédagogiques</p>
-                </div>
-                
-                <div class="space-y-12">
-                    <!-- 1. Pédagogie expérientielle -->
-                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-turquoise">
-                        <div class="flex items-center mb-6">
-                            <div class="text-6xl mr-6">🎯</div>
-                            <div>
-                                <h3 class="font-street text-2xl font-bold text-ls-turquoise uppercase">Pédagogie expérientielle</h3>
-                                <p class="text-gray-600 font-medium">Faire vivre les activités comme si les participants étaient eux-mêmes des jeunes</p>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                            <div class="bg-gradient-to-br from-ls-turquoise to-teal-600 text-white p-6 rounded-xl">
-                                <h4 class="font-street text-lg font-bold mb-3 uppercase">🎭 Mise en situation</h4>
-                                <ul class="space-y-2 text-sm">
-                                    <li>• Jeux de rôle immersifs</li>
-                                    <li>• Cas réels d'accompagnement</li>
-                                    <li>• Expériences pratiques</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-gradient-to-br from-ls-turquoise to-teal-600 text-white p-6 rounded-xl">
-                                <h4 class="font-street text-lg font-bold mb-3 uppercase">🔗 Lien direct jeunes</h4>
-                                <ul class="space-y-2 text-sm">
-                                    <li>• Transposabilité immédiate</li>
-                                    <li>• Compréhension des enjeux</li>
-                                    <li>• Empathie renforcée</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 2. Co-construction -->
-                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-yellow">
-                        <div class="flex items-center mb-6">
-                            <div class="text-6xl mr-6">🤝</div>
-                            <div>
-                                <h3 class="font-street text-2xl font-bold text-ls-yellow uppercase">Co-construction</h3>
-                                <p class="text-gray-600 font-medium">Placer le collectif au cœur de l'apprentissage</p>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div class="bg-gradient-to-br from-ls-yellow to-yellow-600 text-urban-black p-6 rounded-xl">
-                                <h4 class="font-street text-lg font-bold mb-3 uppercase">👥 Travail collaboratif</h4>
-                                <ul class="space-y-2 text-sm">
-                                    <li>• Petits groupes</li>
-                                    <li>• Feedbacks entre pairs</li>
-                                    <li>• Intelligence collective</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-gradient-to-br from-ls-yellow to-yellow-600 text-urban-black p-6 rounded-xl">
-                                <h4 class="font-street text-lg font-bold mb-3 uppercase">💡 Partage d'expériences</h4>
-                                <ul class="space-y-2 text-sm">
-                                    <li>• Valorisation savoir-faire</li>
-                                    <li>• Retours d'expérience</li>
-                                    <li>• Bonnes pratiques</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-gradient-to-br from-ls-yellow to-yellow-600 text-urban-black p-6 rounded-xl">
-                                <h4 class="font-street text-lg font-bold mb-3 uppercase">🔧 Appropriation commune</h4>
-                                <ul class="space-y-2 text-sm">
-                                    <li>• Co-construction usages</li>
-                                    <li>• Adaptation contexte</li>
-                                    <li>• Engagement collectif</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 3. Apprentissage hybride -->
-                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-red">
-                        <div class="flex items-center mb-6">
-                            <div class="text-6xl mr-6">🌐</div>
-                            <div>
-                                <h3 class="font-street text-2xl font-bold text-ls-red uppercase">Apprentissage hybride</h3>
-                                <p class="text-gray-600 font-medium">Combiner le meilleur du numérique et du présentiel</p>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div class="bg-gradient-to-br from-ls-red to-red-700 text-white p-6 rounded-xl">
-                                <h4 class="font-street text-lg font-bold mb-3 uppercase">📱 Avant formation</h4>
-                                <ul class="space-y-2 text-sm">
-                                    <li>• E-learning théorie</li>
-                                    <li>• Socle commun</li>
-                                    <li>• Auto-positionnement</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-gradient-to-br from-ls-red to-red-700 text-white p-6 rounded-xl">
-                                <h4 class="font-street text-lg font-bold mb-3 uppercase">🏢 Pendant formation</h4>
-                                <ul class="space-y-2 text-sm">
-                                    <li>• Présentiel interactif</li>
-                                    <li>• Expériences pratiques</li>
-                                    <li>• Échanges enrichissants</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-gradient-to-br from-ls-red to-red-700 text-white p-6 rounded-xl">
-                                <h4 class="font-street text-lg font-bold mb-3 uppercase">🚀 Après formation</h4>
-                                <ul class="space-y-2 text-sm">
-                                    <li>• Intégration terrain</li>
-                                    <li>• Tutorat personnalisé</li>
-                                    <li>• Retours collectifs</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 4. Durabilité -->
-                    <div class="bg-white/95 backdrop-blur-sm rounded-xl p-8 shadow-street border-l-8 border-ls-turquoise">
-                        <div class="flex items-center mb-6">
-                            <div class="text-6xl mr-6">🌱</div>
-                            <div>
-                                <h3 class="font-street text-2xl font-bold text-ls-turquoise uppercase">Durabilité</h3>
-                                <p class="text-gray-600 font-medium">Assurer l'ancrage à long terme de la méthode LS4YOU</p>
-                            </div>
-                        </div>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <div class="bg-gradient-to-br from-ls-turquoise to-teal-600 text-white p-6 rounded-xl">
-                                <h4 class="font-street text-lg font-bold mb-3 uppercase">📋 Plan d'action concret</h4>
-                                <ul class="space-y-2 text-sm">
-                                    <li>• Engagements adaptés</li>
-                                    <li>• Objectifs réalisables</li>
-                                    <li>• Calendrier personnalisé</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-gradient-to-br from-ls-turquoise to-teal-600 text-white p-6 rounded-xl">
-                                <h4 class="font-street text-lg font-bold mb-3 uppercase">🎯 Suivi et tutorat</h4>
-                                <ul class="space-y-2 text-sm">
-                                    <li>• Accompagnement 4-6 semaines</li>
-                                    <li>• Points réguliers</li>
-                                    <li>• Ajustements continus</li>
-                                </ul>
-                            </div>
-                            
-                            <div class="bg-gradient-to-br from-ls-turquoise to-teal-600 text-white p-6 rounded-xl">
-                                <h4 class="font-street text-lg font-bold mb-3 uppercase">🔄 Intégration pratiques</h4>
-                                <ul class="space-y-2 text-sm">
-                                    <li>• LS4YOU vivant</li>
-                                    <li>• Ancrage durable</li>
-                                    <li>• Évolution continue</li>
-                                </ul>
-                            </div>
-                        </div>
+                <div class="mt-12 text-center">
+                    <div class="bg-ls-yellow text-urban-black px-8 py-6 rounded-xl inline-block">
+                        <h3 class="font-street text-2xl font-bold mb-4 uppercase">Formation complète</h3>
+                        <p class="text-lg font-medium">2 sessions de 3h30 + accompagnement personnalisé</p>
+                        <p class="text-sm mt-2">Durabilité assurée par un suivi de 4-6 semaines</p>
                     </div>
                 </div>
             </div>
@@ -926,12 +546,12 @@
     <div id="quiz" class="min-h-screen p-6 brick-wall hidden">
         <div class="max-w-5xl mx-auto">
             <button onclick="showPage('home')" class="mb-8 street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide">
-                ⬅ Retour au menu principal
+                <span data-translate="back-menu">⬅ Retour au menu principal</span>
             </button>
             
             <div class="text-center mb-8">
                 <h1 class="font-street text-5xl md:text-6xl font-bold text-white mb-4 stencil-text uppercase" data-text="Quiz Final">
-                    <span class="graffiti-text" style="--color-1: #E63946; --color-2: #FFD166;">Quiz Final</span>
+                    <span class="graffiti-text" style="--color-1: #E63946; --color-2: #FFD166;" data-translate="quiz-title">Quiz Final</span>
                 </h1>
                 <div class="bg-ls-red text-white px-6 py-2 inline-block transform -rotate-1">
                     <span class="font-street text-lg font-semibold uppercase">LS4YOU</span>
@@ -943,10 +563,10 @@
                 <!-- Écran d'accueil -->
                 <div id="quiz-welcome" class="text-center">
                     <div class="text-6xl mb-6">🎯</div>
-                    <h2 class="font-street text-3xl font-bold text-ls-red mb-4 uppercase">Testez vos connaissances LS4YOU</h2>
-                    <p class="text-xl text-gray-700 mb-8">10 questions pour valider votre compréhension des Life Skills</p>
+                    <h2 class="font-street text-3xl font-bold text-ls-red mb-4 uppercase" data-translate="quiz-welcome-title">Testez vos connaissances LS4YOU</h2>
+                    <p class="text-xl text-gray-700 mb-8" data-translate="quiz-welcome-desc">10 questions pour valider votre compréhension des Life Skills</p>
                     <button onclick="startQuiz()" class="street-button px-8 py-4 rounded-lg font-street font-semibold text-urban-black uppercase tracking-wide text-xl hover:scale-105 transition-all duration-300">
-                        🚀 Commencer le Quiz
+                        <span data-translate="quiz-start-btn">🚀 Commencer le Quiz</span>
                     </button>
                 </div>
 
@@ -954,10 +574,10 @@
                 <div id="quiz-questions" class="hidden">
                     <div class="flex justify-between items-center mb-8">
                         <div class="bg-ls-turquoise text-white px-4 py-2 rounded-full font-street font-bold">
-                            Question <span id="current-question">1</span>/10
+                            <span data-translate="quiz-question">Question</span> <span id="current-question">1</span>/10
                         </div>
                         <div class="bg-ls-yellow text-urban-black px-4 py-2 rounded-full font-street font-bold">
-                            Score: <span id="current-score">0</span>
+                            <span data-translate="quiz-score">Score:</span> <span id="current-score">0</span>
                         </div>
                     </div>
 
@@ -968,10 +588,10 @@
 
                     <div class="flex justify-between">
                         <button id="prev-btn" onclick="previousQuestion()" class="street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase opacity-50 cursor-not-allowed" disabled>
-                            ⬅ Précédent
+                            <span data-translate="quiz-prev">⬅ Précédent</span>
                         </button>
                         <button id="next-btn" onclick="nextQuestion()" class="street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase opacity-50 cursor-not-allowed" disabled>
-                            Suivant ➡
+                            <span data-translate="quiz-next">Suivant ➡</span>
                         </button>
                     </div>
                 </div>
@@ -984,10 +604,10 @@
                     <div id="result-message" class="text-lg text-gray-700 mb-8"></div>
                     <div class="flex justify-center space-x-4">
                         <button onclick="restartQuiz()" class="street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase">
-                            🔄 Recommencer
+                            <span data-translate="quiz-restart">🔄 Recommencer</span>
                         </button>
                         <button onclick="showPage('home')" class="street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase">
-                            🏠 Menu Principal
+                            <span data-translate="quiz-home">🏠 Menu Principal</span>
                         </button>
                     </div>
                 </div>
@@ -996,142 +616,459 @@
     </div>
 
     <script>
+        // Variables globales
+        let currentPage = 'home';
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let score = 0;
+        let currentLanguage = 'fr';
 
+        // Traductions
+        const translations = {
+            fr: {
+                // Menu principal
+                'subtitle': 'E-LEARNING',
+                'menu-intro': 'Introduction',
+                'menu-intro-desc': 'Découvrez le projet LS4YOU',
+                'menu-domains': '4 Domaines',
+                'menu-domains-desc': 'Les compétences essentielles',
+                'menu-tools': 'Outils LS4YOU',
+                'menu-tools-desc': 'Bibliothèque interactive',
+                'menu-method': 'Méthode',
+                'menu-method-desc': 'Phases, déploiement et formation',
+                'menu-quiz': 'Quiz Final',
+                'menu-quiz-desc': 'Testez vos connaissances',
+                'back-menu': '⬅ Retour au menu principal',
 
-        function showSubSection(subSectionId) {
-            // Cacher toutes les sous-sections
-            const subSections = ['sub-phases', 'sub-deploiement', 'sub-formation'];
-            subSections.forEach(section => {
-                const element = document.getElementById(section);
-                if (element) element.classList.add('hidden');
-            });
+                // Introduction
+                'intro-title': 'Introduction',
+                'intro-subtitle': 'PROJET LS4YOU',
+                'intro-challenge-title': 'Le défi des jeunes européens',
+                'intro-challenge-text': 'Les jeunes européens rencontrent aujourd\'hui de nombreux défis qui dépassent la simple réussite scolaire ou professionnelle. Les transitions vers l\'emploi, l\'autonomie et la vie adulte exigent de nouvelles compétences : savoir communiquer, gérer son stress, s\'organiser au quotidien, coopérer avec les autres et se projeter dans l\'avenir.',
+                'intro-ls4you-title': 'Life Skills for Youth (LS4YOU)',
+                'intro-ls4you-text': 'Le projet LS4YOU a été conçu pour répondre à un défi majeur : <strong class="text-ls-red">soutenir l\'intégration sociale et professionnelle des jeunes</strong> en leur donnant les moyens de développer des ressources personnelles, sociales et pratiques qui vont au-delà des acquis de formation initiale et des compétences professionnelles.',
+                'intro-examples-title': 'Exemples concrets',
+                'intro-example-1': 'Se présenter en entretien',
+                'intro-example-2': 'Gérer le stress',
+                'intro-example-3': 'Organiser un budget',
+                'intro-example-4': 'Travailler en équipe',
+                'intro-example-5': 'Se projeter dans l\'avenir',
+                'intro-lifeskills-title': 'Qu\'est-ce que les Life Skills ?',
+                'intro-lifeskills-text': 'Un ensemble de capacités pratiques, personnelles et sociales qui permettent aux jeunes de mieux se connaître, de communiquer efficacement, de gérer leurs émotions et leur quotidien, et de renforcer leur autonomie.',
+                'intro-european-project': 'Un projet européen pour l\'autonomie',
+
+                // Domaines
+                'domains-title': '4 Domaines',
+                'domains-subtitle': 'Compétences Essentielles',
+                'domain-personality': 'Personnalité',
+                'domain-personality-desc': 'Développement personnel et connaissance de soi',
+                'domain-personality-1': '• Estime de soi et confiance',
+                'domain-personality-2': '• Gestion des émotions',
+                'domain-personality-3': '• Identification des forces',
+                'domain-personality-4': '• Développement de l\'autonomie',
+                'domain-valorization': 'Valorisation',
+                'domain-valorization-desc': 'Communication et valorisation de ses compétences',
+                'domain-valorization-1': '• Techniques de présentation',
+                'domain-valorization-2': '• Communication efficace',
+                'domain-valorization-3': '• Mise en valeur des atouts',
+                'domain-valorization-4': '• Préparation aux entretiens',
+                'domain-wellbeing': 'Bien-être',
+                'domain-wellbeing-desc': 'Santé mentale et équilibre de vie',
+                'domain-wellbeing-1': '• Gestion du stress',
+                'domain-wellbeing-2': '• Équilibre vie pro/perso',
+                'domain-wellbeing-3': '• Techniques de relaxation',
+                'domain-wellbeing-4': '• Hygiène de vie',
+                'domain-finances': 'Finances',
+                'domain-finances-desc': 'Gestion budgétaire et éducation financière',
+                'domain-finances-1': '• Élaboration d\'un budget',
+                'domain-finances-2': '• Gestion des dépenses',
+                'domain-finances-3': '• Épargne et investissement',
+                'domain-finances-4': '• Droits et démarches',
+
+                // Outils
+                'tools-title': 'Outils LS4YOU',
+                'tools-subtitle': 'Bibliothèque Interactive',
+                'tool-assessment': 'Auto-évaluation',
+                'tool-assessment-desc': 'Outil d\'auto-positionnement pour les jeunes',
+                'tool-assessment-btn': '📊 Accéder à l\'outil',
+                'tool-guidebook': 'Guidebook',
+                'tool-guidebook-desc': 'Guide méthodologique pour les professionnels',
+                'tool-guidebook-btn': '📖 Consulter le guide',
+                'tool-platform': 'Plateforme',
+                'tool-platform-desc': 'Environnement digital interactif',
+                'tool-platform-btn': '🌐 Accéder à la plateforme',
+                'tool-matrix': 'Matrice',
+                'tool-matrix-desc': 'Outil de ciblage et d\'orientation',
+                'tool-matrix-btn': '🔗 Accéder à la matrice',
+
+                // Méthode
+                'method-title': 'Méthode',
+                'method-subtitle': 'Phases, Déploiement et Formation',
+
+                // Quiz
+                'quiz-title': 'Quiz Final',
+                'quiz-welcome-title': 'Testez vos connaissances LS4YOU',
+                'quiz-welcome-desc': '10 questions pour valider votre compréhension des Life Skills',
+                'quiz-start-btn': '🚀 Commencer le Quiz',
+                'quiz-question': 'Question',
+                'quiz-score': 'Score:',
+                'quiz-prev': '⬅ Précédent',
+                'quiz-next': 'Suivant ➡',
+                'quiz-finish': 'Terminer 🏁',
+                'quiz-restart': '🔄 Recommencer',
+                'quiz-home': '🏠 Menu Principal',
+                'quiz-excellent': 'Excellent !',
+                'quiz-good': 'Bien joué !',
+                'quiz-review': 'À revoir',
+                'quiz-excellent-msg': 'Vous maîtrisez parfaitement les concepts LS4YOU. Félicitations !',
+                'quiz-good-msg': 'Vous avez une bonne compréhension de LS4YOU. Quelques révisions et ce sera parfait !',
+                'quiz-review-msg': 'Il serait bon de revoir les concepts LS4YOU. N\'hésitez pas à reprendre les modules de formation !'
+            },
+            en: {
+                // Main menu
+                'subtitle': 'E-LEARNING',
+                'menu-intro': 'Introduction',
+                'menu-intro-desc': 'Discover the LS4YOU project',
+                'menu-domains': '4 Domains',
+                'menu-domains-desc': 'Essential skills',
+                'menu-tools': 'LS4YOU Tools',
+                'menu-tools-desc': 'Interactive library',
+                'menu-method': 'Method',
+                'menu-method-desc': 'Phases, deployment and training',
+                'menu-quiz': 'Final Quiz',
+                'menu-quiz-desc': 'Test your knowledge',
+                'back-menu': '⬅ Back to main menu',
+
+                // Introduction
+                'intro-title': 'Introduction',
+                'intro-subtitle': 'LS4YOU PROJECT',
+                'intro-challenge-title': 'The challenge of European youth',
+                'intro-challenge-text': 'European young people today face many challenges that go beyond simple academic or professional success. Transitions to employment, autonomy and adult life require new skills: knowing how to communicate, manage stress, organize daily life, cooperate with others and project into the future.',
+                'intro-ls4you-title': 'Life Skills for Youth (LS4YOU)',
+                'intro-ls4you-text': 'The LS4YOU project was designed to address a major challenge: <strong class="text-ls-red">supporting the social and professional integration of young people</strong> by giving them the means to develop personal, social and practical resources that go beyond initial training achievements and professional skills.',
+                'intro-examples-title': 'Concrete examples',
+                'intro-example-1': 'Present yourself in an interview',
+                'intro-example-2': 'Manage stress',
+                'intro-example-3': 'Organize a budget',
+                'intro-example-4': 'Work in a team',
+                'intro-example-5': 'Project into the future',
+                'intro-lifeskills-title': 'What are Life Skills?',
+                'intro-lifeskills-text': 'A set of practical, personal and social abilities that allow young people to better know themselves, communicate effectively, manage their emotions and daily life, and strengthen their autonomy.',
+                'intro-european-project': 'A European project for autonomy',
+
+                // Domains
+                'domains-title': '4 Domains',
+                'domains-subtitle': 'Essential Skills',
+                'domain-personality': 'Personality',
+                'domain-personality-desc': 'Personal development and self-knowledge',
+                'domain-personality-1': '• Self-esteem and confidence',
+                'domain-personality-2': '• Emotion management',
+                'domain-personality-3': '• Identifying strengths',
+                'domain-personality-4': '• Developing autonomy',
+                'domain-valorization': 'Valorization',
+                'domain-valorization-desc': 'Communication and skills valorization',
+                'domain-valorization-1': '• Presentation techniques',
+                'domain-valorization-2': '• Effective communication',
+                'domain-valorization-3': '• Highlighting assets',
+                'domain-valorization-4': '• Interview preparation',
+                'domain-wellbeing': 'Well-being',
+                'domain-wellbeing-desc': 'Mental health and life balance',
+                'domain-wellbeing-1': '• Stress management',
+                'domain-wellbeing-2': '• Work-life balance',
+                'domain-wellbeing-3': '• Relaxation techniques',
+                'domain-wellbeing-4': '• Life hygiene',
+                'domain-finances': 'Finances',
+                'domain-finances-desc': 'Budget management and financial education',
+                'domain-finances-1': '• Budget development',
+                'domain-finances-2': '• Expense management',
+                'domain-finances-3': '• Savings and investment',
+                'domain-finances-4': '• Rights and procedures',
+
+                // Tools
+                'tools-title': 'LS4YOU Tools',
+                'tools-subtitle': 'Interactive Library',
+                'tool-assessment': 'Self-assessment',
+                'tool-assessment-desc': 'Self-positioning tool for young people',
+                'tool-assessment-btn': '📊 Access the tool',
+                'tool-guidebook': 'Guidebook',
+                'tool-guidebook-desc': 'Methodological guide for professionals',
+                'tool-guidebook-btn': '📖 Consult the guide',
+                'tool-platform': 'Platform',
+                'tool-platform-desc': 'Interactive digital environment',
+                'tool-platform-btn': '🌐 Access the platform',
+                'tool-matrix': 'Matrix',
+                'tool-matrix-desc': 'Targeting and guidance tool',
+                'tool-matrix-btn': '🔗 Access the matrix',
+
+                // Method
+                'method-title': 'Method',
+                'method-subtitle': 'Phases, Deployment and Training',
+
+                // Quiz
+                'quiz-title': 'Final Quiz',
+                'quiz-welcome-title': 'Test your LS4YOU knowledge',
+                'quiz-welcome-desc': '10 questions to validate your understanding of Life Skills',
+                'quiz-start-btn': '🚀 Start the Quiz',
+                'quiz-question': 'Question',
+                'quiz-score': 'Score:',
+                'quiz-prev': '⬅ Previous',
+                'quiz-next': 'Next ➡',
+                'quiz-finish': 'Finish 🏁',
+                'quiz-restart': '🔄 Restart',
+                'quiz-home': '🏠 Main Menu',
+                'quiz-excellent': 'Excellent!',
+                'quiz-good': 'Well done!',
+                'quiz-review': 'To review',
+                'quiz-excellent-msg': 'You perfectly master LS4YOU concepts. Congratulations!',
+                'quiz-good-msg': 'You have a good understanding of LS4YOU. A few revisions and it will be perfect!',
+                'quiz-review-msg': 'It would be good to review LS4YOU concepts. Don\'t hesitate to go through the training modules again!'
+            }
+        };
+
+        // Questions du quiz en français et anglais
+        const questionsData = {
+            fr: [
+                {
+                    question: "Combien de domaines principaux composent les Life Skills selon LS4YOU ?",
+                    answers: ["2 domaines", "4 domaines", "6 domaines", "8 domaines"],
+                    correct: 1,
+                    explanation: "LS4YOU se structure autour de 4 domaines : Personnalité, Valorisation, Bien-être, et Finances."
+                },
+                {
+                    question: "Quel est l'objectif principal du projet LS4YOU ?",
+                    answers: [
+                        "Améliorer les résultats scolaires",
+                        "Soutenir l'intégration sociale et professionnelle des jeunes",
+                        "Développer des compétences techniques",
+                        "Créer des emplois"
+                    ],
+                    correct: 1,
+                    explanation: "LS4YOU vise à soutenir l'intégration sociale et professionnelle des jeunes en développant leurs compétences de vie."
+                },
+                {
+                    question: "Le domaine 'Personnalité' dans LS4YOU concerne principalement :",
+                    answers: [
+                        "La gestion financière",
+                        "Les techniques de communication",
+                        "Le développement personnel et la connaissance de soi",
+                        "L'activité physique"
+                    ],
+                    correct: 2,
+                    explanation: "Le domaine Personnalité se concentre sur l'estime de soi, la gestion des émotions et l'autonomie."
+                },
+                {
+                    question: "Quelle approche pédagogique privilégie LS4YOU ?",
+                    answers: [
+                        "L'apprentissage théorique",
+                        "La pédagogie expérientielle",
+                        "L'enseignement magistral",
+                        "L'apprentissage en ligne uniquement"
+                    ],
+                    correct: 1,
+                    explanation: "LS4YOU privilégie la pédagogie expérientielle : apprendre par l'expérience et la mise en situation."
+                },
+                {
+                    question: "L'outil d'auto-évaluation LS4YOU permet aux jeunes de :",
+                    answers: [
+                        "Obtenir un diplôme",
+                        "S'auto-positionner sur leurs compétences",
+                        "Trouver un emploi directement",
+                        "Calculer leur salaire"
+                    ],
+                    correct: 1,
+                    explanation: "L'auto-évaluation aide les jeunes à identifier leurs forces et axes d'amélioration."
+                },
+                {
+                    question: "Le domaine 'Bien-être' dans LS4YOU inclut :",
+                    answers: [
+                        "La gestion du stress et l'équilibre de vie",
+                        "Les techniques de vente",
+                        "La comptabilité",
+                        "Les langues étrangères"
+                    ],
+                    correct: 0,
+                    explanation: "Le domaine Bien-être couvre la gestion du stress, l'équilibre vie pro/perso et les techniques de relaxation."
+                },
+                {
+                    question: "Combien de pays européens participent au projet LS4YOU ?",
+                    answers: ["3 pays", "4 pays", "5 pays", "7 pays"],
+                    correct: 1,
+                    explanation: "Le projet LS4YOU implique 4 pays européens avec 5 partenaires (2 partenaires français)."
+                },
+                {
+                    question: "La formation LS4YOU pour les professionnels dure :",
+                    answers: ["1 jour", "2 jours ou 4 x 3h30", "1 semaine", "1 mois"],
+                    correct: 1,
+                    explanation: "La formation peut se dérouler sur 2 jours complets ou 4 sessions de 3h30 chacune."
+                },
+                {
+                    question: "Le domaine 'Finances' dans LS4YOU comprend :",
+                    answers: [
+                        "Uniquement l'épargne",
+                        "La gestion budgétaire et l'éducation financière",
+                        "Les investissements boursiers",
+                        "La création d'entreprise"
+                    ],
+                    correct: 1,
+                    explanation: "Le domaine Finances couvre la gestion budgétaire, l'épargne et l'éducation financière de base."
+                },
+                {
+                    question: "L'approche LS4YOU privilégie :",
+                    answers: [
+                        "L'apprentissage individuel uniquement",
+                        "La co-construction et l'apprentissage collectif",
+                        "Les cours magistraux",
+                        "L'auto-formation sans accompagnement"
+                    ],
+                    correct: 1,
+                    explanation: "LS4YOU met l'accent sur la co-construction, le travail collaboratif et l'intelligence collective."
+                }
+            ],
+            en: [
+                {
+                    question: "How many main domains make up Life Skills according to LS4YOU?",
+                    answers: ["2 domains", "4 domains", "6 domains", "8 domains"],
+                    correct: 1,
+                    explanation: "LS4YOU is structured around 4 domains: Personality, Valorization, Well-being, and Finances."
+                },
+                {
+                    question: "What is the main objective of the LS4YOU project?",
+                    answers: [
+                        "Improve academic results",
+                        "Support social and professional integration of young people",
+                        "Develop technical skills",
+                        "Create jobs"
+                    ],
+                    correct: 1,
+                    explanation: "LS4YOU aims to support the social and professional integration of young people by developing their life skills."
+                },
+                {
+                    question: "The 'Personality' domain in LS4YOU mainly concerns:",
+                    answers: [
+                        "Financial management",
+                        "Communication techniques",
+                        "Personal development and self-knowledge",
+                        "Physical activity"
+                    ],
+                    correct: 2,
+                    explanation: "The Personality domain focuses on self-esteem, emotion management and autonomy."
+                },
+                {
+                    question: "What pedagogical approach does LS4YOU favor?",
+                    answers: [
+                        "Theoretical learning",
+                        "Experiential pedagogy",
+                        "Lecture-based teaching",
+                        "Online learning only"
+                    ],
+                    correct: 1,
+                    explanation: "LS4YOU favors experiential pedagogy: learning through experience and role-playing."
+                },
+                {
+                    question: "The LS4YOU self-assessment tool allows young people to:",
+                    answers: [
+                        "Obtain a diploma",
+                        "Self-position on their skills",
+                        "Find a job directly",
+                        "Calculate their salary"
+                    ],
+                    correct: 1,
+                    explanation: "Self-assessment helps young people identify their strengths and areas for improvement."
+                },
+                {
+                    question: "The 'Well-being' domain in LS4YOU includes:",
+                    answers: [
+                        "Stress management and life balance",
+                        "Sales techniques",
+                        "Accounting",
+                        "Foreign languages"
+                    ],
+                    correct: 0,
+                    explanation: "The Well-being domain covers stress management, work-life balance and relaxation techniques."
+                },
+                {
+                    question: "How many European countries participate in the LS4YOU project?",
+                    answers: ["3 countries", "4 countries", "5 countries", "7 countries"],
+                    correct: 1,
+                    explanation: "The LS4YOU project involves 4 European countries with 5 partners (2 French partners)."
+                },
+                {
+                    question: "LS4YOU training for professionals lasts:",
+                    answers: ["1 day", "2 days or 4 x 3h30", "1 week", "1 month"],
+                    correct: 1,
+                    explanation: "The training can take place over 2 full days or 4 sessions of 3h30 each."
+                },
+                {
+                    question: "The 'Finances' domain in LS4YOU includes:",
+                    answers: [
+                        "Only savings",
+                        "Budget management and financial education",
+                        "Stock market investments",
+                        "Business creation"
+                    ],
+                    correct: 1,
+                    explanation: "The Finances domain covers budget management, savings and basic financial education."
+                },
+                {
+                    question: "The LS4YOU approach favors:",
+                    answers: [
+                        "Individual learning only",
+                        "Co-construction and collective learning",
+                        "Lectures",
+                        "Self-training without support"
+                    ],
+                    correct: 1,
+                    explanation: "LS4YOU emphasizes co-construction, collaborative work and collective intelligence."
+                }
+            ]
+        };
+
+        // Fonction de changement de langue
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            document.documentElement.lang = lang;
             
-            // Réinitialiser tous les boutons
-            const buttons = ['btn-phases', 'btn-deploiement', 'btn-formation'];
-            buttons.forEach(btnId => {
-                const btn = document.getElementById(btnId);
-                if (btn) {
-                    btn.classList.remove('bg-ls-turquoise', 'text-white');
-                    btn.classList.add('text-urban-black');
+            // Mettre à jour tous les éléments avec data-translate
+            const elements = document.querySelectorAll('[data-translate]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.innerHTML = translations[lang][key];
                 }
             });
             
-            // Afficher la sous-section demandée
-            const targetSubSection = document.getElementById('sub-' + subSectionId);
-            if (targetSubSection) {
-                targetSubSection.classList.remove('hidden');
-            }
-            
-            // Activer le bouton correspondant
-            const activeBtn = document.getElementById('btn-' + subSectionId);
-            if (activeBtn) {
-                activeBtn.classList.add('bg-ls-turquoise', 'text-white');
-                activeBtn.classList.remove('text-urban-black');
-            }
+            // Sauvegarder la préférence
+            localStorage.setItem('ls4you-language', lang);
         }
 
-        // Variables du quiz
-        let currentQuestionIndex = 0;
-        let score = 0;
-        let userAnswers = [];
-        
-        const questions = [
-            {
-                question: "Combien de domaines principaux composent les Life Skills selon LS4YOU ?",
-                answers: ["2 domaines", "4 domaines", "6 domaines", "8 domaines"],
-                correct: 1,
-                explanation: "LS4YOU se structure autour de 4 domaines : Personnalité, Valorisation, Bien-être, et Finances."
-            },
-            {
-                question: "Quel est l'objectif principal du projet LS4YOU ?",
-                answers: [
-                    "Améliorer les résultats scolaires",
-                    "Soutenir l'intégration sociale et professionnelle des jeunes",
-                    "Développer des compétences techniques",
-                    "Créer des emplois"
-                ],
-                correct: 1,
-                explanation: "LS4YOU vise à soutenir l'intégration sociale et professionnelle des jeunes en développant leurs compétences de vie."
-            },
-            {
-                question: "Le domaine 'Personnalité' dans LS4YOU concerne principalement :",
-                answers: [
-                    "La gestion financière",
-                    "Les techniques de communication",
-                    "Le développement personnel et la connaissance de soi",
-                    "L'activité physique"
-                ],
-                correct: 2,
-                explanation: "Le domaine Personnalité se concentre sur l'estime de soi, la gestion des émotions et l'autonomie."
-            },
-            {
-                question: "Quelle approche pédagogique privilégie LS4YOU ?",
-                answers: [
-                    "L'apprentissage théorique",
-                    "La pédagogie expérientielle",
-                    "L'enseignement magistral",
-                    "L'apprentissage en ligne uniquement"
-                ],
-                correct: 1,
-                explanation: "LS4YOU privilégie la pédagogie expérientielle : apprendre par l'expérience et la mise en situation."
-            },
-            {
-                question: "L'outil d'auto-évaluation LS4YOU permet aux jeunes de :",
-                answers: [
-                    "Obtenir un diplôme",
-                    "S'auto-positionner sur leurs compétences",
-                    "Trouver un emploi directement",
-                    "Calculer leur salaire"
-                ],
-                correct: 1,
-                explanation: "L'auto-évaluation aide les jeunes à identifier leurs forces et axes d'amélioration."
-            },
-            {
-                question: "Le domaine 'Bien-être' dans LS4YOU inclut :",
-                answers: [
-                    "La gestion du stress et l'équilibre de vie",
-                    "Les techniques de vente",
-                    "La comptabilité",
-                    "Les langues étrangères"
-                ],
-                correct: 0,
-                explanation: "Le domaine Bien-être couvre la gestion du stress, l'équilibre vie pro/perso et les techniques de relaxation."
-            },
-            {
-                question: "Combien de pays européens participent au projet LS4YOU ?",
-                answers: ["3 pays", "5 pays", "7 pays", "10 pays"],
-                correct: 1,
-                explanation: "Le projet LS4YOU implique 5 pays européens dans son développement et ses tests."
-            },
-            {
-                question: "La formation LS4YOU pour les professionnels dure :",
-                answers: ["1 jour", "2 x 3h30", "1 semaine", "1 mois"],
-                correct: 1,
-                explanation: "La formation se déroule sur 2 sessions de 3h30 chacune, soit 7 heures au total."
-            },
-            {
-                question: "Le domaine 'Finances' dans LS4YOU traite de :",
-                answers: [
-                    "L'investissement en bourse",
-                    "La gestion budgétaire et l'éducation financière",
-                    "La création d'entreprise",
-                    "Les assurances"
-                ],
-                correct: 1,
-                explanation: "Le domaine Finances se concentre sur l'élaboration d'un budget, la gestion des dépenses et l'épargne."
-            },
-            {
-                question: "L'objectif de déploiement LS4YOU pour 2024-2025 est de former :",
-                answers: ["100 professionnels", "500 professionnels", "1000 professionnels", "2000 professionnels"],
-                correct: 1,
-                explanation: "L'objectif est de former 500 professionnels dans 10 pays européens d'ici 2024-2025."
-            }
-        ];
+        // Initialiser la langue au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLang = localStorage.getItem('ls4you-language') || 'fr';
+            document.getElementById('language-selector').value = savedLang;
+            changeLanguage(savedLang);
+        });
 
+        // Navigation entre les pages
+        function showPage(pageId) {
+            // Cacher toutes les pages
+            const pages = ['home', 'intro', 'domaines', 'outils', 'methode', 'quiz'];
+            pages.forEach(page => {
+                document.getElementById(page).classList.add('hidden');
+            });
+            
+            // Afficher la page demandée
+            document.getElementById(pageId).classList.remove('hidden');
+            currentPage = pageId;
+            
+            // Scroll vers le haut
+            window.scrollTo(0, 0);
+        }
+
+        // Fonctions du Quiz
         function startQuiz() {
             currentQuestionIndex = 0;
-            score = 0;
             userAnswers = [];
+            score = 0;
             
             document.getElementById('quiz-welcome').classList.add('hidden');
             document.getElementById('quiz-questions').classList.remove('hidden');
@@ -1141,6 +1078,7 @@
         }
 
         function showQuestion() {
+            const questions = questionsData[currentLanguage];
             const question = questions[currentQuestionIndex];
             
             document.getElementById('current-question').textContent = currentQuestionIndex + 1;
@@ -1151,72 +1089,64 @@
             answersContainer.innerHTML = '';
             
             question.answers.forEach((answer, index) => {
-                const answerDiv = document.createElement('div');
-                answerDiv.className = 'answer-option p-4 border-2 border-gray-300 rounded-lg cursor-pointer hover:border-ls-turquoise hover:bg-ls-turquoise hover:bg-opacity-10 transition-all duration-300';
-                answerDiv.innerHTML = `
-                    <label class="flex items-center cursor-pointer">
-                        <input type="radio" name="answer" value="${index}" class="mr-4 w-5 h-5 text-ls-turquoise">
-                        <span class="text-lg font-medium">${answer}</span>
-                    </label>
-                `;
-                
-                answerDiv.addEventListener('click', () => selectAnswer(index));
-                answersContainer.appendChild(answerDiv);
+                const button = document.createElement('button');
+                button.className = 'w-full p-4 text-left bg-white border-2 border-gray-300 rounded-lg hover:border-ls-turquoise hover:bg-ls-turquoise hover:text-white transition-all duration-300 font-medium';
+                button.textContent = answer;
+                button.onclick = () => selectAnswer(index);
+                answersContainer.appendChild(button);
             });
             
-            // Mise à jour des boutons
-            updateNavigationButtons();
-        }
-
-        function selectAnswer(answerIndex) {
-            // Désélectionner toutes les réponses
-            document.querySelectorAll('.answer-option').forEach(option => {
-                option.classList.remove('border-ls-turquoise', 'bg-ls-turquoise', 'bg-opacity-10');
-                option.classList.add('border-gray-300');
-            });
-            
-            // Sélectionner la réponse choisie
-            const selectedOption = document.querySelectorAll('.answer-option')[answerIndex];
-            selectedOption.classList.remove('border-gray-300');
-            selectedOption.classList.add('border-ls-turquoise', 'bg-ls-turquoise', 'bg-opacity-10');
-            
-            // Cocher le radio button
-            const radioButton = selectedOption.querySelector('input[type="radio"]');
-            radioButton.checked = true;
-            
-            // Stocker la réponse
-            userAnswers[currentQuestionIndex] = answerIndex;
-            
-            // Activer le bouton suivant
-            updateNavigationButtons();
-        }
-
-        function updateNavigationButtons() {
+            // Gestion des boutons de navigation
             const prevBtn = document.getElementById('prev-btn');
             const nextBtn = document.getElementById('next-btn');
             
-            // Bouton précédent
-            if (currentQuestionIndex > 0) {
-                prevBtn.disabled = false;
-                prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            } else {
-                prevBtn.disabled = true;
-                prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            }
+            prevBtn.disabled = currentQuestionIndex === 0;
+            prevBtn.className = currentQuestionIndex === 0 ? 
+                'street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase opacity-50 cursor-not-allowed' :
+                'street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase';
             
-            // Bouton suivant
-            if (userAnswers[currentQuestionIndex] !== undefined) {
-                nextBtn.disabled = false;
-                nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-                
-                if (currentQuestionIndex === questions.length - 1) {
-                    nextBtn.textContent = 'Terminer 🏁';
-                } else {
-                    nextBtn.textContent = 'Suivant ➡';
-                }
+            nextBtn.disabled = userAnswers[currentQuestionIndex] === undefined;
+            nextBtn.className = userAnswers[currentQuestionIndex] === undefined ?
+                'street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase opacity-50 cursor-not-allowed' :
+                'street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase';
+            
+            // Changer le texte du bouton pour la dernière question
+            if (currentQuestionIndex === questions.length - 1) {
+                nextBtn.querySelector('span').setAttribute('data-translate', 'quiz-finish');
+                nextBtn.querySelector('span').textContent = translations[currentLanguage]['quiz-finish'];
             } else {
-                nextBtn.disabled = true;
-                nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+                nextBtn.querySelector('span').setAttribute('data-translate', 'quiz-next');
+                nextBtn.querySelector('span').textContent = translations[currentLanguage]['quiz-next'];
+            }
+        }
+
+        function selectAnswer(answerIndex) {
+            userAnswers[currentQuestionIndex] = answerIndex;
+            
+            // Mettre à jour l'affichage des réponses
+            const buttons = document.querySelectorAll('#answers-container button');
+            buttons.forEach((button, index) => {
+                if (index === answerIndex) {
+                    button.className = 'w-full p-4 text-left bg-ls-turquoise text-white border-2 border-ls-turquoise rounded-lg font-medium';
+                } else {
+                    button.className = 'w-full p-4 text-left bg-white border-2 border-gray-300 rounded-lg hover:border-ls-turquoise hover:bg-ls-turquoise hover:text-white transition-all duration-300 font-medium';
+                }
+            });
+            
+            // Activer le bouton suivant
+            const nextBtn = document.getElementById('next-btn');
+            nextBtn.disabled = false;
+            nextBtn.className = 'street-button px-6 py-3 rounded-lg font-street font-semibold text-urban-black uppercase';
+        }
+
+        function nextQuestion() {
+            const questions = questionsData[currentLanguage];
+            
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                showQuestion();
+            } else {
+                finishQuiz();
             }
         }
 
@@ -1227,20 +1157,11 @@
             }
         }
 
-        function nextQuestion() {
-            if (userAnswers[currentQuestionIndex] !== undefined) {
-                if (currentQuestionIndex < questions.length - 1) {
-                    currentQuestionIndex++;
-                    showQuestion();
-                } else {
-                    finishQuiz();
-                }
-            }
-        }
-
         function finishQuiz() {
             // Calculer le score
+            const questions = questionsData[currentLanguage];
             score = 0;
+            
             userAnswers.forEach((answer, index) => {
                 if (answer === questions[index].correct) {
                     score++;
@@ -1248,43 +1169,34 @@
             });
             
             // Afficher les résultats
-            showResults();
-        }
-
-        function showResults() {
             document.getElementById('quiz-questions').classList.add('hidden');
             document.getElementById('quiz-results').classList.remove('hidden');
             
-            const percentage = Math.round((score / questions.length) * 100);
+            const resultIcon = document.getElementById('result-icon');
+            const resultTitle = document.getElementById('result-title');
+            const resultScore = document.getElementById('result-score');
+            const resultMessage = document.getElementById('result-message');
             
-            // Icône et titre selon le score
-            let icon, title, titleColor, message;
+            const percentage = (score / questions.length) * 100;
             
             if (percentage >= 80) {
-                icon = '🏆';
-                title = 'Excellent !';
-                titleColor = 'text-ls-turquoise';
-                message = 'Vous maîtrisez parfaitement les concepts LS4YOU. Félicitations !';
+                resultIcon.textContent = '🏆';
+                resultTitle.textContent = translations[currentLanguage]['quiz-excellent'];
+                resultTitle.className = 'font-street text-4xl font-bold mb-4 uppercase text-ls-turquoise';
+                resultMessage.textContent = translations[currentLanguage]['quiz-excellent-msg'];
             } else if (percentage >= 60) {
-                icon = '👍';
-                title = 'Bien joué !';
-                titleColor = 'text-ls-yellow';
-                message = 'Vous avez une bonne compréhension de LS4YOU. Quelques révisions et ce sera parfait !';
+                resultIcon.textContent = '👍';
+                resultTitle.textContent = translations[currentLanguage]['quiz-good'];
+                resultTitle.className = 'font-street text-4xl font-bold mb-4 uppercase text-ls-yellow';
+                resultMessage.textContent = translations[currentLanguage]['quiz-good-msg'];
             } else {
-                icon = '📚';
-                title = 'À revoir';
-                titleColor = 'text-ls-red';
-                message = 'Il serait bon de revoir les concepts LS4YOU. N\'hésitez pas à reprendre les modules de formation !';
+                resultIcon.textContent = '📚';
+                resultTitle.textContent = translations[currentLanguage]['quiz-review'];
+                resultTitle.className = 'font-street text-4xl font-bold mb-4 uppercase text-ls-red';
+                resultMessage.textContent = translations[currentLanguage]['quiz-review-msg'];
             }
             
-            document.getElementById('result-icon').textContent = icon;
-            document.getElementById('result-title').textContent = title;
-            document.getElementById('result-title').className = `font-street text-4xl font-bold mb-4 uppercase ${titleColor}`;
-            document.getElementById('result-score').innerHTML = `
-                <span class="text-4xl font-bold ${titleColor}">${score}/${questions.length}</span>
-                <span class="text-2xl text-gray-600 ml-4">(${percentage}%)</span>
-            `;
-            document.getElementById('result-message').textContent = message;
+            resultScore.innerHTML = `<span class="font-street text-3xl font-bold text-ls-red">${score}/${questions.length}</span> <span class="text-gray-600">(${Math.round(percentage)}%)</span>`;
         }
 
         function restartQuiz() {
@@ -1292,48 +1204,10 @@
             document.getElementById('quiz-welcome').classList.remove('hidden');
         }
 
-        // Gestion des URLs
-        function handleURL() {
-            const hash = window.location.hash.substring(1); // Enlever le #
-            if (hash && ['home', 'intro', 'domaines', 'outils', 'methode', 'quiz'].includes(hash)) {
-                showPage(hash);
-            } else {
-                showPage('home');
-            }
-        }
-
-        function showPage(pageId) {
-            // Cacher toutes les pages
-            const pages = ['home', 'intro', 'domaines', 'outils', 'methode', 'quiz'];
-            pages.forEach(page => {
-                const element = document.getElementById(page);
-                if (element) element.classList.add('hidden');
-            });
-            
-            // Afficher la page demandée
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.remove('hidden');
-                
-                // Mettre à jour l'URL
-                window.location.hash = pageId;
-                
-                // Si c'est la page méthode, afficher la première sous-section par défaut
-                if (pageId === 'methode') {
-                    showSubSection('phases');
-                }
-            }
-        }
-
         // Initialisation
         document.addEventListener('DOMContentLoaded', function() {
-            // Écouter les changements d'URL
-            window.addEventListener('hashchange', handleURL);
-            
-            // Gérer l'URL initiale
-            handleURL();
+            showPage('home');
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'986c2107b18d026f',t:'MTc1OTE1NTcwOC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'98bb365525e02a77',t:'MTc1OTk4NDk1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
-
