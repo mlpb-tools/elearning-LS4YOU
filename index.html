@@ -2,8 +2,11 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>LS4YOU – Mission Locale Pays Basque</title>
+  <title>LS4YOU – Outils Mission Locale Pays Basque</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Police façon facilitation / post-it -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -15,8 +18,7 @@
       --rouge: #9f3d3f;
       --noir: #171718;
       --bg: #f5f5f7;
-      --radius: 18px;
-      --shadow-soft: 0 10px 25px rgba(0,0,0,0.06);
+      --radius: 14px;
     }
 
     * {
@@ -26,9 +28,9 @@
     }
 
     body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-      background: var(--bg);
+      font-family: "Nunito", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--noir);
+      background: var(--bg);
       line-height: 1.5;
     }
 
@@ -36,456 +38,442 @@
       color: var(--bleu);
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
 
-    /* HEADER */
+    /* Header façon bandeau dessiné */
     header {
-      background: radial-gradient(circle at top left, var(--rose), var(--bleu));
+      background: linear-gradient(110deg, var(--bleu), var(--rose));
       color: white;
-      padding: 18px 20px 16px;
+      padding: 14px 18px 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before,
+    header::after {
+      content: "";
+      position: absolute;
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.2);
+    }
+
+    header::before {
+      top: -60px;
+      left: -40px;
+    }
+    header::after {
+      bottom: -70px;
+      right: -20px;
     }
 
     .header-inner {
       max-width: 1180px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
+      gap: 10px;
     }
 
-    .logo-block {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-    }
-
-    .logo-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.18);
-      font-size: 0.75rem;
-    }
-
-    .logo-block h1 {
+    .logo-title h1 {
+      font-family: "Poppins", system-ui, sans-serif;
       font-size: 1.4rem;
-      letter-spacing: 0.02em;
+      font-weight: 700;
     }
 
-    .logo-block p {
+    .logo-title p {
       font-size: 0.9rem;
-      opacity: 0.9;
+      opacity: 0.95;
     }
 
     nav {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 6px;
     }
 
     nav a {
       font-size: 0.85rem;
-      padding: 6px 12px;
+      padding: 6px 10px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.12);
-      color: white;
+      background: rgba(255,255,255,0.2);
+      color: #fff;
       white-space: nowrap;
-      border: 1px solid rgba(255,255,255,0.26);
     }
 
     nav a:hover {
-      background: rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.3);
       text-decoration: none;
     }
 
-    /* MAIN LAYOUT */
+    /* Layout principal */
     main {
       max-width: 1180px;
       margin: 22px auto 40px;
-      padding: 0 16px;
+      padding: 0 14px;
       display: flex;
       flex-direction: column;
-      gap: 30px;
+      gap: 26px;
     }
 
-    /* HERO */
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 2.2fr) minmax(0, 1.4fr);
-      gap: 20px;
-      align-items: stretch;
+    /* Style “facilitation” générique */
+    .section-title {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
     }
 
-    .hero-left {
-      background: white;
-      border-radius: var(--radius);
-      padding: 18px 18px 16px;
-      box-shadow: var(--shadow-soft);
+    .section-title span {
+      font-size: 1.3rem;
+    }
+
+    .hand-drawn-underline {
+      display: inline-block;
       position: relative;
-      overflow: hidden;
     }
 
-    .hero-left::before {
+    .hand-drawn-underline::after {
       content: "";
       position: absolute;
-      inset: -40px -60px auto auto;
-      background: radial-gradient(circle at top, rgba(40,151,213,0.2), transparent 60%);
-      opacity: 0.8;
-      pointer-events: none;
+      left: 0;
+      right: 0;
+      bottom: -4px;
+      height: 6px;
+      background: rgba(243,146,0,0.22);
+      border-radius: 12px;
+      transform: rotate(-1.5deg);
     }
 
-    .hero-kicker {
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: var(--bleu);
-      margin-bottom: 4px;
-      font-weight: 600;
+    /* HERO style facilitation graphique */
+    .hero {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 18px 16px 20px;
+      display: grid;
+      grid-template-columns: minmax(0, 2.1fr) minmax(0, 1.2fr);
+      gap: 18px;
+      position: relative;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.06);
     }
 
-    .hero-left h2 {
-      font-size: 1.35rem;
-      margin-bottom: 8px;
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      border: 3px dashed rgba(151,151,151,0.25);
+      top: 10px;
+      right: 18%;
+      z-index: 0;
     }
 
-    .hero-left p {
-      font-size: 0.92rem;
-      margin-bottom: 8px;
+    .hero-main {
+      position: relative;
+      z-index: 1;
     }
 
-    .hero-tags {
+    .hero-main h2 {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+    }
+
+    .hero-main p {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    .hero-badges {
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      margin: 8px 0 10px;
+      margin-top: 6px;
     }
 
-    .hero-tag {
-      font-size: 0.78rem;
-      padding: 3px 9px;
+    .badge {
+      font-size: 0.8rem;
+      padding: 4px 9px;
       border-radius: 999px;
       background: #f0f0f0;
     }
 
-    .hero-note {
-      margin-top: 4px;
-      font-size: 0.85rem;
-      padding: 8px 10px;
-      border-radius: 10px;
-      background: #fff6ea;
-      border-left: 4px solid var(--orange);
-    }
-
-    .hero-right {
+    .hero-notes {
       position: relative;
-    }
-
-    .sketch-card {
-      background: white;
-      border-radius: 24px;
-      padding: 14px 14px 12px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(23,23,24,0.03);
-      position: relative;
-      overflow: hidden;
-      height: 100%;
+      z-index: 1;
       display: flex;
       flex-direction: column;
-      gap: 10px;
-    }
-
-    .sketch-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
       gap: 8px;
     }
 
-    .sketch-pill {
-      font-size: 0.7rem;
-      padding: 2px 8px;
-      border-radius: 999px;
-      border: 1px dashed rgba(0,0,0,0.18);
-    }
-
-    .sketch-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 8px;
-      margin-top: 4px;
-      font-size: 0.8rem;
-    }
-
-    .sketch-box {
-      border-radius: 16px;
-      padding: 8px 8px 6px;
-      background: #fafafa;
-      border: 1px dashed rgba(0,0,0,0.14);
-    }
-
-    .sketch-box span {
-      font-weight: 600;
-      font-size: 0.78rem;
-      display: inline-block;
-      margin-bottom: 3px;
-    }
-
-    .sketch-arrow {
-      font-size: 0.8rem;
-      margin-top: 6px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      opacity: 0.9;
-    }
-
-    .sketch-doodle {
-      position: absolute;
-      right: -10px;
-      bottom: -6px;
-      font-size: 2.5rem;
-      opacity: 0.12;
-      transform: rotate(-12deg);
-    }
-
-    /* AXES CARDS */
-    .axes-section h2 {
-      font-size: 1.15rem;
-      margin-bottom: 6px;
-    }
-
-    .axes-section p {
+    .sticky {
+      background: #fffbea;
+      border-radius: 14px;
+      padding: 10px 11px 11px;
+      border: 1px solid #f2e2a2;
       font-size: 0.9rem;
-      margin-bottom: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+      transform: rotate(-1.5deg);
+    }
+
+    .sticky strong {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .sticky.secondary {
+      background: #e8f5ff;
+      border-color: #b6ddff;
+      transform: rotate(1.8deg);
+    }
+
+    /* Axes – cartes type facilitation */
+    #axes {
+      margin-top: 4px;
     }
 
     .axes-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 14px;
+      margin-top: 8px;
     }
 
     .axe-card {
-      background: white;
-      border-radius: 20px;
-      padding: 12px 12px 12px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(23,23,24,0.03);
-      font-size: 0.88rem;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 12px 11px 13px;
+      border: 1.5px dashed rgba(0,0,0,0.08);
+      box-shadow: 0 5px 12px rgba(0,0,0,0.04);
+      font-size: 0.9rem;
       position: relative;
       overflow: hidden;
     }
 
-    .axe-card::before {
+    .axe-card::after {
       content: "";
       position: absolute;
       width: 60px;
       height: 60px;
-      border-radius: 999px;
+      border-radius: 50%;
       border: 2px solid rgba(0,0,0,0.04);
-      top: -24px;
-      right: -18px;
+      bottom: -24px;
+      right: -12px;
     }
 
-    .axe-label {
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+    .axe-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
       margin-bottom: 4px;
-      opacity: 0.7;
     }
 
-    .axe-card h3 {
-      font-size: 1rem;
-      margin-bottom: 6px;
+    .axe-title {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .axe-emoji {
-      font-size: 1.1rem;
-    }
-
-    .axe-chip {
+    .axe-tag {
       font-size: 0.72rem;
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 999px;
       background: #f0f0f0;
     }
 
+    .axe-icon {
+      font-size: 1.2rem;
+    }
+
     .axe-list {
-      margin: 4px 0 4px;
       padding-left: 16px;
+      margin-top: 6px;
     }
 
     .axe-list li {
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .axe-footer {
-      font-size: 0.78rem;
-      margin-top: 4px;
+      font-size: 0.8rem;
+      margin-top: 5px;
       opacity: 0.8;
     }
 
-    /* HOW-TO STRIP */
-    .howto {
-      margin-top: 6px;
-      background: white;
-      border-radius: 22px;
-      padding: 10px 12px 12px;
-      box-shadow: var(--shadow-soft);
-      border: 1px dashed rgba(23,23,24,0.14);
-    }
-
-    .howto-title {
-      font-size: 0.9rem;
-      font-weight: 600;
-      margin-bottom: 6px;
+    /* 3 étapes – schéma simple */
+    .steps {
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 14px 12px 16px;
+      box-shadow: 0 6px 14px rgba(0,0,0,0.04);
       display: flex;
-      align-items: center;
-      gap: 6px;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .howto-steps {
+    .steps-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 10px;
-      font-size: 0.82rem;
+      margin-top: 4px;
     }
 
-    .howto-step {
-      background: #fafafa;
-      border-radius: 12px;
-      padding: 8px 8px 7px;
-      border: 1px solid rgba(0,0,0,0.04);
-    }
-
-    .howto-step span {
-      font-weight: 600;
-      font-size: 0.8rem;
-    }
-
-    /* MATRIX CARDS */
-    .matrix-section {
-      margin-top: 6px;
-    }
-
-    .matrix-headline {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 10px;
-      align-items: baseline;
-      margin-bottom: 6px;
-    }
-
-    .matrix-headline h2 {
-      font-size: 1.1rem;
-    }
-
-    .matrix-headline p {
-      font-size: 0.88rem;
-      max-width: 520px;
-    }
-
-    .matrix-note {
-      font-size: 0.78rem;
-      opacity: 0.8;
-      margin-bottom: 10px;
-    }
-
-    .matrix-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-    }
-
-    .domain-card {
-      border-radius: 18px;
-      padding: 10px 10px 9px;
-      color: white;
+    .step-card {
+      background: #fdfdfd;
+      border-radius: 14px;
+      padding: 10px 10px 11px;
+      border: 1px solid #ececec;
+      font-size: 0.9rem;
       position: relative;
-      overflow: hidden;
-      font-size: 0.85rem;
-      box-shadow: var(--shadow-soft);
     }
 
-    .domain-card h3 {
-      font-size: 0.96rem;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .domain-icon {
-      font-size: 1.1rem;
-    }
-
-    .domain-tagline {
-      font-size: 0.78rem;
-      opacity: 0.95;
-      margin-bottom: 4px;
-    }
-
-    .domain-block {
-      margin-bottom: 4px;
-    }
-
-    .domain-label {
-      font-size: 0.76rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      opacity: 0.85;
+    .step-icon {
+      font-size: 1.3rem;
       margin-bottom: 2px;
     }
 
-    .domain-text {
-      font-size: 0.8rem;
+    .step-title {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
     }
 
-    .domain-chip-row {
+    .step-card p {
+      font-size: 0.85rem;
       margin-top: 4px;
+    }
+
+    /* Matrice – version simplifiée en 4 cartes */
+    #matrix {
+      margin-top: 6px;
+    }
+
+    .matrix-intro {
+      font-size: 0.9rem;
+      margin-bottom: 8px;
+    }
+
+    .domains-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .domain-card {
+      border-radius: 16px;
+      padding: 10px 9px 11px;
+      color: white;
+      font-size: 0.85rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .domain-card h3 {
+      font-family: "Poppins", system-ui, sans-serif;
+      font-size: 0.9rem;
+      margin-bottom: 3px;
+    }
+
+    .domain-card ul {
+      padding-left: 14px;
+      margin-top: 3px;
+    }
+
+    .domain-card li {
+      margin-bottom: 2px;
+    }
+
+    .domain-card::after {
+      content: "";
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.3);
+      bottom: -20px;
+      right: -14px;
+      opacity: 0.6;
+    }
+
+    .domain-1 { background: var(--bleu); }
+    .domain-2 { background: var(--orange); }
+    .domain-3 { background: var(--rose); }
+    .domain-4 { background: var(--vert); }
+
+    /* Bloc final appel à action */
+    .cta {
+      margin-top: 4px;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 12px 12px 14px;
+      border: 1px dashed rgba(0,0,0,0.09);
+      display: grid;
+      grid-template-columns: minmax(0, 2.3fr) minmax(0, 1.1fr);
+      gap: 10px;
+      align-items: center;
+    }
+
+    .cta-text {
+      font-size: 0.9rem;
+    }
+
+    .cta-points {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px;
+      gap: 6px;
+      margin-top: 6px;
     }
 
-    .domain-chip {
-      font-size: 0.72rem;
-      padding: 2px 7px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.18);
-    }
-
-    .domain-1 { background: linear-gradient(135deg, var(--bleu), #4bb4f0); }
-    .domain-2 { background: linear-gradient(135deg, var(--orange), #ffb347); }
-    .domain-3 { background: linear-gradient(135deg, var(--rose), var(--violet)); }
-    .domain-4 { background: linear-gradient(135deg, var(--vert), #b8dd59); }
-
-    .domain-doodle {
-      position: absolute;
-      right: -4px;
-      bottom: -6px;
-      font-size: 2.4rem;
-      opacity: 0.14;
-      transform: rotate(-10deg);
-    }
-
-    /* FOOTER */
-    footer {
-      padding: 14px 20px 20px;
+    .cta-pill {
       font-size: 0.8rem;
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: #f4f4f4;
+    }
+
+    .cta-right {
+      text-align: right;
+      font-size: 0.85rem;
+    }
+
+    .cta-button {
+      display: inline-block;
+      margin-top: 4px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: var(--violet);
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .cta-button:hover {
+      opacity: 0.9;
+      text-decoration: none;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid #e0e0e0;
+      padding: 12px 16px 16px;
+      font-size: 0.78rem;
       color: #777;
     }
 
@@ -495,30 +483,34 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
-      gap: 10px;
+      gap: 6px;
     }
 
-    /* RESPONSIVE */
-    @media (max-width: 960px) {
+    /* Responsive */
+    @media (max-width: 980px) {
       .hero {
         grid-template-columns: minmax(0, 1fr);
       }
       .axes-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
-      .matrix-grid {
+      .domains-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .cta {
+        grid-template-columns: minmax(0, 1fr);
+        text-align: left;
+      }
+      .cta-right {
+        text-align: left;
       }
     }
 
-    @media (max-width: 700px) {
+    @media (max-width: 720px) {
       .axes-grid {
         grid-template-columns: minmax(0, 1fr);
       }
-      .howto-steps {
-        grid-template-columns: minmax(0, 1fr);
-      }
-      .matrix-grid {
+      .domains-grid {
         grid-template-columns: minmax(0, 1fr);
       }
       .header-inner {
@@ -528,6 +520,9 @@
       nav {
         width: 100%;
       }
+      .hero {
+        padding: 14px 12px 16px;
+      }
     }
   </style>
 </head>
@@ -536,19 +531,15 @@
 
 <header>
   <div class="header-inner">
-    <div class="logo-block">
-      <div class="logo-badge">
-        <span>🌍 LS4YOU</span>
-        <span>Mission Locale Pays Basque</span>
-      </div>
-      <h1>Life Skills & Orientation des jeunes</h1>
-      <p>Des outils simples, visuels et opérationnels pour les professionnels</p>
+    <div class="logo-title">
+      <h1>LS4YOU – Mission Locale Pays Basque</h1>
+      <p>Les Life Skills comme leviers d’orientation et d’insertion des jeunes</p>
     </div>
     <nav>
-      <a href="#axes">Les 3 outils-clés</a>
-      <a href="#matrix">Matrice couleurs</a>
-      <a href="diagnostic.html">Diagnostic smartphone</a>
-      <a href="ateliers.html">Ateliers thématiques</a>
+      <a href="#axes">Les 3 outils</a>
+      <a href="#matrix">La matrice</a>
+      <a href="diagnostic.html">Diagnostic</a>
+      <a href="ateliers.html">Ateliers</a>
       <a href="https://mlpb-tools.github.io/elearning-LS4YOU/" target="_blank">Plateforme LS4YOU</a>
     </nav>
   </div>
@@ -558,293 +549,227 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-left">
-      <div class="hero-kicker">Pourquoi LS4YOU&nbsp;?</div>
-      <h2>Des Life Skills pour orienter plus vite, plus juste, plus clair</h2>
+    <div class="hero-main">
+      <h2><span class="hand-drawn-underline">Pourquoi LS4YOU en Mission Locale&nbsp;?</span></h2>
       <p>
-        LS4YOU aide les jeunes à se connaître, communiquer, gérer leurs émotions
-        et mobiliser leurs ressources. Ici, ces outils sont adaptés au travail
-        quotidien en Mission Locale.
+        Pour aider les jeunes à mieux se connaître 🧠, mieux communiquer 🗣️, mieux gérer leurs émotions 💛
+        et mieux mobiliser leurs ressources 🚀.
       </p>
       <p>
-        L’objectif&nbsp;: proposer aux professionnels des
-        <strong>supports clés en main</strong>, faciles à expliquer aux jeunes
-        et directement reliés au projet professionnel.
+        Et pour aider les professionnels à <strong>orienter plus vite, plus juste, plus clair</strong>, avec
+        des outils simples et prêts à l’emploi.
       </p>
-      <div class="hero-tags">
-        <span class="hero-tag">Orientation pro</span>
-        <span class="hero-tag">Bilan de compétences</span>
-        <span class="hero-tag">Levée des freins</span>
-        <span class="hero-tag">Jeunes 16–25 ans</span>
-      </div>
-      <div class="hero-note">
-        🎯 <strong>3 briques pour structurer vos pratiques</strong> : un atelier “4 domaines”,
-        un diagnostic smartphone et des ateliers thématiques (santé, budget, emploi).
+      <div class="hero-badges">
+        <span class="badge">Jeunes 16–25 ans</span>
+        <span class="badge">Orientation pro</span>
+        <span class="badge">Life Skills</span>
+        <span class="badge">Outils testés terrain</span>
       </div>
     </div>
-
-    <div class="hero-right">
-      <div class="sketch-card">
-        <div class="sketch-title">
-          <span>🧩 Vue d’ensemble</span>
-          <span class="sketch-pill">Facilitation graphique</span>
-        </div>
-        <div class="sketch-grid">
-          <div class="sketch-box">
-            <span>1. Comprendre</span>
-            <div>Diagnostic Life Skills simple (20 questions) → profil du jeune.</div>
-          </div>
-          <div class="sketch-box">
-            <span>2. Choisir</span>
-            <div>Matrice couleurs → domaine, compétence, activité adaptée.</div>
-          </div>
-          <div class="sketch-box">
-            <span>3. Agir</span>
-            <div>Atelier ou mini-activité → mise en mouvement rapide.</div>
-          </div>
-          <div class="sketch-box">
-            <span>4. Relier</span>
-            <div>Micro-bilan → lien direct avec le projet pro / la formation.</div>
-          </div>
-        </div>
-        <div class="sketch-arrow">
-          <span>➡️ Objectif&nbsp;: des outils qui parlent autant aux jeunes qu’aux professionnels.</span>
-        </div>
-        <div class="sketch-doodle">✏️</div>
+    <div class="hero-notes">
+      <div class="sticky">
+        <strong>3 questions simples :</strong><br>
+        • Où en est le jeune dans ses ressources&nbsp;?<br>
+        • De quoi a-t-il besoin pour avancer&nbsp;?<br>
+        • Quelle activité choisir maintenant&nbsp;?
+      </div>
+      <div class="sticky secondary">
+        <strong>3 réponses LS4YOU :</strong><br>
+        1. Un atelier “4 domaines” 🧩<br>
+        2. Un diagnostic smartphone 📱<br>
+        3. Des ateliers thématiques concrets 🎯
       </div>
     </div>
   </section>
 
   <!-- AXES -->
-  <section id="axes" class="axes-section">
-    <h2>Les 3 outils-clés pour les professionnels</h2>
-    <p>Trois portes d’entrée complémentaires, construites à partir du guidebook LS4YOU, de la matrice et de l’auto-évaluation déjà créées.</p>
+  <section id="axes">
+    <h2 class="section-title"><span>🧩</span>Les 3 outils-phares pour les professionnels</h2>
 
     <div class="axes-grid">
-
-      <article class="axe-card" style="border-top:4px solid var(--bleu);">
-        <div class="axe-label">Outil n°1</div>
-        <h3><span class="axe-emoji">🧩</span> Atelier “4 domaines”</h3>
-        <span class="axe-chip">Tout-en-un</span>
+      <!-- Axe 1 -->
+      <article class="axe-card">
+        <div class="axe-header">
+          <div class="axe-title">
+            <span class="axe-icon">🧠</span>
+            <span>Atelier “4 domaines”</span>
+          </div>
+          <span class="axe-tag">Tout-en-un</span>
+        </div>
         <p>
-          Une séance courte pour parcourir les 4 grandes familles de Life Skills
-          avec les jeunes, en s’appuyant sur 4 mini-activités.
+          1 séance pour explorer les 4 grands domaines de compétences&nbsp;:
         </p>
         <ul class="axe-list">
-          <li>1 activité Identité / personnalité</li>
-          <li>1 activité Valorisation de soi</li>
-          <li>1 activité Santé physique & mentale</li>
-          <li>1 activité Ressources matérielles & financières</li>
+          <li>Identité &amp; confiance</li>
+          <li>Communication &amp; relations</li>
+          <li>Émotions &amp; énergie</li>
+          <li>Ressources matérielles &amp; financières</li>
         </ul>
         <p class="axe-footer">
-          ✔ Fiche animateur + fiche-bilan jeune<br>
-          ✔ Utile pour les OF, la ML, les ateliers “projet pro”
+          ✔ 1 mini-activité par domaine<br>
+          ✔ 1 fiche-bilan jeune<br>
+          ✔ Animable par tout conseiller / OF
         </p>
       </article>
 
-      <article class="axe-card" style="border-top:4px solid var(--rose);">
-        <div class="axe-label">Outil n°2</div>
-        <h3><span class="axe-emoji">📱</span> Diagnostic Life Skills</h3>
-        <span class="axe-chip">Auto-évaluation smartphone</span>
+      <!-- Axe 2 -->
+      <article class="axe-card">
+        <div class="axe-header">
+          <div class="axe-title">
+            <span class="axe-icon">📱</span>
+            <span>Diagnostic Life Skills</span>
+          </div>
+          <span class="axe-tag">Auto-évaluation</span>
+        </div>
         <p>
-          Un questionnaire simple à remplir sur téléphone, qui débouche sur un profil
-          Life Skills et des pistes d’action concrètes.
+          Un questionnaire court sur smartphone pour obtenir un
+          <strong>profil Life Skills</strong> :
         </p>
         <ul class="axe-list">
-          <li>20 questions maximum, langage accessible</li>
-          <li>Profil en 4 domaines (forces / freins)</li>
-          <li>Activités recommandées via la matrice LS4YOU</li>
+          <li>Forces</li>
+          <li>Points d’appui</li>
+          <li>Freins</li>
+          <li>Activités recommandées</li>
         </ul>
         <p class="axe-footer">
-          ✔ Support de bilan<br>
-          ✔ Exploitable avec les organismes de formation
+          ✔ Utilisable en entretien ou en atelier<br>
+          ✔ Lecture directe pour l’orientation pro
         </p>
       </article>
 
-      <article class="axe-card" style="border-top:4px solid var(--vert);">
-        <div class="axe-label">Outil n°3</div>
-        <h3><span class="axe-emoji">🎯</span> Ateliers thématiques</h3>
-        <span class="axe-chip">Modules courts</span>
+      <!-- Axe 3 -->
+      <article class="axe-card">
+        <div class="axe-header">
+          <div class="axe-title">
+            <span class="axe-icon">🎯</span>
+            <span>Ateliers thématiques</span>
+          </div>
+          <span class="axe-tag">Modules courts</span>
+        </div>
         <p>
-          Des ateliers ciblés, construits à partir des activités LS4YOU et des besoins
-          repérés sur le terrain.
+          3 modules pensés pour les besoins concrets des jeunes&nbsp;:
         </p>
         <ul class="axe-list">
-          <li>💛 Santé physique & mentale (avec la psychologue)</li>
-          <li>💸 Rapport à l’argent & budget</li>
-          <li>🚀 Accès à l’emploi & à l’apprentissage</li>
+          <li>💛 Santé physique &amp; mentale (avec la psychologue)</li>
+          <li>💸 Budget &amp; ressources matérielles</li>
+          <li>🚀 Emploi / apprentissage &amp; image de soi</li>
         </ul>
         <p class="axe-footer">
-          ✔ 45 min par atelier<br>
-          ✔ Micro-bilan relié au projet professionnel
+          ✔ 45 min<br>
+          ✔ 1–2 activités LS4YOU<br>
+          ✔ Micro-bilan orienté formation / emploi
         </p>
       </article>
-
     </div>
+  </section>
 
-    <div class="howto">
-      <div class="howto-title">🧭 Comment utiliser LS4YOU dans vos accompagnements&nbsp;?</div>
-      <div class="howto-steps">
-        <div class="howto-step">
-          <span>1. Diagnostiquer 🔍</span><br>
-          Le jeune remplit le diagnostic (smartphone) → vous obtenez un profil rapide
-          et des premières pistes (forces / freins).
-        </div>
-        <div class="howto-step">
-          <span>2. Choisir l’outil 🛠️</span><br>
-          Avec la matrice couleurs, vous choisissez une activité ou un atelier adapté
-          à la situation et au moment du parcours.
-        </div>
-        <div class="howto-step">
-          <span>3. Mettre en action 🚀</span><br>
-          Vous animez l’activité, faites un micro-bilan et reliez le tout au projet
-          pro, à l’entrée en formation ou à l’apprentissage.
-        </div>
+  <!-- 3 ÉTAPES -->
+  <section class="steps">
+    <h2 class="section-title"><span>🪜</span>Comment utiliser LS4YOU avec un jeune&nbsp;?</h2>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-icon">🔍</div>
+        <div class="step-title">1. Diagnostiquer</div>
+        <p>
+          Le jeune répond au diagnostic Life Skills sur son smartphone.<br>
+          ➜ Vous obtenez un profil simple par domaine.
+        </p>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">🛠️</div>
+        <div class="step-title">2. Choisir l’outil</div>
+        <p>
+          Avec la matrice, vous repérez en quelques secondes&nbsp;:<br>
+          domaine → compétence → activité adaptée.
+        </p>
+      </div>
+      <div class="step-card">
+        <div class="step-icon">🚀</div>
+        <div class="step-title">3. Mettre en action</div>
+        <p>
+          Vous animez une mini-activité ou un atelier thématique.<br>
+          ➜ Un micro-bilan vient nourrir le projet professionnel.
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- MATRIX -->
-  <section id="matrix" class="matrix-section">
-    <div class="matrix-headline">
-      <h2>Matrice Life Skills en 4 couleurs</h2>
-      <p>
-        Une lecture simple des Life Skills&nbsp;: 4 domaines, quelques indicateurs clés,
-        des usages concrets pour l’orientation et 3 idées d’activités par domaine.
-      </p>
-    </div>
-    <p class="matrix-note">
-      Pour les professionnels&nbsp;: repérez un domaine qui “parle” de la situation du jeune
-      → choisissez une activité dans la colonne “Outils”.
+  <!-- MATRICE SIMPLIFIÉE -->
+  <section id="matrix">
+    <h2 class="section-title"><span>📊</span>La matrice Life Skills (version Mission Locale)</h2>
+    <p class="matrix-intro">
+      4 couleurs, 4 domaines. Pour chaque domaine&nbsp;: à quoi ça sert, ce que l’on observe, quoi utiliser.
+      <br>Objectif&nbsp;: <strong>aider à décider rapidement avec quel outil démarrer.</strong>
     </p>
 
-    <div class="matrix-grid">
-
-      <!-- DOMAINE 1 -->
+    <div class="domains-grid">
+      <!-- Domaine 1 -->
       <article class="domain-card domain-1">
-        <h3><span class="domain-icon">🧠</span> Identité</h3>
-        <div class="domain-tagline">“Qui je suis, ce que je fais bien”</div>
-
-        <div class="domain-block">
-          <div class="domain-label">Pour quoi&nbsp;?</div>
-          <div class="domain-text">
-            Confiance en soi, présentation, motivation. Idéal en début de parcours ou
-            lors d’un bilan.
-          </div>
-        </div>
-
-        <div class="domain-block">
-          <div class="domain-label">Indices chez le jeune</div>
-          <div class="domain-text">
-            Se dévalorise, ne trouve pas de qualités, a du mal à parler de lui.
-          </div>
-        </div>
-
-        <div class="domain-block">
-          <div class="domain-label">Idées d’activités</div>
-          <div class="domain-chip-row">
-            <span class="domain-chip">Who am I ?</span>
-            <span class="domain-chip">Mes forces</span>
-            <span class="domain-chip">Mes valeurs</span>
-          </div>
-        </div>
-
-        <div class="domain-doodle">1️⃣</div>
+        <h3>🧠 Identité</h3>
+        <p><strong>Question-clé&nbsp;:</strong> “Qui je suis&nbsp;? Qu’est-ce que je fais bien&nbsp;?”</p>
+        <ul>
+          <li><strong>Pour :</strong> confiance, présentation de soi, motivation</li>
+          <li><strong>Indices :</strong> se dévalorise, “je n’ai rien de spécial”</li>
+          <li><strong>Outils :</strong> Who am I ?, Forces, Valeurs</li>
+        </ul>
       </article>
 
-      <!-- DOMAINE 2 -->
+      <!-- Domaine 2 -->
       <article class="domain-card domain-2">
-        <h3><span class="domain-icon">💬</span> Communication</h3>
-        <div class="domain-tagline">“Comment je parle et je crée du lien”</div>
-
-        <div class="domain-block">
-          <div class="domain-label">Pour quoi&nbsp;?</div>
-          <div class="domain-text">
-            Entretiens, alternance, stages, travail avec une équipe.
-          </div>
-        </div>
-
-        <div class="domain-block">
-          <div class="domain-label">Indices chez le jeune</div>
-          <div class="domain-text">
-            Discours très court, se cache derrière l’humour ou le silence, mal à l’aise à l’oral.
-          </div>
-        </div>
-
-        <div class="domain-block">
-          <div class="domain-label">Idées d’activités</div>
-          <div class="domain-chip-row">
-            <span class="domain-chip">Mini pitch</span>
-            <span class="domain-chip">Forces & faiblesses</span>
-            <span class="domain-chip">Cartes scénarios</span>
-          </div>
-        </div>
-
-        <div class="domain-doodle">2️⃣</div>
+        <h3>💬 Communication</h3>
+        <p><strong>Question-clé&nbsp;:</strong> “Comment je parle aux autres&nbsp;?”</p>
+        <ul>
+          <li><strong>Pour :</strong> entretien, alternance, vie en groupe</li>
+          <li><strong>Indices :</strong> discours très court, maladresses, évitement</li>
+          <li><strong>Outils :</strong> Mini-pitch, Strengths, Interaction Map</li>
+        </ul>
       </article>
 
-      <!-- DOMAINE 3 -->
+      <!-- Domaine 3 -->
       <article class="domain-card domain-3">
-        <h3><span class="domain-icon">💛</span> Émotions & énergie</h3>
-        <div class="domain-tagline">“Ce que je ressens, comment je le gère”</div>
-
-        <div class="domain-block">
-          <div class="domain-label">Pour quoi&nbsp;?</div>
-          <div class="domain-text">
-            Prévenir les ruptures, garder le cap en formation ou en emploi.
-          </div>
-        </div>
-
-        <div class="domain-block">
-          <div class="domain-label">Indices chez le jeune</div>
-          <div class="domain-text">
-            Fatigue permanente, stress, découragement, absences, variations d’humeur.
-          </div>
-        </div>
-
-        <div class="domain-block">
-          <div class="domain-label">Idées d’activités</div>
-          <div class="domain-chip-row">
-            <span class="domain-chip">“Énergie du jour”</span>
-            <span class="domain-chip">Profil stress</span>
-            <span class="domain-chip">Roue des émotions</span>
-          </div>
-        </div>
-
-        <div class="domain-doodle">3️⃣</div>
+        <h3>💛 Émotions &amp; énergie</h3>
+        <p><strong>Question-clé&nbsp;:</strong> “Comment je me sens et je tiens dans la durée&nbsp;?”</p>
+        <ul>
+          <li><strong>Pour :</strong> tenir en formation, prévenir les ruptures</li>
+          <li><strong>Indices :</strong> fatigue, stress, humeur fluctuante</li>
+          <li><strong>Outils :</strong> Energy Check, Stress Profile, Emotion Wheel</li>
+        </ul>
       </article>
 
-      <!-- DOMAINE 4 -->
+      <!-- Domaine 4 -->
       <article class="domain-card domain-4">
-        <h3><span class="domain-icon">💶</span> Ressources & budget</h3>
-        <div class="domain-tagline">“Ce que j’ai pour avancer au quotidien”</div>
-
-        <div class="domain-block">
-          <div class="domain-label">Pour quoi&nbsp;?</div>
-          <div class="domain-text">
-            Apprentissage, formation, mobilité, logement, autonomie matérielle.
-          </div>
-        </div>
-
-        <div class="domain-block">
-          <div class="domain-label">Indices chez le jeune</div>
-          <div class="domain-text">
-            Renoncements pour cause de transport ou d’argent, dettes, dépendance forte à l’entourage.
-          </div>
-        </div>
-
-        <div class="domain-block">
-          <div class="domain-label">Idées d’activités</div>
-          <div class="domain-chip-row">
-            <span class="domain-chip">Carte ressources</span>
-            <span class="domain-chip">Jeu budget</span>
-            <span class="domain-chip">Carte mobilité</span>
-          </div>
-        </div>
-
-        <div class="domain-doodle">4️⃣</div>
+        <h3>💶 Ressources</h3>
+        <p><strong>Question-clé&nbsp;:</strong> “De quoi je dispose pour avancer&nbsp;?”</p>
+        <ul>
+          <li><strong>Pour :</strong> budget, mobilité, autonomie quotidienne</li>
+          <li><strong>Indices :</strong> renoncements, “je ne peux pas venir”, isolement</li>
+          <li><strong>Outils :</strong> Supports &amp; Barriers, Budget game, Mobility Map</li>
+        </ul>
       </article>
+    </div>
+  </section>
 
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-text">
+      <h2 class="section-title"><span>💡</span>Ce que LS4YOU change dans vos pratiques</h2>
+      <div class="cta-points">
+        <span class="cta-pill">Diagnostic simple à partager</span>
+        <span class="cta-pill">Outils concrets pour les ateliers</span>
+        <span class="cta-pill">Lien direct Life Skills &rarr; projet pro</span>
+        <span class="cta-pill">Support pour la relation avec les OF</span>
+        <span class="cta-pill">Appui aux psychologues & partenaires santé</span>
+      </div>
+      <p style="margin-top:6px; font-size:0.85rem;">
+        L’enjeu&nbsp;: faire des Life Skills <strong>un langage commun</strong> entre jeunes, conseillers,
+        organismes de formation et partenaires du territoire.
+      </p>
+    </div>
+    <div class="cta-right">
+      <div>Envie de tester avec vos équipes&nbsp;?</div>
+      <a class="cta-button" href="https://mlpb-tools.github.io/elearning-LS4YOU/" target="_blank">
+        Accéder à la plateforme LS4YOU
+      </a>
     </div>
   </section>
 
@@ -852,8 +777,8 @@
 
 <footer>
   <div class="footer-inner">
-    <div>© Mission Locale Pays Basque – Adaptation LS4YOU aux pratiques d’orientation et d’insertion des jeunes.</div>
-    <div>Outils en construction, à tester, ajuster et enrichir avec les équipes et les partenaires.</div>
+    <div>© Mission Locale Pays Basque – Adaptation locale LS4YOU.</div>
+    <div>Outils en cours de déploiement – support d’orientation et de formation des professionnels.</div>
   </div>
 </footer>
 
